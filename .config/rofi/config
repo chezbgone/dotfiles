@@ -1,0 +1,8 @@
+rofi.font: Source Code Pro 10
+
+rofi.color-enabled:                  true
+rofi.color-normal:                   #eeeeee,#555577,#e0e0e0,#5599ff,#eeeeee
+rofi.color-active:                   #eeeeee,#ccccee,#e0e0e0,#5599ff,#eeeeee
+rofi.color-urgent:                   #eeeeee,#cc3322,#e0e0e0,#5599ff,#cc3322
+rofi.color-window:                   #eeeeee,#f8f8f8
+rofi.separator-style: solid

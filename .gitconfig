@@ -1,0 +1,9 @@
+[user]
+	email = chezbgone@gmail.com
+	name = Jason Chen
+
+[alias]
+	hist = log --pretty=format:'%C(yellow)%h %C(red)%ad %C(reset)| %s%C(green)%d %C(cyan)[%an]' --decorate --date=short --graph
+	undo = reset --soft HEAD~1
+	ss = status -s -b
+	co = commit
