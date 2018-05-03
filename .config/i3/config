@@ -92,7 +92,7 @@ bindsym $mod+v scratchpad show
 bindsym Print exec xfce4-screenshooter -r
 
 # startup
-exec --no-startup-id feh --randomize --bg-scale ~/Dropbox/Keep/Wallpapers/*
+#exec --no-startup-id feh --randomize --bg-scale ~/Dropbox/Keep/Wallpapers/*
 #exec --no-startup-id amixer -c 0 set Headphone 1DB
 #exec --no-startup-id compton
 #exec --no-startup-id nm-applet

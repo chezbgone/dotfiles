@@ -13,8 +13,8 @@ Plug 'lilydjwg/colorizer'
 Plug 'junegunn/rainbow_parentheses.vim'
 
 "Plug 'chezbgone/vim-latex'
-Plug 'python-mode/python-mode'
-Plug 'Rip-Rip/clang_complete'
+"Plug 'python-mode/python-mode'
+"Plug 'Rip-Rip/clang_complete'
 
 Plug 'chrisbra/Recover.vim'
 Plug 'vim-airline/vim-airline'
