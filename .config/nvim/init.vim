@@ -8,7 +8,6 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'MaxSt/FlatColor'
-
 Plug 'lilydjwg/colorizer'
 Plug 'junegunn/rainbow_parentheses.vim'
 
@@ -22,6 +21,7 @@ Plug 'jeffkreeftmeijer/vim-numbertoggle'
 
 Plug 'SirVer/ultisnips'
 Plug 'Townk/vim-autoclose'
+Plug 'gioele/vim-autoswap'
 
 call plug#end()
 " End plug

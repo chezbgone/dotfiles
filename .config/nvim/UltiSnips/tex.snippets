@@ -12,7 +12,7 @@ snippet [] "brackets" A
 [${1:<++>}]${0:<++>}
 endsnippet
 
-snippet {} "braces" A
+snippet "{}" "braces" rA
 {${1:<++>}}${0:<++>}
 endsnippet
 
@@ -55,21 +55,21 @@ snippet "(matrix|smallmatrix|bmatrix|pmatrix)::" "matrix environments" rA
 ${0:<++>}
 endsnippet
 
-snippet "frame::" "frame" A
+snippet frame:: "frame" A
 \begin{frame}{${1:<+title+>}}
 	${2:<++>}
 \end{frame}
 ${0:<++>}
 endsnippet
 
-snippet "fframe::" "fragile frame" A
+snippet fframe:: "fragile frame" A
 \begin{frame}{${1:<+title+>}}[fragile]
 	${2:<++>}
 \end{frame}
 ${0:<++>}
 endsnippet
 
-snippet "minipage::" "minipage" A
+snippet minipage:: "minipage" A
 \begin{minipage}{${1:<+size+>}}
 	${2:<++>}
 \end{minipage}
@@ -90,28 +90,28 @@ snippet "(subfig|subfigure)::" "subfigure" rA
 ${0:<++>}
 endsnippet
 
-snippet "enum::" "enumerate" A
+snippet enum:: "enumerate" A
 \begin{enumerate}
-	${1:<++>}
+	\item ${1:<++>}
 \end{enumerate}
 ${0:<++>}
 endsnippet
 
-snippet "itemize::" "itemize" A
+snippet itemize:: "itemize" A
 \begin{itemize}
-	${1:<++>}
+	\item ${1:<++>}
 \end{itemize}
 ${0:<++>}
 endsnippet
 
-snippet "desc::" "description" A
+snippet desc:: "description" A
 \begin{description}
-	${1:<++>}
+	\item ${1:<++>}
 \end{description}
 ${0:<++>}
 endsnippet
 
-snippet "(cases)::" "standard math environments" rA
+snippet cases:: "cases math environments" A
 \begin{`!p snip.rv = match.group(1)`}
 	${1:<++>}
 \end{`!p snip.rv = match.group(1)`}
@@ -138,15 +138,50 @@ snippet "(Theorem|Lemma|Proposition|Corollary|Conjecture|Definition|Fact|Exercis
 ${0:<++>}
 endsnippet
 
+snippet "(Def|Defn)::" "definition enivonment abbreviation" rA
+\begin{definition}
+	${1:<++>}
+\end{definition}
+${0:<++>}
+endsnippet
+
+snippet Ex:: "example enivonment abbreviation" A
+\begin{example}
+	${1:<++>}
+\end{example}
+${0:<++>}
+endsnippet
+
+snippet Thm:: "theorem enivonment abbreviation" A
+\begin{theorem}
+	${1:<++>}
+\end{theorem}
+${0:<++>}
+endsnippet
+
+snippet Lem:: "lemma enivonment abbreviation" A
+\begin{lemma}
+	${1:<++>}
+\end{lemma}
+${0:<++>}
+endsnippet
+
+snippet Prop:: "proposition enivonment abbreviation" A
+\begin{proposition}
+	${1:<++>}
+\end{proposition}
+${0:<++>}
+endsnippet
+
 ### MATH SNIPPETS ###
 snippet "(//|\.frac)" "fraction" rA
 \frac{${1:<++>}}{${2:<++>}}${0:<++>}
 endsnippet
 
-snippet "(dv|ddv|pdv|pddv)" "derivatives" rA
+snippet "\.(dv|ddv|pdv|pddv)" "derivatives" rA
 \\`!p snip.rv = match.group(1)`{${1:<++>}}{${2:<++>}}${0:<++>}
 endsnippet
 
-snippet "(dnv|pdnv)" "nth derivatives" rA
+snippet "\.(dnv|pdnv)" "nth derivatives" rA
 \\`!p snip.rv = match.group(1)`{${1:<++>}}{${2:<++>}}{${3:<++>}}${0:<++>}
 endsnippet
