@@ -1,4 +1,4 @@
-c.backend = 'webkit'
+#c.backend = 'webkit'
 c.content.pdfjs = True
 
 c.fonts.monospace = '"Source Code Pro", ' + c.fonts.monospace
@@ -19,6 +19,7 @@ c.tabs.padding['left'] = 2
 c.tabs.padding['right'] = 2
 
 c.tabs.position = 'left'
+c.tabs.show = 'multiple'
 c.tabs.width = 120
 
 c.url.default_page = 'file:///home/jason/homepage.html'
