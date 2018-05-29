@@ -1,28 +1,32 @@
 #
 
-snippet ... "dots" A
+snippet ... "dots" Ai
 \dots
 endsnippet
 
-snippet () "parens" A
-(${1:<++>})${0:<++>}
+snippet () "parens" Ai
+(${1})${0:<++>}
 endsnippet
 
-snippet [] "brackets" A
-[${1:<++>}]${0:<++>}
+snippet [] "brackets" Ai
+[${1}]${0:<++>}
 endsnippet
 
 snippet "{}" "braces" rA
-{${1:<++>}}${0:<++>}
+{${1}}${0:<++>}
 endsnippet
 
-snippet "(\$\$|\\\()" "Inline math" rA
-\(${1:<++>}\)${0:<++>}
+snippet "\$\$" "Inline math dollars" rA
+\(${1}\)${0:<++>}
+endsnippet
+
+snippet "\\\(" "Inline math parens" rA
+\(${1}\)${0:<++>}
 endsnippet
 
 snippet "\\\[ " "Display math" rA
 \[
-	${1:<++>}
+	${1}
 \]
 ${0:<++>}
 endsnippet
@@ -36,21 +40,21 @@ endsnippet
 
 snippet "(Equation|Align|Gather)::" "eqn environments" rA
 \begin{`!p snip.rv = match.group(1).lower()`}
-	${1:<++>}
+	${1}
 \end{`!p snip.rv = match.group(1).lower()`}
 ${0:<++>}
 endsnippet
 
 snippet "(equation|align|gather)::" "nonnumbered eqn environments" rA
 \begin{`!p snip.rv = match.group(1) + '*'`}
-	${1:<++>}
+	${1}
 \end{`!p snip.rv = match.group(1)+ '*'`}
 ${0:<++>}
 endsnippet
 
 snippet "(matrix|smallmatrix|bmatrix|pmatrix)::" "matrix environments" rA
 \begin{`!p snip.rv = match.group(1)`}
-	${1:<++>}
+	${1}
 \end{`!p snip.rv = match.group(1)`}
 ${0:<++>}
 endsnippet
@@ -78,7 +82,7 @@ endsnippet
 
 snippet "(fig|figure)::" "figure" rA
 \begin{figure}[ht!]
-	${1:<++>}
+	${1}
 \end{figure}
 ${0:<++>}
 endsnippet
@@ -92,96 +96,96 @@ endsnippet
 
 snippet enum:: "enumerate" A
 \begin{enumerate}
-	\item ${1:<++>}
+	\item ${1}
 \end{enumerate}
 ${0:<++>}
 endsnippet
 
 snippet itemize:: "itemize" A
 \begin{itemize}
-	\item ${1:<++>}
+	\item ${1}
 \end{itemize}
 ${0:<++>}
 endsnippet
 
 snippet desc:: "description" A
 \begin{description}
-	\item ${1:<++>}
+	\item ${1}
 \end{description}
 ${0:<++>}
 endsnippet
 
 snippet cases:: "cases math environments" A
 \begin{`!p snip.rv = match.group(1)`}
-	${1:<++>}
+	${1}
 \end{`!p snip.rv = match.group(1)`}
 ${0:<++>}
 endsnippet
 
 snippet "(center|asy)::" "standard text environments" rA
 \begin{`!p snip.rv = match.group(1)`}
-	${1:<++>}
+	${1}
 \end{`!p snip.rv = match.group(1)`}
 ${0:<++>}
 endsnippet
 
 ### DELIMITERS ###
 snippet "\.(braces|parens|brackets|angles|verts|Verts|floor|ceil|set|abs|size|norm|tuple)" "autosize delimiters" rA
-\\`!p snip.rv = match.group(1)`*{${1:<++>}}${0:<++>}
+\\`!p snip.rv = match.group(1)`*{${1}}${0:<++>}
 endsnippet
 
 ### THEOREM ENVIRONMENTS ###
 snippet "(Theorem|Lemma|Proposition|Corollary|Conjecture|Definition|Fact|Exercise|Problem|Qestion|Answer|Remark|Case|Claim|Example|Proof)::" "proof enivonments" rA
 \begin{`!p snip.rv = match.group(1).lower()`}
-	${1:<++>}
+	${1}
 \end{`!p snip.rv = match.group(1).lower()`}
 ${0:<++>}
 endsnippet
 
 snippet "(Def|Defn)::" "definition enivonment abbreviation" rA
 \begin{definition}
-	${1:<++>}
+	${1}
 \end{definition}
 ${0:<++>}
 endsnippet
 
 snippet Ex:: "example enivonment abbreviation" A
 \begin{example}
-	${1:<++>}
+	${1}
 \end{example}
 ${0:<++>}
 endsnippet
 
 snippet Thm:: "theorem enivonment abbreviation" A
 \begin{theorem}
-	${1:<++>}
+	${1}
 \end{theorem}
 ${0:<++>}
 endsnippet
 
 snippet Lem:: "lemma enivonment abbreviation" A
 \begin{lemma}
-	${1:<++>}
+	${1}
 \end{lemma}
 ${0:<++>}
 endsnippet
 
 snippet Prop:: "proposition enivonment abbreviation" A
 \begin{proposition}
-	${1:<++>}
+	${1}
 \end{proposition}
 ${0:<++>}
 endsnippet
 
 ### MATH SNIPPETS ###
 snippet "(//|\.frac)" "fraction" rA
-\frac{${1:<++>}}{${2:<++>}}${0:<++>}
+\frac{${1}}{${2:<++>}}${0:<++>}
 endsnippet
 
 snippet "\.(dv|ddv|pdv|pddv)" "derivatives" rA
-\\`!p snip.rv = match.group(1)`{${1:<++>}}{${2:<++>}}${0:<++>}
+\\`!p snip.rv = match.group(1)`{${1}}{${2:<++>}}${0:<++>}
 endsnippet
 
 snippet "\.(dnv|pdnv)" "nth derivatives" rA
-\\`!p snip.rv = match.group(1)`{${1:<++>}}{${2:<++>}}{${3:<++>}}${0:<++>}
+\\`!p snip.rv = match.group(1)`{${1}}{${2:<++>}}{${3:<++>}}${0:<++>}
 endsnippet

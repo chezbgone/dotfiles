@@ -17,12 +17,12 @@ bindsym $mod+Shift+l move right
 bindsym $mod+backslash split h
 bindsym $mod+minus split v
 
-set $bg-color 	           #2f343f
-set $border-color 	       #d79921
-set $inactive-bg-color     #2f343f
-set $inactive-border-color #bebebe
-set $text-color            #f3f4f5
-set $inactive-text-color   #676E7D
+set $bg-color 	           #223020
+set $border-color 	       #d08020
+set $inactive-bg-color     #202020
+set $inactive-border-color #8E8E8E
+set $text-color            #ffffff
+set $inactive-text-color   #8E8E8E
 set $urgent-bg-color       #E53935
 
 # window colors         border             background         text                 indicator  child-border
@@ -94,11 +94,11 @@ bindsym Print exec xfce4-screenshooter -r
 # startup
 #exec --no-startup-id feh --randomize --bg-scale ~/Dropbox/Keep/Wallpapers/*
 #exec --no-startup-id amixer -c 0 set Headphone 1DB
-#exec --no-startup-id compton
+exec --no-startup-id compton
 #exec --no-startup-id nm-applet
 exec --no-startup-id dropbox start
-#exec --no-startup-id xfce4-clipman
-#exec --no-startup-id setxkbmap -option caps:none ; xmodmap -e "keycode 66 = section"
+exec --no-startup-id xfce4-clipman
+exec --no-startup-id setxkbmap -option caps:none ; xmodmap -e "keycode 66 = section"
 
 bar {
 	position top
