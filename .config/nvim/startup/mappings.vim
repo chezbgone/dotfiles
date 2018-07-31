@@ -30,8 +30,8 @@ nnoremap <leader>evb :e ~/.config/nvim/init.vim<CR>
 nnoremap <leader>ezs :split $HOME/.zshrc<CR>
 nnoremap <leader>ezb :e $HOME/.zshrc<CR>
 " Edit jason.sty
-nnoremap <leader>ets :split ~/texmf/tex/latex/chez/chezbase.sty<CR>
-nnoremap <leader>etb :e ~/texmf/tex/latex/chez/chezbase.sty<CR>
+nnoremap <leader>ets :split ~/texmf/tex/latex/chez-sty/chezbase.sty<CR>
+nnoremap <leader>etb :e ~/texmf/tex/latex/chez-sty/chezbase.sty<CR>
 
 " Window commands
 nnoremap <leader>v  :vsp<CR>

@@ -28,105 +28,90 @@ snippet "\\\[ " "Display math" rA
 \[
 	${1}
 \]
-${0:<++>}
 endsnippet
 
 snippet \begin{ "General environment" A
 \begin{${1:env}}
-	${2:<++>}
+	${0:<++>}
 \end{$1}
-${0:<++>}
 endsnippet
 
 snippet "(Equation|Align|Gather)::" "eqn environments" rA
 \begin{`!p snip.rv = match.group(1).lower()`}
-	${1}
+	$1
 \end{`!p snip.rv = match.group(1).lower()`}
-${0:<++>}
 endsnippet
 
 snippet "(equation|align|gather)::" "nonnumbered eqn environments" rA
 \begin{`!p snip.rv = match.group(1) + '*'`}
-	${1}
+	$1
 \end{`!p snip.rv = match.group(1)+ '*'`}
-${0:<++>}
 endsnippet
 
 snippet "(matrix|smallmatrix|bmatrix|pmatrix)::" "matrix environments" rA
 \begin{`!p snip.rv = match.group(1)`}
-	${1}
+	$1
 \end{`!p snip.rv = match.group(1)`}
-${0:<++>}
 endsnippet
 
 snippet frame:: "frame" A
 \begin{frame}{${1:<+title+>}}
 	${2:<++>}
 \end{frame}
-${0:<++>}
 endsnippet
 
 snippet fframe:: "fragile frame" A
 \begin{frame}{${1:<+title+>}}[fragile]
 	${2:<++>}
 \end{frame}
-${0:<++>}
 endsnippet
 
 snippet minipage:: "minipage" A
 \begin{minipage}{${1:<+size+>}}
 	${2:<++>}
 \end{minipage}
-${0:<++>}
 endsnippet
 
 snippet "(fig|figure)::" "figure" rA
 \begin{figure}[ht!]
-	${1}
+	${0}
 \end{figure}
-${0:<++>}
 endsnippet
 
 snippet "(subfig|subfigure)::" "subfigure" rA
 \begin{subfigure}[c]{${1:<+size+>}}
 	${2:<++>}
 \end{subfigure}
-${0:<++>}
 endsnippet
 
 snippet enum:: "enumerate" A
 \begin{enumerate}
-	\item ${1}
+	\item ${0}
 \end{enumerate}
-${0:<++>}
 endsnippet
 
 snippet itemize:: "itemize" A
 \begin{itemize}
-	\item ${1}
+	\item ${0}
 \end{itemize}
-${0:<++>}
 endsnippet
 
 snippet desc:: "description" A
 \begin{description}
-	\item ${1}
+	\item ${0}
 \end{description}
-${0:<++>}
 endsnippet
 
 snippet cases:: "cases math environments" A
 \begin{`!p snip.rv = match.group(1)`}
-	${1}
+	${0}
 \end{`!p snip.rv = match.group(1)`}
-${0:<++>}
 endsnippet
 
 snippet "(center|asy)::" "standard text environments" rA
 \begin{`!p snip.rv = match.group(1)`}
-	${1}
+	${0}
 \end{`!p snip.rv = match.group(1)`}
-${0:<++>}
 endsnippet
 
 ### DELIMITERS ###
@@ -135,46 +120,52 @@ snippet "\.(braces|parens|brackets|angles|verts|Verts|floor|ceil|set|abs|size|no
 endsnippet
 
 ### THEOREM ENVIRONMENTS ###
-snippet "(Theorem|Lemma|Proposition|Corollary|Conjecture|Definition|Fact|Exercise|Problem|Qestion|Answer|Remark|Case|Claim|Example|Proof)::" "proof enivonments" rA
+snippet "(Theorem|Lemma|Proposition|Corollary|Conjecture|Definition|Fact|Exercise|Problem|Qestion|Answer|Remark|Case|Claim|Example|Proof|Question)::" "proof enivonments" rA
 \begin{`!p snip.rv = match.group(1).lower()`}
-	${1}
+	${0}
 \end{`!p snip.rv = match.group(1).lower()`}
-${0:<++>}
 endsnippet
 
 snippet "(Def|Defn)::" "definition enivonment abbreviation" rA
 \begin{definition}
-	${1}
+	${0}
 \end{definition}
-${0:<++>}
 endsnippet
 
 snippet Ex:: "example enivonment abbreviation" A
 \begin{example}
-	${1}
+	${0}
 \end{example}
-${0:<++>}
 endsnippet
 
 snippet Thm:: "theorem enivonment abbreviation" A
 \begin{theorem}
-	${1}
+	${0}
 \end{theorem}
-${0:<++>}
 endsnippet
 
 snippet Lem:: "lemma enivonment abbreviation" A
 \begin{lemma}
-	${1}
+	${0}
 \end{lemma}
-${0:<++>}
 endsnippet
 
 snippet Prop:: "proposition enivonment abbreviation" A
 \begin{proposition}
-	${1}
+	${0}
 \end{proposition}
-${0:<++>}
+endsnippet
+
+snippet Conj:: "conjecture enivonment abbreviation" A
+\begin{conjecture}
+	${0}
+\end{conjecture}
+endsnippet
+
+snippet Cor:: "corollary enivonment abbreviation" A
+\begin{corollary}
+	${0}
+\end{corollary}
 endsnippet
 
 ### MATH SNIPPETS ###
@@ -188,4 +179,10 @@ endsnippet
 
 snippet "\.(dnv|pdnv)" "nth derivatives" rA
 \\`!p snip.rv = match.group(1)`{${1}}{${2:<++>}}{${3:<++>}}${0:<++>}
+endsnippet
+
+snippet tikzcd:: "commutative diagrams" A
+\begin{tikzcd}
+	${0}
+\end{tikzcd}
 endsnippet

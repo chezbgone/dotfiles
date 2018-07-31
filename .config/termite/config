@@ -1,5 +1,5 @@
 [options]
-font = Source Code Pro 9
+font = Source Code Pro 10
 scrollback_lines = 10000
 
 [colors]
