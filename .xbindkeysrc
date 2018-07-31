@@ -1,0 +1,39 @@
+# Increase volume
+"amixer -q sset Master 1%+ unmute & py3-cmd refresh volume_status"
+   XF86AudioRaiseVolume
+
+"amixer -q sset Master 5%+ unmute & py3-cmd refresh volume_status"
+   Shift+XF86AudioRaiseVolume
+
+# Decrease volume
+"amixer -q sset Master 1%- unmute & py3-cmd refresh volume_status"
+   XF86AudioLowerVolume
+
+"amixer -q sset Master 5%- unmute & py3-cmd refresh volume_status"
+   Shift+XF86AudioLowerVolume
+
+# Mute volume
+"amixer -q sset Master toggle & py3-cmd refresh volume_status"
+   XF86AudioMute
+
+
+# Increase backlight
+"xbacklight -inc 5 & py3-cmd refresh backlight"
+   XF86MonBrightnessUp
+
+# Decrease backlight
+"xbacklight -dec 5 & py3-cmd refresh backlight"
+   XF86MonBrightnessDown
+
+
+# Screenshot
+"xfce4-screenshooter -r"
+	Print
+
+# Lock
+"sh ~/scripts/fuzzy-lock.sh"
+	Mod4+L
+
+# Sleep
+"sh ~/scripts/fuzzy-lock.sh; systemctl suspend"
+	Mod4+S

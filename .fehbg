@@ -1,2 +1,1 @@
-#!/bin/sh
-feh --bg-center '/home/jason/Dropbox/Keep/Wallpapers/0Kl4W5T.jpg' 
+feh --bg-fill --randomize --no-fehbg ~/Dropbox/Keep/Wallpapers/*
