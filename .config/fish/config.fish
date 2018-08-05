@@ -24,7 +24,7 @@ function fish_prompt
 	printf (whoami)@(hostname)
 	printf ' '
 	set_color $fish_color_cwd
-	printf (dirs)
+	printf (prompt_pwd)
 
 	set_color normal
 	printf '%s $ ' (__fish_git_prompt)
@@ -34,3 +34,7 @@ alias gogogo startx
 alias emacs nvim # lol
 alias vim nvim
 alias vi nvim
+
+function pdf
+	nohup zathura "$argv" >/dev/null 2>&1 &
+end

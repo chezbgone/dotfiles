@@ -77,14 +77,14 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-msg exit"
 bindsym $mod+Shift+b exec --no-startup-id "source ~/.fehbg"
 
-bindsym $mod+y resize shrink width 5 px or 5 ppt
-bindsym $mod+u resize grow height 5 px or 5 ppt
-bindsym $mod+i resize shrink height 5 px or 5 ppt
-bindsym $mod+o resize grow width 5 px or 5 ppt
-bindsym $mod+Shift+y resize shrink width 25 px or 25 ppt
-bindsym $mod+Shift+u resize grow height 25 px or 25 ppt
-bindsym $mod+Shift+i resize shrink height 25 px or 25 ppt
-bindsym $mod+Shift+o resize grow width 25 px or 25 ppt
+bindsym $mod+y resize shrink width 5 px or 2 ppt
+bindsym $mod+u resize grow height 5 px or 2 ppt
+bindsym $mod+i resize shrink height 5 px or 2 ppt
+bindsym $mod+o resize grow width 5 px or 2 ppt
+bindsym $mod+Shift+y resize shrink width 25 px or 10 ppt
+bindsym $mod+Shift+u resize grow height 25 px or 10 ppt
+bindsym $mod+Shift+i resize shrink height 25 or 10 ppt
+bindsym $mod+Shift+o resize grow width 25 px or 10 ppt
 
 # scratchpad
 bindsym $mod+c move scratchpad
