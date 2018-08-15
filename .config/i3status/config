@@ -1,5 +1,5 @@
 order += "window_title_async"
-# order += "spotify" # why doesnt this work :(
+order += "spotify"
 order += "backlight"
 order += "volume_status"
 order += "sysdata"
@@ -8,12 +8,30 @@ order += "wifi"
 # order += "online_status"
 order += "clock"
 
-sysdata{
-	cache_timeout = 5
-	format = "[\?color=cpu CPU: {cpu_usage}%] [\?color=mem Mem: {mem_used}/{mem_total} {mem_unit}]"
-}
-
 battery_level{
 	battery_id = "all"
 	format = "{percent}% {time_remaining}"
+}
+
+clock{
+	format_time = "%a %m/%d %H:%M:%S"
+}
+
+spotify{
+	cache_timeout = 1
+	button_play_pause = 2
+	format_down = "Spotify down"
+}
+
+sysdata{
+	cache_timeout = 5
+	format = "[\?color=cpu CPU: {cpu_usage}%] [\?color=mem Mem: {mem_used_percent}%]"
+}
+
+wifi{
+	format = "W:{ssid} {bitrate} {signal_percent}|W: down"
+}
+
+window_title_async{
+	always_show = True
 }
