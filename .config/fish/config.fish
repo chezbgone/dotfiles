@@ -35,6 +35,8 @@ alias emacs nvim # lol
 alias vim nvim
 alias vi nvim
 
+alias latexmkpvc "latexmk -pvc -interaction=nonstopmode"
+
 function pdf
 	nohup zathura "$argv" >/dev/null 2>&1 &
 end

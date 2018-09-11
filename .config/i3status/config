@@ -20,6 +20,8 @@ clock{
 spotify{
 	cache_timeout = 1
 	button_play_pause = 2
+	button_previous = 1
+	button_next = 3
 	format_down = "Spotify down"
 }
 

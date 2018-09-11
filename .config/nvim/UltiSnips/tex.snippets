@@ -20,11 +20,11 @@ snippet "\$\$" "Inline math dollars" rA
 \(${1}\)${0:<++>}
 endsnippet
 
-snippet "\\\(" "Inline math parens" rA
+snippet "\\\(" "Inline math parens" "len(snip.buffer[snip.line]) == snip.column + 1" rAe
 \(${1}\)${0:<++>}
 endsnippet
 
-snippet "\\\[ " "Display math" rA
+snippet "\\\[ " "Display math" "len(snip.buffer[snip.line]) == snip.column + 1" rAe
 \[
 	${1}
 \]

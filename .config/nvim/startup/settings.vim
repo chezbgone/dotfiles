@@ -12,7 +12,6 @@ set showmatch
 set autoread
 "set colorcolumn=80
 set cursorline
-hi CursorLine ctermbg=239
 
 set incsearch " search as characters are entered
 set hlsearch " highlight matches

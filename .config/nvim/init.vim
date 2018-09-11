@@ -2,14 +2,12 @@
 set nocompatible
 filetype off
 
-" Plug
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'MaxSt/FlatColor'
 Plug 'lilydjwg/colorizer'
-Plug 'junegunn/rainbow_parentheses.vim'
 
 "Plug 'chezbgone/vim-latex'
 "Plug 'python-mode/python-mode'
@@ -24,7 +22,6 @@ Plug 'Townk/vim-autoclose'
 Plug 'gioele/vim-autoswap'
 
 call plug#end()
-" End plug
 
 " Load custom settings
 source ~/.config/nvim/startup/settings.vim

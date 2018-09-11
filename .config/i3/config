@@ -75,7 +75,7 @@ bindsym $mod+Shift+0 move container to workspace 10
 
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
-bindsym $mod+Shift+e exec "i3-msg exit"
+bindsym $mod+Control+Shift+e exec "i3-msg exit"
 bindsym $mod+Shift+b exec --no-startup-id "source ~/.fehbg"
 
 bindsym $mod+y resize shrink width 5 px or 2 ppt

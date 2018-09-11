@@ -18,12 +18,18 @@
 
 
 # Increase backlight
-"xbacklight -inc 5 & py3-cmd refresh backlight"
+"xbacklight -inc 1 & py3-cmd refresh backlight"
    XF86MonBrightnessUp
 
+"xbacklight -inc 5 & py3-cmd refresh backlight"
+   Shift+XF86MonBrightnessUp
+
 # Decrease backlight
-"xbacklight -dec 5 & py3-cmd refresh backlight"
+"xbacklight -dec 1 & py3-cmd refresh backlight"
    XF86MonBrightnessDown
+
+"xbacklight -dec 5 & py3-cmd refresh backlight"
+   Shift+XF86MonBrightnessDown
 
 
 # Screenshot
