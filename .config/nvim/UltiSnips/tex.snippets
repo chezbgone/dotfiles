@@ -120,7 +120,7 @@ snippet "\.(braces|parens|brackets|angles|verts|Verts|floor|ceil|set|abs|size|no
 endsnippet
 
 ### THEOREM ENVIRONMENTS ###
-snippet "(Theorem|Lemma|Proposition|Corollary|Conjecture|Definition|Fact|Exercise|Problem|Qestion|Answer|Remark|Case|Claim|Example|Proof|Question)::" "proof enivonments" rA
+snippet "(Theorem|Lemma|Proposition|Corollary|Conjecture|Definition|Fact|Exercise|Problem|Qestion|Answer|Remark|Case|Claim|Example|Proof|Question|Solution)::" "proof enivonments" rA
 \begin{`!p snip.rv = match.group(1).lower()`}
 	${0}
 \end{`!p snip.rv = match.group(1).lower()`}
@@ -166,6 +166,12 @@ snippet Cor:: "corollary enivonment abbreviation" A
 \begin{corollary}
 	${0}
 \end{corollary}
+endsnippet
+
+snippet Sol:: "solution enivonment abbreviation" A
+\begin{solution}
+	${0}
+\end{solution}
 endsnippet
 
 ### MATH SNIPPETS ###
