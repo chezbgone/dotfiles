@@ -54,5 +54,16 @@ nnoremap <F1> <nop>
 inoremap <F1> <nop>
 vnoremap <F1> <nop>
 
+" Disable Ex-Mode
+nnoremap Q <NOP>
+map q: <NOP>
+
 " Getting out of the terminal emulator
 tnoremap <Esc> <C-\><C-n>
+
+" Surround text with brackets
+vnoremap <leader>( xi()<Esc>P
+vnoremap <leader>[ xi[]<Esc>P
+vnoremap <leader>{ xi{}<Esc>P
+vnoremap <leader>\( xi\(\)<Esc>hP
+vnoremap <leader>$ xi$$<Esc>P
