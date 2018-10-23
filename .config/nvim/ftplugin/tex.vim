@@ -1,3 +1,4 @@
+" Maps
 nnoremap <buffer> <F1> :w<Enter>
 inoremap <buffer> <F1> <ESC>:w<Enter>
 vnoremap <buffer> <F1> <ESC>:w<Enter>
@@ -20,7 +21,11 @@ nnoremap <buffer> <F12> :w<Enter>:silent !pdflatex -shell-escape %<Enter>
 inoremap <buffer> <F12> <ESC>:w<Enter>:silent !pdflatex -shell-escape %<Enter>
 vnoremap <buffer> <F12> <ESC>:w<Enter>:silent !pdflatex -shell-escape %<Enter>
 
+nmap <Leader>a& vie:Tabularize /&\\|\\\\<CR>
+vmap <Leader>a& :Tabularize /&\|\\\\<CR>
+
+" Settings
+filetype indent off
+
 set spell
 set spellfile=~/Dropbox/en.utf-8.add
-
-filetype indent off

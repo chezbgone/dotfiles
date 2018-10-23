@@ -30,6 +30,12 @@ sysdata{
 	format = "[\?color=cpu CPU: {cpu_usage}%] [\?color=mem Mem: {mem_used_percent}%]"
 }
 
+volume_status{
+	cache_timeout = 3
+	command = "pactl"
+	volume_delta = 2
+}
+
 wifi{
 	format = "W:{ssid} {bitrate} {signal_percent}|W: down"
 }

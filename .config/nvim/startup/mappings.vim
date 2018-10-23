@@ -61,9 +61,23 @@ map q: <NOP>
 " Getting out of the terminal emulator
 tnoremap <Esc> <C-\><C-n>
 
+" Bubble lines
+nmap <C-Up> ddkP
+nmap <C-Down> ddp
+vmap <C-Up> xkP`[V`]
+vmap <C-Down> xp`[V`]
+
 " Surround text with brackets
 vnoremap <leader>( xi()<Esc>P
 vnoremap <leader>[ xi[]<Esc>P
 vnoremap <leader>{ xi{}<Esc>P
 vnoremap <leader>\( xi\(\)<Esc>hP
 vnoremap <leader>$ xi$$<Esc>P
+
+nmap <F10> :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+    if !exists("*synstack")
+        return
+    endif
+    echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc

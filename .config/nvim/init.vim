@@ -6,16 +6,17 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'NLKNguyen/papercolor-theme'
-Plug 'MaxSt/FlatColor'
+Plug 'ayu-theme/ayu-vim'
 Plug 'lilydjwg/colorizer'
 
-"Plug 'chezbgone/vim-latex'
+Plug 'kana/vim-textobj-user'
+Plug 'rbonvall/vim-textobj-latex'
+Plug 'godlygeek/tabular'
 "Plug 'python-mode/python-mode'
 "Plug 'Rip-Rip/clang_complete'
 
 Plug 'chrisbra/Recover.vim'
 Plug 'vim-airline/vim-airline'
-Plug 'jeffkreeftmeijer/vim-numbertoggle'
 
 Plug 'SirVer/ultisnips'
 Plug 'Townk/vim-autoclose'
