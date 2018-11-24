@@ -26,6 +26,7 @@
 
 # Decrease backlight
 "xbacklight -dec 1 & py3-cmd refresh backlight"
+   XF86MonBrightnessDown
 
 "xbacklight -dec 5 & py3-cmd refresh backlight"
    Shift+XF86MonBrightnessDown
@@ -42,6 +43,11 @@
 # Rotate dual-screen setup
 "sh ~/scripts/dual-rotate.sh"
 	Mod4+Shift+F
+
+# Reset caps lock to §
+"sh ~/scripts/reset-keyboard.sh"
+	Mod4+K
+
 
 # Lock
 "sh ~/scripts/fuzzy-lock.sh"
