@@ -48,6 +48,7 @@ bindsym $mod+a focus parent
 bindsym $mod+Shift+a focus child
 
 bindsym $mod+Return exec termite
+bindsym $mod+Shift+Return exec termite --class floating_term
 bindsym $mod+Shift+q kill
 bindsym $mod+d exec rofi -show run
 
@@ -138,4 +139,6 @@ smart_borders on
 
 for_window [class="feh"] floating enable
 for_window [class="mpv"] floating enable
+for_window [class="tridactyl_editor"] floating enable
+for_window [class="floating_term"] floating enable
 for_window [class="asymptote"] floating enable

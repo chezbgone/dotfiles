@@ -22,6 +22,7 @@ spotify{
 	button_previous = 1
 	button_next = 3
 	format_down = "Spotify down"
+	sanitize_words = ['bonus', 'demo', 'edit', 'explicit', 'extended', 'feat', 'mono', 'remaster', 'stereo', 'version', 'track']
 }
 
 sysdata{

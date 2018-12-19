@@ -1,3 +1,3 @@
 #!/usr/bin/sh
 
-termite -e "nvim $1"
+termite --class tridactyl_editor -e "nvim $1"

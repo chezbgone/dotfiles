@@ -28,4 +28,4 @@ vmap <Leader>a& :Tabularize /&\|\\\\<CR>
 filetype indent off
 
 set spell
-set spellfile=~/Dropbox/Keep/en.utf-8.add
+set spellfile=~/Dropbox/Keep/VimSpell/en.utf-8.add
