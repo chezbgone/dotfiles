@@ -8,6 +8,7 @@ order += "wifi"
 order += "clock"
 
 battery_level{
+	measurement_mode = "sys"
 	battery_id = "all"
 	format = "{percent}% {time_remaining}"
 }
