@@ -3,8 +3,6 @@
 set termguicolors
 set background=dark
 colorscheme ayu
-"colorscheme PaperColor
-"colorscheme OceanicNext
 
 "highlight LineNr ctermfg=grey
 

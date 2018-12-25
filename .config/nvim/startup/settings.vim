@@ -33,8 +33,7 @@ if has('mouse')
 	set mouse=a
 endif
 
-let g:loaded_AutoClose = 1
-autocmd FileType tex let g:loaded_AutoClose = 0
+" vim-autoclose
 let g:AutoCloseExpandEnterOn="{"
 
 let g:airline_powerline_fonts = 1

@@ -4,9 +4,9 @@ filetype off
 
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'rafi/awesome-vim-colorschemes'
-Plug 'NLKNguyen/papercolor-theme'
-Plug 'ayu-theme/ayu-vim'
+"Plug 'rafi/awesome-vim-colorschemes'
+"Plug 'NLKNguyen/papercolor-theme'
+Plug 'chezbgone/ayu-vim'
 Plug 'lilydjwg/colorizer'
 
 Plug 'kana/vim-textobj-user'
