@@ -51,3 +51,8 @@ alias latexmkpvcfast "latexmk -pvc -interaction=nonstopmode"
 function pdf
 	nohup zathura "$argv" >/dev/null 2>&1 &
 end
+
+function learned
+	echo (date) "- " >> ~/Dropbox/Keep/learned
+	nvim "+normal G" -c 'startinsert!' ~/Dropbox/Keep/learned
+end
