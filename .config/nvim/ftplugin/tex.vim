@@ -26,6 +26,3 @@ vmap <Leader>a& :Tabularize /&\|\\\\<CR>
 
 " Settings
 filetype indent off
-
-set spell
-set spellfile=~/Dropbox/Keep/VimSpell/en.utf-8.add
