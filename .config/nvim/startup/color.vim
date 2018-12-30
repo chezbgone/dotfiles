@@ -4,7 +4,8 @@ set termguicolors
 set background=dark
 colorscheme ayu
 
-"highlight LineNr ctermfg=grey
+" transparent background
+hi Normal guibg=NONE ctermbg=NONE
 
 " Show trailing whitespace
 highlight BadWhitespace ctermbg=red guibg=darkred
