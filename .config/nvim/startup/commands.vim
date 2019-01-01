@@ -1,7 +1,8 @@
 if has("autocmd")
 	augroup templates
 		autocmd BufNewFile *.tex 0r ~/.config/nvim/templates/skeleton.tex
-		autocmd BufNewFile *.cpp 0r ~/.config/nvim/templates/skeleton.cpp
+		autocmd BufNewFile *.sh 0r ~/.config/nvim/templates/skeleton.sh
+		autocmd BufNewFile *.cpp exe "0r ~/.config/nvim/templates/".input("Template Name (c - competitive | b - basic | n - none): ").".cpp"
 	augroup END
 
 	augroup numbertoggle
