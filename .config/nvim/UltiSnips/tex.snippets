@@ -176,7 +176,11 @@ snippet Sol:: "solution enivonment abbreviation" A
 endsnippet
 
 ### MATH SNIPPETS ###
-snippet "(//|\.frac)" "fraction" rA
+snippet "((\w|\\)*)//" "fraction" rA
+\frac{`!p snip.rv = match.group(1)`}{${2:<++>}}${0:<++>}
+endsnippet
+
+snippet ".frac" "fraction" A
 \frac{${1}}{${2:<++>}}${0:<++>}
 endsnippet
 
