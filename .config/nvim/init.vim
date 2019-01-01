@@ -19,7 +19,7 @@ Plug 'chrisbra/Recover.vim'
 Plug 'vim-airline/vim-airline'
 
 Plug 'SirVer/ultisnips'
-Plug 'Townk/vim-autoclose'
+Plug 'cohama/lexima.vim'
 Plug 'gioele/vim-autoswap'
 
 call plug#end()

@@ -28,9 +28,6 @@ if has('mouse')
 	set mouse=a
 endif
 
-" vim-autoclose
-let g:AutoCloseExpandEnterOn="{"
-
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#whitespace#enabled = 0
 
