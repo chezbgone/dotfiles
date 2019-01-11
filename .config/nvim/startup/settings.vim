@@ -12,8 +12,9 @@ set cursorline " highlights current line
 
 set scrolloff=3 " keep 3 lines above and below the cursor
 
-set tabstop=4
-set shiftwidth=4
+set tabstop=4 " show tabs as width 4
+set shiftwidth=4 " indenting with > gives 4 spaces
+"set expandtab " pressing tab gives spaces
 
 set spell " opt out vs opt in because I want general files to have spellcheck
 set spellfile=~/Dropbox/Keep/VimSpell/en.utf-8.add
@@ -32,3 +33,11 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#whitespace#enabled = 0
 
 let g:UltiSnipsJumpForwardTrigger="§"
+
+" enable ncm2 for all buffers
+"autocmd BufEnter * call ncm2#enable_for_buffer()
+" IMPORTANT: :help Ncm2PopupOpen for more information
+"set completeopt=noinsert,menuone,noselect
+
+"let g:deoplete#enable_at_startup = 1
+let g:ycm_global_ycm_extra_conf = '~/.config/nvim/.ycm_extra_conf.py'

@@ -22,6 +22,16 @@ Plug 'SirVer/ultisnips'
 Plug 'cohama/lexima.vim'
 Plug 'gioele/vim-autoswap'
 
+" YouCompleteMe deprecates clang_complete
+function! BuildYCM(info)
+	if a:info.status == 'installed' || a:info.force
+		!./install.py
+	endif
+endfunction
+
+Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
+"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
 call plug#end()
 
 " Load custom settings
