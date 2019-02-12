@@ -144,6 +144,7 @@ smart_gaps on
 smart_borders on
 
 for_window [class="feh"] floating enable
+for_window [class="sxiv"] floating enable
 for_window [class="mpv"] floating enable
 for_window [class="tridactyl_editor"] floating enable
 for_window [class="floating_term"] floating enable

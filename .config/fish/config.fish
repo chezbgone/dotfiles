@@ -37,6 +37,9 @@ alias gogogo startx
 alias emacs nvim # lol
 alias vim nvim
 alias vi nvim
+alias r ranger
+
+alias diff colordiff
 
 function cs
 	if [ -n $argv ]
@@ -56,3 +59,5 @@ function learned
 	echo (date) "- " >> ~/Dropbox/Keep/learned
 	nvim "+normal G" -c 'startinsert!' ~/Dropbox/Keep/learned
 end
+
+status --is-interactive; and source (pyenv init - | psub)

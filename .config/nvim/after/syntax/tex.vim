@@ -36,3 +36,12 @@ exec "highlight texStatement guifg=".s:palette.special.dark
 exec "highlight texMath guifg=".s:palette.function.light
 exec "highlight texSuperscript guifg=".s:palette.function.light
 exec "highlight texSubscript guifg=".s:palette.function.light
+
+" Why don't these exist
+call TexNewMathZone("A","align",1)
+call TexNewMathZone("B","alignat",1)
+call TexNewMathZone("C","displaymath",1)
+call TexNewMathZone("D","eqnarray",1)
+call TexNewMathZone("E","equation",1)
+call TexNewMathZone("F","flalign",1)
+call TexNewMathZone("G","gather",1)

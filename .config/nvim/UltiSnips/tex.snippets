@@ -119,7 +119,7 @@ snippet "\.(braces|parens|brackets|angles|verts|Verts|floor|ceil|set|abs|size|no
 endsnippet
 
 ### THEOREM ENVIRONMENTS ###
-snippet "(Theorem|Lemma|Proposition|Corollary|Conjecture|Definition|Fact|Exercise|Problem|Qestion|Answer|Remark|Case|Claim|Example|Proof|Question|Solution)::" "proof enivonments" rA
+snippet "(Theorem|Lemma|Proposition|Corollary|Conjecture|Definition|Fact|Exercise|Problem|Qestion|Answer|Remark|Case|Claim|Example|Proof|Question|Solution|Algorithm)::" "proof enivonments" rA
 \begin{`!p snip.rv = match.group(1).lower()`}
 	${0}
 \end{`!p snip.rv = match.group(1).lower()`}
@@ -173,12 +173,38 @@ snippet Sol:: "solution enivonment abbreviation" A
 \end{solution}
 endsnippet
 
-### MATH SNIPPETS ###
-snippet "((\w|\\)*)//" "fraction" rA
-\frac{`!p snip.rv = match.group(1)`}{${2:<++>}}${0:<++>}
+snippet Algo:: "algorithm enivonment abbreviation" A
+\begin{algorithm}
+	${0}
+\end{algorithm}
 endsnippet
 
-snippet ".frac" "fraction" A
+### MATH SNIPPETS ###
+snippet "({.*?}|(\w|\\)*)\/\/" "fraction" rA
+`!p
+if match.group(2) != None:
+	snip.rv = "\\frac{" + match.group(1) + "}"
+else:
+	result = ""
+	remainder = ""
+	level = 0
+	done = False
+	for c in reversed(match.group(1)):
+		if done:
+			remainder = c + remainder
+			continue
+		result = c + result
+		if c == "}":
+			level += 1
+		elif c == "{":
+			level -= 1
+		if level == 0:
+			done = True
+	snip.rv = remainder + '\\frac' + result
+`{${2:<++>}}${0:<++>}
+endsnippet
+
+snippet .frac "fraction" A
 \frac{${1}}{${2:<++>}}${0:<++>}
 endsnippet
 
@@ -194,4 +220,17 @@ snippet tikzcd:: "commutative diagrams" A
 \begin{tikzcd}
 	${0}
 \end{tikzcd}
+endsnippet
+
+### OTHER SNIPPETS ###
+snippet alg:: "pseudocode" A
+\begin{algorithm}
+	${0}
+\end{algorithm}
+endsnippet
+
+snippet code:: "code" A
+\begin{algorithm}
+	${0}
+\end{algorithm}
 endsnippet

@@ -20,6 +20,14 @@ inoremap <Right> <ESC>>>
 vnoremap <Left> <
 vnoremap <Right> >
 
+" H and L move to beginning and end of line
+nnoremap H ^
+vnoremap H ^
+onoremap H ^
+nnoremap L $
+vnoremap L $
+onoremap L $
+
 " crtl-e scrolls down (past end) in insert mode
 inoremap <C-e> <ESC><C-e>a
 
@@ -54,6 +62,9 @@ nnoremap <F1> <nop>
 inoremap <F1> <nop>
 vnoremap <F1> <nop>
 
+" Disable highlighting
+nnoremap <leader>; :noh<CR>
+
 " Disable Ex-Mode
 nnoremap Q <NOP>
 map q: <NOP>
@@ -73,6 +84,8 @@ vnoremap <leader>[ xi[]<Esc>P
 vnoremap <leader>{ xi{}<Esc>P
 vnoremap <leader>\( xi\(\)<Esc>hP
 vnoremap <leader>$ xi$$<Esc>P
+vnoremap <leader>" xi""<Esc>P
+vnoremap <leader>' xi''<Esc>P
 
 nmap <F10> :call <SID>SynStack()<CR>
 function! <SID>SynStack()
@@ -81,3 +94,5 @@ function! <SID>SynStack()
     endif
     echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
+
+nmap <F12> :NERDTreeToggle<CR>

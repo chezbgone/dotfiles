@@ -1,3 +1,5 @@
+setlocal spell
+
 " Maps
 nnoremap <buffer> <F1> :w<Enter>
 inoremap <buffer> <F1> <ESC>:w<Enter>

@@ -6,6 +6,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 "Plug 'rafi/awesome-vim-colorschemes'
 "Plug 'NLKNguyen/papercolor-theme'
+"Plug 'mhinz/vim-janah'
 Plug 'chezbgone/ayu-vim'
 Plug 'lilydjwg/colorizer'
 
@@ -14,6 +15,7 @@ Plug 'rbonvall/vim-textobj-latex'
 Plug 'godlygeek/tabular'
 "Plug 'python-mode/python-mode'
 "Plug 'Rip-Rip/clang_complete'
+Plug 'pangloss/vim-javascript'
 
 Plug 'chrisbra/Recover.vim'
 Plug 'vim-airline/vim-airline'
@@ -21,6 +23,9 @@ Plug 'vim-airline/vim-airline'
 Plug 'SirVer/ultisnips'
 Plug 'cohama/lexima.vim'
 Plug 'gioele/vim-autoswap'
+
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " YouCompleteMe deprecates clang_complete
 function! BuildYCM(info)

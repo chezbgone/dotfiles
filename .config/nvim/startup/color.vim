@@ -3,6 +3,7 @@
 set termguicolors
 set background=dark
 colorscheme ayu
+"colorscheme janah
 
 " transparent background
 hi Normal guibg=NONE ctermbg=NONE
