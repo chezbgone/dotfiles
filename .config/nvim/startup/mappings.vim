@@ -31,6 +31,9 @@ onoremap L $
 " crtl-e scrolls down (past end) in insert mode
 inoremap <C-e> <ESC><C-e>a
 
+nnoremap <C-s> :w<CR>
+inoremap <C-s> <Esc>:w<CR>a
+
 " Edit init.vim
 nnoremap <leader>evs :split ~/.config/nvim/init.vim<CR>
 nnoremap <leader>evb :e ~/.config/nvim/init.vim<CR>
