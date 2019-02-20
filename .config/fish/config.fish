@@ -48,8 +48,9 @@ function cs
 	ls
 end
 
-alias latexmkpvc "latexmk -pvc"
-alias latexmkpvcfast "latexmk -pvc -interaction=nonstopmode"
+abbr latexmkpvc "latexmk -pvc"
+abbr latexmkpvcfast "latexmk -pvc -interaction=nonstopmode"
+abbr latexmkpvcshellesc 'latexmk -pvc -latexoption="-shell-escape"'
 
 function pdf
 	nohup zathura "$argv" >/dev/null 2>&1 &
