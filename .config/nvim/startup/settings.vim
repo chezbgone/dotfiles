@@ -38,3 +38,6 @@ let g:UltiSnipsJumpForwardTrigger = "§"
 
 let g:ycm_global_ycm_extra_conf = '~/.config/nvim/.ycm_extra_conf.py'
 let g:ycm_filetype_blacklist = { 'tex': 1 }
+
+" don't let <CR> do weird things with ycm
+let g:lexima_nvim_accept_pum_with_enter = 0

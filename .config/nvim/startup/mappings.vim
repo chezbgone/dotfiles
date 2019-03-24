@@ -45,20 +45,20 @@ nnoremap <leader>ets :split ~/texmf/tex/latex/chez-sty/chezbase.sty<CR>
 nnoremap <leader>etb :e ~/texmf/tex/latex/chez-sty/chezbase.sty<CR>
 
 " Window commands
-nnoremap <leader>v  :vsp<CR>
-nnoremap <leader>vt :vsp<CR>:terminal<CR><C-\><C-n>
+nnoremap <silent> <leader>v  :vsp<CR>
+nnoremap <silent> <leader>vt :vsp<CR>:terminal<CR><C-\><C-n>
 
-nnoremap <leader>V  :split<CR>
-nnoremap <leader>Vt :split<CR>:terminal<CR><C-\><C-n>
+nnoremap <silent> <leader>V  :split<CR>
+nnoremap <silent> <leader>Vt :split<CR>:terminal<CR><C-\><C-n>
 
-nnoremap <leader>l :wincmd l<CR>
-nnoremap <leader>h :wincmd h<CR>
-nnoremap <leader>k :wincmd k<CR>
-nnoremap <leader>j :wincmd j<CR>
-nnoremap <leader>L :wincmd L<CR>
-nnoremap <leader>H :wincmd H<CR>
-nnoremap <leader>K :wincmd K<CR>
-nnoremap <leader>J :wincmd J<CR>
+nnoremap <silent> <leader>l :wincmd l<CR>
+nnoremap <silent> <leader>h :wincmd h<CR>
+nnoremap <silent> <leader>k :wincmd k<CR>
+nnoremap <silent> <leader>j :wincmd j<CR>
+nnoremap <silent> <leader>L :wincmd L<CR>
+nnoremap <silent> <leader>H :wincmd H<CR>
+nnoremap <silent> <leader>K :wincmd K<CR>
+nnoremap <silent> <leader>J :wincmd J<CR>
 
 " Disable F1
 nnoremap <F1> <nop>
@@ -66,7 +66,7 @@ inoremap <F1> <nop>
 vnoremap <F1> <nop>
 
 " Disable highlighting
-nnoremap <leader>; :noh<CR>
+nnoremap <silent> <leader>; :noh<CR>
 
 " Disable Ex-Mode
 nnoremap Q <NOP>
@@ -76,19 +76,16 @@ map q: <NOP>
 tnoremap <Esc> <C-\><C-n>
 
 " Bubble lines
-nmap <C-Up> ddkP
-nmap <C-Down> ddp
-vmap <C-Up> xkP`[V`]
-vmap <C-Down> xp`[V`]
+nmap <silent> <C-Up> :let @t=@"<CR>ddkP:let @"=@t<CR>
+nmap <silent> <C-Down> :let @t=@"<CR>ddp:let @"=@t<CR>
 
 " Surround text with brackets
-vnoremap <leader>( xi()<Esc>P
-vnoremap <leader>[ xi[]<Esc>P
-vnoremap <leader>{ xi{}<Esc>P
-vnoremap <leader>\( xi\(\)<Esc>hP
-vnoremap <leader>$ xi$$<Esc>P
-vnoremap <leader>" xi""<Esc>P
-vnoremap <leader>' xi''<Esc>P
+vnoremap <silent> <leader>( :let @t=@"<CR>xi()<Esc>P:let @"=@t<CR>
+vnoremap <silent> <leader>[ :let @t=@"<CR>xi[]<Esc>P:let @"=@t<CR>
+vnoremap <silent> <leader>{ :let @t=@"<CR>xi{}<Esc>P:let @"=@t<CR>
+vnoremap <silent> <leader>$ :let @t=@"<CR>xi\(\)<Esc>hP:let @"=@t<CR>
+vnoremap <silent> <leader>" :let @t=@"<CR>xi""<Esc>P:let @"=@t<CR>
+vnoremap <silent> <leader>' :let @t=@"<CR>xi''<Esc>P:let @"=@t<CR>
 
 nmap <F10> :call <SID>SynStack()<CR>
 function! <SID>SynStack()
