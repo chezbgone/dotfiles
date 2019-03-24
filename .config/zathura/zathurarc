@@ -4,3 +4,8 @@ set highlight-color "#B3E6FF"
 
 set recolor-darkcolor "#DDDDDD"
 set recolor-lightcolor "#222222"
+set recolor-keephue
+
+set guioptions ""
+
+map [normal] b toggle_statusbar
