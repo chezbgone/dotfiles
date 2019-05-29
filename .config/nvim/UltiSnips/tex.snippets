@@ -2,29 +2,41 @@ snippet ... "dots" Ai
 \dots
 endsnippet
 
+snippet == "align equals" iA
+&=
+endsnippet
+
+snippet '(\S|^)\^\^' "superscript" rAi
+`!p snip.rv = match.group(1)`^{$1}${0:<++>}
+endsnippet
+
+snippet '(\S|^)__' "subscript" rAi
+`!p snip.rv = match.group(1)`_{$1}${0:<++>}
+endsnippet
+
 snippet () "parens" Ai
-(${1})${0:<++>}
+(${1:${VISUAL}})${0:<++>}
 endsnippet
 
 snippet [] "brackets" Ai
-[${1}]${0:<++>}
+[${1:${VISUAL}}]${0:<++>}
 endsnippet
 
 snippet "{}" "braces" rA
-{${1}}${0:<++>}
+{${1:${VISUAL}}}${0:<++>}
 endsnippet
 
 snippet "\$\$" "Inline math dollars" rA
-\(${1}\)${0:<++>}
+\(${1:${VISUAL}}\)${0:<++>}
 endsnippet
 
 snippet "\\\(" "Inline math parens" "len(snip.buffer[snip.line]) == snip.column + 1" rAe
-\(${1}\)${0:<++>}
+\(${1:${VISUAL}}\)${0:<++>}
 endsnippet
 
 snippet "\\\[ " "Display math" "len(snip.buffer[snip.line]) == snip.column + 1" rAe
 \[
-	${1}
+	${1:${VISUAL}}
 \]
 endsnippet
 
@@ -73,7 +85,7 @@ endsnippet
 
 snippet "(fig|figure)::" "figure" rA
 \begin{figure}[ht!]
-	${0}
+	${0:${VISUAL}}
 \end{figure}
 endsnippet
 
@@ -85,102 +97,102 @@ endsnippet
 
 snippet enum:: "enumerate" A
 \begin{enumerate}
-	\item ${0}
+	\item ${0:${VISUAL}}
 \end{enumerate}
 endsnippet
 
 snippet itemize:: "itemize" A
 \begin{itemize}
-	\item ${0}
+	\item ${0:${VISUAL}}
 \end{itemize}
 endsnippet
 
 snippet desc:: "description" A
 \begin{description}
-	\item ${0}
+	\item ${0:${VISUAL}}
 \end{description}
 endsnippet
 
 snippet cases:: "cases math environments" A
 \begin{cases}
-	${0}
+	${0:${VISUAL}}
 \end{cases}
 endsnippet
 
 snippet "(center|asy)::" "standard text environments" rA
 \begin{`!p snip.rv = match.group(1)`}
-	${0}
+	${0:${VISUAL}}
 \end{`!p snip.rv = match.group(1)`}
 endsnippet
 
 ### DELIMITERS ###
 snippet "\.(braces|parens|brackets|angles|verts|Verts|floor|ceil|set|abs|size|norm|tuple)" "autosize delimiters" rA
-\\`!p snip.rv = match.group(1)`*{${1}}${0:<++>}
+\\`!p snip.rv = match.group(1)`*{${1:${VISUAL}}}${0:<++>}
 endsnippet
 
 ### THEOREM ENVIRONMENTS ###
-snippet "(Theorem|Lemma|Proposition|Corollary|Conjecture|Definition|Fact|Exercise|Problem|Qestion|Answer|Remark|Case|Claim|Example|Proof|Question|Solution|Algorithm)::" "proof enivonments" rA
+snippet "(Theorem|Lemma|Proposition|Corollary|Conjecture|Definition|Fact|Exercise|Problem|Qestion|Answer|Remark|Case|Claim|Example|Proof|Question|Solution|Algorithm|Note)::" "proof enivonments" rA
 \begin{`!p snip.rv = match.group(1).lower()`}
-	${0}
+	${0:${VISUAL}}
 \end{`!p snip.rv = match.group(1).lower()`}
 endsnippet
 
 snippet "(Def|Defn)::" "definition enivonment abbreviation" rA
 \begin{definition}
-	${0}
+	${0:${VISUAL}}
 \end{definition}
 endsnippet
 
 snippet Ex:: "example enivonment abbreviation" A
 \begin{example}
-	${0}
+	${0:${VISUAL}}
 \end{example}
 endsnippet
 
 snippet Thm:: "theorem enivonment abbreviation" A
 \begin{theorem}
-	${0}
+	${0:${VISUAL}}
 \end{theorem}
 endsnippet
 
 snippet Lem:: "lemma enivonment abbreviation" A
 \begin{lemma}
-	${0}
+	${0:${VISUAL}}
 \end{lemma}
 endsnippet
 
 snippet Prop:: "proposition enivonment abbreviation" A
 \begin{proposition}
-	${0}
+	${0:${VISUAL}}
 \end{proposition}
 endsnippet
 
 snippet Conj:: "conjecture enivonment abbreviation" A
 \begin{conjecture}
-	${0}
+	${0:${VISUAL}}
 \end{conjecture}
 endsnippet
 
 snippet Cor:: "corollary enivonment abbreviation" A
 \begin{corollary}
-	${0}
+	${0:${VISUAL}}
 \end{corollary}
 endsnippet
 
 snippet Sol:: "solution enivonment abbreviation" A
 \begin{solution}
-	${0}
+	${0:${VISUAL}}
 \end{solution}
 endsnippet
 
 snippet Algo:: "algorithm enivonment abbreviation" A
 \begin{algorithm}
-	${0}
+	${0:${VISUAL}}
 \end{algorithm}
 endsnippet
 
 ### MATH SNIPPETS ###
-snippet "({.*?}|(\w|\\)*)\/\/" "fraction" rA
+snippet "({.*?}|(\w|\\|\^)*)\/\/" "fraction" wrA
 `!p
 if match.group(2) != None:
 	snip.rv = "\\frac{" + match.group(1) + "}"
@@ -204,33 +216,55 @@ else:
 `{${2:<++>}}${0:<++>}
 endsnippet
 
+snippet / "fraction" i
+\\frac{${VISUAL}}{${2:<++>}}${0:<++>}
+endsnippet
+
 snippet .frac "fraction" A
 \frac{${1}}{${2:<++>}}${0:<++>}
 endsnippet
 
 snippet "\.(dv|ddv|pdv|pddv)" "derivatives" rA
-\\`!p snip.rv = match.group(1)`{${1}}{${2:<++>}}${0:<++>}
+\\`!p snip.rv = match.group(1)`{${1:${VISUAL}}}{${2:<++>}}${0:<++>}
 endsnippet
 
 snippet "\.(dnv|pdnv)" "nth derivatives" rA
-\\`!p snip.rv = match.group(1)`{${1}}{${2:<++>}}{${3:<++>}}${0:<++>}
+\\`!p snip.rv = match.group(1)`{${1:${VISUAL}}}{${2:<++>}}{${3:<++>}}${0:<++>}
 endsnippet
 
 snippet tikzcd:: "commutative diagrams" A
 \begin{tikzcd}
-	${0}
+	${0:${VISUAL}}
 \end{tikzcd}
 endsnippet
 
 ### OTHER SNIPPETS ###
 snippet alg:: "pseudocode" A
 \begin{algorithm}
-	${0}
+	${0:${VISUAL}}
 \end{algorithm}
 endsnippet
 
 snippet code:: "code" A
 \begin{algorithm}
-	${0}
+	${0:${VISUAL}}
 \end{algorithm}
+endsnippet
+
+snippet .date "today's date" Ai
+`date "+%B %d, %Y"`
+endsnippet
+
+# Cool things taken from https://castel.dev/post/lecture-notes-1/
+snippet '([^<]|^)mathematica' "mathematica" wr
+`!p snip.rv = match.group(1)`mathematica> $1 <mathematica$0
+endsnippet
+
+snippet 'mathematica>(.*)<mathematica' "math" wr
+`!p
+import subprocess
+code = match.group(1)
+code = 'ToString[' + code + ', TeXForm]'
+snip.rv = subprocess.check_output(['wolframscript', '-code', code])
+`
 endsnippet

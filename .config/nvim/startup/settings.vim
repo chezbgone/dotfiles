@@ -29,15 +29,23 @@ if has('mouse')
 	set mouse=a
 endif
 
+" if this is not set, then empty .tex files break
+let g:tex_flavor = "latex"
+let g:vimtex_compiler_enabled = 0
+let g:vimtex_imaps_enabled = 0
+
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#whitespace#enabled = 0
 
 let g:NERDTreeWinSize = 25
 
+let g:UltiSnipsExpandTrigger = "§"
 let g:UltiSnipsJumpForwardTrigger = "§"
 
-let g:ycm_global_ycm_extra_conf = '~/.config/nvim/.ycm_extra_conf.py'
-let g:ycm_filetype_blacklist = { 'tex': 1 }
+"let g:ycm_global_ycm_extra_conf = '~/.config/nvim/.ycm_extra_conf.py'
+"let g:ycm_filetype_blacklist = { 'tex': 1 }
+let g:deoplete#enable_at_startup = 1
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 " don't let <CR> do weird things with ycm
 let g:lexima_nvim_accept_pum_with_enter = 0

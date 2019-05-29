@@ -28,6 +28,9 @@ nnoremap L $
 vnoremap L $
 onoremap L $
 
+" Fix most recent spelling error to top suggestion
+inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
+
 " crtl-e scrolls down (past end) in insert mode
 inoremap <C-e> <ESC><C-e>a
 
@@ -80,12 +83,12 @@ nmap <silent> <C-Up> :let @t=@"<CR>ddkP:let @"=@t<CR>
 nmap <silent> <C-Down> :let @t=@"<CR>ddp:let @"=@t<CR>
 
 " Surround text with brackets
-vnoremap <silent> <leader>( :let @t=@"<CR>xi()<Esc>P:let @"=@t<CR>
-vnoremap <silent> <leader>[ :let @t=@"<CR>xi[]<Esc>P:let @"=@t<CR>
-vnoremap <silent> <leader>{ :let @t=@"<CR>xi{}<Esc>P:let @"=@t<CR>
-vnoremap <silent> <leader>$ :let @t=@"<CR>xi\(\)<Esc>hP:let @"=@t<CR>
-vnoremap <silent> <leader>" :let @t=@"<CR>xi""<Esc>P:let @"=@t<CR>
-vnoremap <silent> <leader>' :let @t=@"<CR>xi''<Esc>P:let @"=@t<CR>
+vnoremap <silent> <leader>( <ESC>:let @t=@"<CR>gvxi()<Esc>P:let @"=@t<CR>
+vnoremap <silent> <leader>[ <ESC>:let @t=@"<CR>gvxi[]<Esc>P:let @"=@t<CR>
+vnoremap <silent> <leader>{ <ESC>:let @t=@"<CR>gvxi{}<Esc>P:let @"=@t<CR>
+vnoremap <silent> <leader>$ <ESC>:let @t=@"<CR>gvxi\(\)<Esc>hP:let @"=@t<CR>
+vnoremap <silent> <leader>" <ESC>:let @t=@"<CR>gvxi""<Esc>P:let @"=@t<CR>
+vnoremap <silent> <leader>' <ESC>:let @t=@"<CR>gvxi''<Esc>P:let @"=@t<CR>
 
 nmap <F10> :call <SID>SynStack()<CR>
 function! <SID>SynStack()

@@ -26,5 +26,8 @@ vnoremap <buffer> <F12> <ESC>:w<Enter>:silent !pdflatex -shell-escape %<Enter>
 nmap <Leader>a& vie:Tabularize /&\\|\\\\<CR>
 vmap <Leader>a& :Tabularize /&\|\\\\<CR>
 
+inoremap <C-f> <Esc>: silent exec '.!inkscape-figures create "'.getline('.').'" "'.b:vimtex.root.'/figures/"'<CR><CR>:w<CR>
+nnoremap <C-f> : silent exec '!inkscape-figures edit "'.b:vimtex.root.'/figures/" > /dev/null 2>&1 &'<CR><CR>:redraw!<CR>
+
 " Settings
 filetype indent off

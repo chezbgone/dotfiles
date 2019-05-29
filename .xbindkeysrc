@@ -48,6 +48,9 @@
 "sh ~/scripts/reset-keyboard.sh"
 	Mod4+K
 
+# Unicode character picker
+"sh ~/scripts/dmenuunicode"
+	Mod1+grave
 
 # Lock
 "sh ~/scripts/fuzzy-lock.sh"

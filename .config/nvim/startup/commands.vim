@@ -16,7 +16,8 @@ if has("autocmd")
 
 	augroup numbertoggle
 		autocmd!
-		autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu | set rnu   | endif
+		autocmd InsertLeave * set relativenumber
+		autocmd InsertEnter * set norelativenumber
 	augroup END
 
 	" automatically quit nerdtree if last
@@ -26,4 +27,6 @@ if has("autocmd")
 		autocmd!
 		autocmd BufNewFile,BufRead *.asy set syntax=asy
 	augroup END
+
+	autocmd FileType tex call deoplete#custom#buffer_option('auto_complete', v:false)
 endif

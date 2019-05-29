@@ -22,6 +22,24 @@ set fish_greeting
 #	printf ".\n"
 #end
 
+#fish_vi_key_bindings
+
+#function fish_mode_prompt --description 'Displays the current mode'
+#    switch $fish_bind_mode
+#        case default
+#            set_color --bold red
+#            echo '[N]'
+#        case insert
+#            set_color --bold green
+#            echo '[I]'
+#        case visual
+#            set_color --bold magenta
+#            echo '[V]'
+#    end
+#    set_color normal
+#    echo -n ' '
+#end
+
 function fish_prompt
 	set_color $fish_color_name
 	printf (whoami)@(hostname)
@@ -34,12 +52,13 @@ function fish_prompt
 end
 
 alias gogogo startx
-alias emacs nvim # lol
 alias vim nvim
 alias vi nvim
 alias r ranger
 
 alias diff colordiff
+
+abbr bwsess 'export BW_SESSION=(bw unlock --raw)'
 
 function cs
 	if [ -n $argv ]
@@ -51,6 +70,7 @@ end
 abbr latexmkpvc "latexmk -pvc"
 abbr latexmkpvcfast "latexmk -pvc -interaction=nonstopmode"
 abbr latexmkpvcshellesc 'latexmk -pvc -latexoption="-shell-escape"'
+
 
 function pdf
 	nohup zathura "$argv" >/dev/null 2>&1 &

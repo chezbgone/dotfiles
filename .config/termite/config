@@ -3,10 +3,10 @@ font = Source Code Pro for Powerline 10
 scrollback_lines = 10000
 
 [colors]
-background = rgba(26, 26, 26, 0.90)
+background = rgba(26, 26, 26, 0.85)
 
 # If unset, will reverse foreground and background
-highlight = #2f2f2f
+highlight = rgba(23, 57, 89, 0.85)
 
 # Colors from color0 to color254 can be set
 color0 = #3f3f3f

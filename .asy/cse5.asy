@@ -61,7 +61,7 @@ pen pointpen = red, pathpen = blue,
 	anglepen = green, anglefontpen = red;
 
 int pointfontsize = 11;
-int pathfontsize = 13;
+int pathfontsize = 11;
 int anglefontsize = 9;
 
 bool fullbreak = false;
@@ -124,10 +124,9 @@ path CR(pair A, real R, real a = 0, real b = 360) {
 	return Arc(A, R, a, b);
 }
 
-path CP(pair A, pair B, real a = 0, real b = 360)
-{
-if (B == nullpair) return nullpath;
-return CR(A, d(A, B), a, b);
+path CP(pair A, pair B, real a = 0, real b = 360){
+	if (B == nullpair) return nullpath;
+	return CR(A, d(A, B), a, b);
 }
 
 path L(int k = 0, pair A, pair B, real a = 0.6, real b = a) {
