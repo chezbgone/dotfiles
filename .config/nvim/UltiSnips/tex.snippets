@@ -26,8 +26,12 @@ snippet "{}" "braces" rA
 {${1:${VISUAL}}}${0:<++>}
 endsnippet
 
+#snippet "\$\$" "Inline math dollars" rA
+#\(${1:${VISUAL}}\)${0:<++>}
+#endsnippet
+
 snippet "\$\$" "Inline math dollars" rA
-\(${1:${VISUAL}}\)${0:<++>}
+\$${1:${VISUAL}}\$${0:<++>}
 endsnippet
 
 snippet "\\\(" "Inline math parens" "len(snip.buffer[snip.line]) == snip.column + 1" rAe

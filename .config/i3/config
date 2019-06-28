@@ -180,7 +180,6 @@ for_window [class="Mathematica"] floating enable
 for_window [class="mpv"] floating enable
 for_window [class="tridactyl_editor"] floating enable
 for_window [class="floating_term"] floating enable
-for_window [class="asymptote"] floating enable
 for_window [class="^chromium$"] floating disable, move window to workspace current
 for_window [class="^Chromium$"] floating disable, move window to workspace current
 for_window [class="Inkscape"] move container to workspace 7'
