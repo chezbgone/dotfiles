@@ -42,10 +42,9 @@ let g:NERDTreeWinSize = 25
 let g:UltiSnipsExpandTrigger = "§"
 let g:UltiSnipsJumpForwardTrigger = "§"
 
-"let g:ycm_global_ycm_extra_conf = '~/.config/nvim/.ycm_extra_conf.py'
-"let g:ycm_filetype_blacklist = { 'tex': 1 }
 let g:deoplete#enable_at_startup = 1
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 " don't let <CR> do weird things with ycm
-let g:lexima_nvim_accept_pum_with_enter = 0
+"let g:lexima_nvim_accept_pum_with_enter = 0
+let delimitMate_balance_matchpairs = 1

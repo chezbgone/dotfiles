@@ -24,20 +24,14 @@ Plug 'chrisbra/Recover.vim'
 Plug 'vim-airline/vim-airline'
 
 Plug 'SirVer/ultisnips'
-Plug 'cohama/lexima.vim'
+"Plug 'cohama/lexima.vim'
+Plug 'Raimondi/delimitMate'
+Plug 'vim-scripts/HTML-AutoCloseTag'
 Plug 'gioele/vim-autoswap'
 
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
-"" YouCompleteMe deprecates clang_complete
-"function! BuildYCM(info)
-"	if a:info.status == 'installed' || a:info.force
-"		!./install.py
-"	endif
-"endfunction
-"
-"Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'deoplete-plugins/deoplete-jedi'
 call plug#end()
