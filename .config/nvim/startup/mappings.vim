@@ -100,7 +100,3 @@ function! <SID>SynStack()
 endfunc
 
 nmap <F12> :NERDTreeToggle<CR>
-
-" Stop delimitMate from autocompleting these in LaTeX
-inoremap \( \(
-inoremap \[ \[

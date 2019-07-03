@@ -31,3 +31,7 @@ nnoremap <C-f> : silent exec '!inkscape-figures edit "'.b:vimtex.root.'/figures/
 
 " Settings
 filetype indent off
+
+" Stop delimitMate from autocompleting these in LaTeX
+imap <expr> ( getline(".")[col(".") - 2] == '\' ? '(' : "\<Plug>delimitMate("
+imap <expr> [ getline(".")[col(".") - 2] == '\' ? '[' : "\<Plug>delimitMate["
