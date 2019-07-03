@@ -90,6 +90,7 @@ vnoremap <silent> <leader>$ <ESC>:let @t=@"<CR>gvxi\(\)<Esc>hP:let @"=@t<CR>
 vnoremap <silent> <leader>" <ESC>:let @t=@"<CR>gvxi""<Esc>P:let @"=@t<CR>
 vnoremap <silent> <leader>' <ESC>:let @t=@"<CR>gvxi''<Esc>P:let @"=@t<CR>
 
+" Get syntax group name under cursor
 nmap <F10> :call <SID>SynStack()<CR>
 function! <SID>SynStack()
     if !exists("*synstack")
@@ -99,3 +100,7 @@ function! <SID>SynStack()
 endfunc
 
 nmap <F12> :NERDTreeToggle<CR>
+
+" Stop delimitMate from autocompleting these in LaTeX
+inoremap \( \(
+inoremap \[ \[
