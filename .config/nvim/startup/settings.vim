@@ -23,7 +23,8 @@ set spellfile=~/Dropbox/Keep/VimSpell/en.utf-8.add
 set splitbelow
 set splitright
 
-" already run with call plug#end()
+" Allows for incrementing of letters
+set nrformats+=alpha
 
 if has('mouse')
 	set mouse=a
@@ -34,15 +35,19 @@ let g:tex_flavor = "latex"
 let g:vimtex_compiler_enabled = 0
 let g:vimtex_imaps_enabled = 0
 
+" airline stuff
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#whitespace#enabled = 0
 
+" set nerdtree width
 let g:NERDTreeWinSize = 25
 
 let g:UltiSnipsExpandTrigger = "§"
 let g:UltiSnipsJumpForwardTrigger = "§"
 
+" Enable Deoplete
 let g:deoplete#enable_at_startup = 1
+" Tab goes through deoplete list
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 " don't let <CR> do weird things with ycm
