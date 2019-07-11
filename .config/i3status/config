@@ -34,6 +34,7 @@ sysdata{
 volume_status{
 	cache_timeout = 3
 	command = "pactl"
+	thresholds = [(0, 'bad'), (20, 'degraded'), (40, 'good')]
 	volume_delta = 2
 }
 

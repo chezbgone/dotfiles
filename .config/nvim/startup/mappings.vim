@@ -69,7 +69,7 @@ inoremap <F1> <nop>
 vnoremap <F1> <nop>
 
 " Disable highlighting
-nnoremap <silent> <leader>; :noh<CR>
+nnoremap <silent> <leader><space> :noh<CR>
 
 " Disable Ex-Mode
 nnoremap Q <NOP>
@@ -83,12 +83,13 @@ nmap <silent> <C-Up> :let @t=@"<CR>ddkP:let @"=@t<CR>
 nmap <silent> <C-Down> :let @t=@"<CR>ddp:let @"=@t<CR>
 
 " Surround text with brackets
-vnoremap <silent> <leader>( <ESC>:let @t=@"<CR>gvxi()<Esc>P:let @"=@t<CR>
-vnoremap <silent> <leader>[ <ESC>:let @t=@"<CR>gvxi[]<Esc>P:let @"=@t<CR>
-vnoremap <silent> <leader>{ <ESC>:let @t=@"<CR>gvxi{}<Esc>P:let @"=@t<CR>
-vnoremap <silent> <leader>$ <ESC>:let @t=@"<CR>gvxi\(\)<Esc>hP:let @"=@t<CR>
-vnoremap <silent> <leader>" <ESC>:let @t=@"<CR>gvxi""<Esc>P:let @"=@t<CR>
-vnoremap <silent> <leader>' <ESC>:let @t=@"<CR>gvxi''<Esc>P:let @"=@t<CR>
+" Replaced with vim-surround
+"vnoremap <silent> <leader>( <ESC>:let @t=@"<CR>gvxi()<Esc>P:let @"=@t<CR>
+"vnoremap <silent> <leader>[ <ESC>:let @t=@"<CR>gvxi[]<Esc>P:let @"=@t<CR>
+"vnoremap <silent> <leader>{ <ESC>:let @t=@"<CR>gvxi{}<Esc>P:let @"=@t<CR>
+"vnoremap <silent> <leader>$ <ESC>:let @t=@"<CR>gvxi\(\)<Esc>hP:let @"=@t<CR>
+"vnoremap <silent> <leader>" <ESC>:let @t=@"<CR>gvxi""<Esc>P:let @"=@t<CR>
+"vnoremap <silent> <leader>' <ESC>:let @t=@"<CR>gvxi''<Esc>P:let @"=@t<CR>
 
 " Get syntax group name under cursor
 nmap <F10> :call <SID>SynStack()<CR>

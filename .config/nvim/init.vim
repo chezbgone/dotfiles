@@ -4,31 +4,27 @@ filetype off
 
 call plug#begin('~/.config/nvim/plugged')
 
-"Plug 'rafi/awesome-vim-colorschemes'
-"Plug 'NLKNguyen/papercolor-theme'
-"Plug 'mhinz/vim-janah'
-Plug 'chezbgone/ayu-vim'
-Plug 'lilydjwg/colorizer'
+Plug 'chezbgone/ayu-vim' " Theme
+Plug 'lilydjwg/colorizer' " Makes hex codes have colored backgrounds
 
-"Plug 'kana/vim-textobj-user'
-"Plug 'rbonvall/vim-textobj-latex'
 Plug 'lervag/vimtex'
-
 Plug 'godlygeek/tabular'
-"Plug 'python-mode/python-mode'
-"Plug 'Rip-Rip/clang_complete'
+
 Plug 'pangloss/vim-javascript'
-Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'} " Python syntax hihglighting
 
 Plug 'chrisbra/Recover.vim'
-Plug 'vim-airline/vim-airline'
-
-Plug 'SirVer/ultisnips'
-"Plug 'cohama/lexima.vim'
-Plug 'Raimondi/delimitMate'
-Plug 'vim-scripts/HTML-AutoCloseTag'
 Plug 'gioele/vim-autoswap'
 
+Plug 'SirVer/ultisnips'
+
+Plug 'Raimondi/delimitMate'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'machakann/vim-swap'
+Plug 'vim-scripts/HTML-AutoCloseTag'
+
+Plug 'vim-airline/vim-airline'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 

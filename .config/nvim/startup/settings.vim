@@ -1,4 +1,5 @@
 set number " line numbers
+set relativenumber
 set linebreak " break lines
 set wrap " wrap lines
 set breakindent " indent breaks
@@ -34,6 +35,10 @@ endif
 let g:tex_flavor = "latex"
 let g:vimtex_compiler_enabled = 0
 let g:vimtex_imaps_enabled = 0
+
+call deoplete#custom#var('omni', 'input_patterns', {
+	\ 'tex': g:vimtex#re#deoplete
+	\})
 
 " airline stuff
 let g:airline_powerline_fonts = 1

@@ -35,3 +35,5 @@ filetype indent off
 " Stop delimitMate from autocompleting these in LaTeX
 imap <expr> ( getline(".")[col(".") - 2] == '\' ? '(' : "\<Plug>delimitMate("
 imap <expr> [ getline(".")[col(".") - 2] == '\' ? '[' : "\<Plug>delimitMate["
+" Also \begin{
+imap <expr> { getline(".")[col(".") - 7: col(".") - 2] == '\\begin' ? '{' : "\<Plug>delimitMate{"

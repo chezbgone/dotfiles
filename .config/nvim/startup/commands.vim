@@ -27,6 +27,4 @@ if has("autocmd")
 		autocmd!
 		autocmd BufNewFile,BufRead *.asy set syntax=asy
 	augroup END
-
-	autocmd FileType tex call deoplete#custom#buffer_option('auto_complete', v:false)
 endif
