@@ -12,21 +12,24 @@ vnoremap <Down> <NOP>
 vnoremap <Left> <NOP>
 vnoremap <Right> <NOP>
 
-" Left and right arrow keys indent instead
-nnoremap <Left> <<
-nnoremap <Right> >>
-inoremap <Left> <ESC><<
-inoremap <Right> <ESC>>>
-vnoremap <Left> <
-vnoremap <Right> >
-
 " H and L move to beginning and end of line
 nnoremap H ^
 vnoremap H ^
 onoremap H ^
+nnoremap gH g^
+vnoremap gH g^
+onoremap gH g^
 nnoremap L $
 vnoremap L $
 onoremap L $
+nnoremap gL g$
+vnoremap gL g$
+onoremap gL g$
+
+nnoremap <Tab> >>
+nnoremap <S-Tab> <<
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
 
 " Fix most recent spelling error to top suggestion
 inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u

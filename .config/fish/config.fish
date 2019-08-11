@@ -2,7 +2,10 @@
 alias config "git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 complete -c config -w git		# config autocomplete inherit from git
 
-export EDITOR="/usr/bin/nvim"
+export EDITOR='nvim'
+export PDFVIEWER='zathura'
+export PYENV_ROOT=$HOME/.pyenv
+export TEXMFHOME=$HOME/.texmf
 
 set fish_color_greeting 8888ff
 set fish_color_name ffbb77
@@ -51,4 +54,5 @@ function learned
 	nvim "+normal G" -c 'startinsert!' ~/Dropbox/Keep/learned
 end
 
-status --is-interactive; and source (pyenv init - | psub)
+status --is-interactive; and pyenv init - | source
+status --is-interactive; and pyenv virtualenv-init - | source

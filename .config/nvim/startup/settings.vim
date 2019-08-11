@@ -3,7 +3,6 @@ set relativenumber
 set linebreak " break lines
 set wrap " wrap lines
 set breakindent " indent breaks
-"set showbreak=>
 
 set autochdir " set working directory to current file's location
 
@@ -24,12 +23,15 @@ set spellfile=~/Dropbox/Keep/VimSpell/en.utf-8.add
 set splitbelow
 set splitright
 
-" Allows for incrementing of letters
+" Allows for incrementing of letters with <C-A>
 set nrformats+=alpha
 
 if has('mouse')
 	set mouse=a
 endif
+
+let g:python_host_prog = '/home/jason/.pyenv/versions/neovim2/bin/python'
+let g:python3_host_prog = '/home/jason/.pyenv/versions/neovim3/bin/python'
 
 " if this is not set, then empty .tex files break
 let g:tex_flavor = "latex"
@@ -55,6 +57,11 @@ let g:deoplete#enable_at_startup = 1
 " Tab goes through deoplete list
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
-" don't let <CR> do weird things with ycm
-"let g:lexima_nvim_accept_pum_with_enter = 0
+" start c++ syntax highlighting automatically
+let g:chromatica#enable_at_startup=1
+" update coloring in insert mode
+let g:chromatica#responsive_mode=1
+
+" try to be smart
 let delimitMate_balance_matchpairs = 1
+let delimitMate_expand_cr = 2

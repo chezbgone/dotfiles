@@ -2,7 +2,7 @@ if has("autocmd")
 	augroup templates
 		autocmd BufNewFile *.cpp exe "0r ~/.config/nvim/templates/".input("Template Name (c - competitive | b - basic | n - none): ").".cpp" |
 			\ set syntax=cpp |
-			\ set filetyp=cpp
+			\ set filetype=cpp
 		autocmd BufNewFile *.html 0r ~/.config/nvim/templates/skeleton.html |
 			\ set syntax=html |
 			\ set filetype=html

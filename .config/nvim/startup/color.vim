@@ -1,14 +1,14 @@
-"let g:PaperColor_Theme_Options = { 'theme': { 'default.dark': { 'transparent_background': 1 } } }
+let g:PaperColor_Theme_Options = { 'theme': { 'default.dark': { 'transparent_background': 1 } } }
 
 set termguicolors
 set background=dark
-colorscheme ayu
+colorscheme PaperColor
+"colorscheme ayu
 "colorscheme janah
 
 " transparent background
-hi Normal guibg=NONE ctermbg=NONE
+" exists in PaperColor already
+"hi Normal guibg=NONE ctermbg=NONE
 
-" Show trailing whitespace
-highlight BadWhitespace ctermbg=red guibg=darkred
-autocmd BufEnter * match BadWhitespace /\S\zs\s\+$/
-
+highlight ExtraWhitespace guibg=darkred
+let g:better_whitespace_skip_empty_lines=1

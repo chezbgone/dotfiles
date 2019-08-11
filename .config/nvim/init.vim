@@ -3,15 +3,15 @@ set nocompatible
 filetype off
 
 call plug#begin('~/.config/nvim/plugged')
-
 Plug 'chezbgone/ayu-vim' " Theme
+Plug 'NLKNguyen/papercolor-theme' " Theme
 Plug 'lilydjwg/colorizer' " Makes hex codes have colored backgrounds
-
+Plug 'ntpeters/vim-better-whitespace'
 Plug 'lervag/vimtex'
 Plug 'godlygeek/tabular'
 
 Plug 'pangloss/vim-javascript'
-Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'} " Python syntax hihglighting
+Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'} " Python syntax highlighting
 
 Plug 'chrisbra/Recover.vim'
 Plug 'gioele/vim-autoswap'
@@ -27,6 +27,9 @@ Plug 'vim-scripts/HTML-AutoCloseTag'
 Plug 'vim-airline/vim-airline'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'deoplete-plugins/deoplete-jedi'
