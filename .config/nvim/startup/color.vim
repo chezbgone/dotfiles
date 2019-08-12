@@ -3,6 +3,8 @@ let g:PaperColor_Theme_Options = { 'theme': { 'default.dark': { 'transparent_bac
 set termguicolors
 set background=dark
 colorscheme PaperColor
+let g:airline_theme='ayu'
+
 "colorscheme ayu
 "colorscheme janah
 

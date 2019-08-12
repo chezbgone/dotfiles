@@ -27,7 +27,6 @@ end
 alias gogogo startx
 alias vim nvim
 alias vi nvim
-alias r ranger
 
 alias diff colordiff
 
@@ -44,14 +43,12 @@ abbr latexmkpvc "latexmk -pvc"
 abbr latexmkpvcfast "latexmk -pvc -interaction=nonstopmode"
 abbr latexmkpvcshellesc 'latexmk -pvc -latexoption="-shell-escape"'
 
+abbr r ranger
+abbr p sudo pacman
+
 
 function pdf
 	nohup zathura "$argv" >/dev/null 2>&1 &
-end
-
-function learned
-	echo (date) "- " >> ~/Dropbox/Keep/learned
-	nvim "+normal G" -c 'startinsert!' ~/Dropbox/Keep/learned
 end
 
 status --is-interactive; and pyenv init - | source
