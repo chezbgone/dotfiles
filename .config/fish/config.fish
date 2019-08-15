@@ -46,6 +46,18 @@ abbr latexmkpvcshellesc 'latexmk -pvc -latexoption="-shell-escape"'
 abbr r ranger
 abbr p sudo pacman
 
+function classnotes
+	~/scripts/texnotes.sh
+	cd notes
+end
+
+function notes
+	~/scripts/texnotes_notes.sh
+end
+
+function todaynotes
+	~/scripts/texnotes_day.sh
+end
 
 function pdf
 	nohup zathura "$argv" >/dev/null 2>&1 &

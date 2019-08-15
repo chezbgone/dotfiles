@@ -3,7 +3,7 @@ set nocompatible
 filetype off
 
 call plug#begin('~/.config/nvim/plugged')
-Plug 'chezbgone/ayu-vim' " Theme for airline
+Plug 'ayu-theme/ayu-vim' " Theme for airline
 Plug 'NLKNguyen/papercolor-theme' " Theme for other things
 Plug 'lilydjwg/colorizer' " Makes hex codes have colored backgrounds
 Plug 'ntpeters/vim-better-whitespace'
