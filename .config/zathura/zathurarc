@@ -9,3 +9,5 @@ set recolor-keephue
 set guioptions ""
 
 map [normal] b toggle_statusbar
+
+set synctex true

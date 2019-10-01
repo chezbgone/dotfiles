@@ -38,10 +38,6 @@ let g:tex_flavor = "latex"
 let g:vimtex_compiler_enabled = 0
 let g:vimtex_imaps_enabled = 0
 
-call deoplete#custom#var('omni', 'input_patterns', {
-	\ 'tex': g:vimtex#re#deoplete
-	\})
-
 " airline stuff
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#whitespace#enabled = 0
@@ -50,10 +46,17 @@ let g:airline#extensions#whitespace#enabled = 0
 let g:NERDTreeWinSize = 25
 
 let g:UltiSnipsExpandTrigger = "§"
-let g:UltiSnipsJumpForwardTrigger = "§"
 
 " Enable Deoplete
 let g:deoplete#enable_at_startup = 1
+call deoplete#custom#option({
+	\ 'auto_complete_delay': 100,
+	\ 'ignore_sources': {'tex': ['file', 'around', 'buffer']},
+	\})
+
+call deoplete#custom#var('omni', 'input_patterns', {
+	\ 'tex': g:vimtex#re#deoplete
+	\})
 " Tab goes through deoplete list
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 

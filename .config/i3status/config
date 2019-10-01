@@ -8,6 +8,7 @@ order += "wifi"
 order += "clock"
 
 backlight{
+	brightness_delta = 5
     format = '☀️{level}%'
 }
 

@@ -1,5 +1,4 @@
-setxkbmap -option caps:none
-xmodmap -e "keycode 66 = section"
+~/scripts/disable-caps-lock.sh
 
 [[ -f ~/.fehbg ]] && source ~/.fehbg
 

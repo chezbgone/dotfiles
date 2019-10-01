@@ -1,16 +1,16 @@
 " No arrow keys >:D
-nnoremap <Up> <NOP>
-nnoremap <Down> <NOP>
-nnoremap <Left> <NOP>
-nnoremap <Right> <NOP>
-inoremap <Up> <NOP>
-inoremap <Down> <NOP>
-inoremap <Left> <NOP>
-inoremap <Right> <NOP>
-vnoremap <Up> <NOP>
-vnoremap <Down> <NOP>
-vnoremap <Left> <NOP>
-vnoremap <Right> <NOP>
+"nnoremap <Up> <NOP>
+"nnoremap <Down> <NOP>
+"nnoremap <Left> <NOP>
+"nnoremap <Right> <NOP>
+"inoremap <Up> <NOP>
+"inoremap <Down> <NOP>
+"inoremap <Left> <NOP>
+"inoremap <Right> <NOP>
+"vnoremap <Up> <NOP>
+"vnoremap <Down> <NOP>
+"vnoremap <Left> <NOP>
+"vnoremap <Right> <NOP>
 
 " H and L move to beginning and end of line
 nnoremap H ^
@@ -57,14 +57,14 @@ nnoremap <silent> <leader>vt :vsp<CR>:terminal<CR><C-\><C-n>
 nnoremap <silent> <leader>V  :split<CR>
 nnoremap <silent> <leader>Vt :split<CR>:terminal<CR><C-\><C-n>
 
-nnoremap <silent> <leader>l :wincmd l<CR>
-nnoremap <silent> <leader>h :wincmd h<CR>
-nnoremap <silent> <leader>k :wincmd k<CR>
-nnoremap <silent> <leader>j :wincmd j<CR>
-nnoremap <silent> <leader>L :wincmd L<CR>
-nnoremap <silent> <leader>H :wincmd H<CR>
-nnoremap <silent> <leader>K :wincmd K<CR>
-nnoremap <silent> <leader>J :wincmd J<CR>
+nnoremap <C-l> <C-w>l
+nnoremap <C-h> <C-w>h
+nnoremap <C-k> <C-w>k
+nnoremap <C-j> <C-w>j
+nnoremap <leader>l <c-w>L
+nnoremap <leader>h <c-w>H
+nnoremap <leader>k <c-w>K
+nnoremap <leader>j <c-w>J
 
 " Disable F1
 nnoremap <F1> <nop>
@@ -78,21 +78,11 @@ nnoremap <silent> <leader><space> :noh<CR>
 nnoremap Q <NOP>
 map q: <NOP>
 
+" Disable K
+nnoremap K <nop>
+
 " Getting out of the terminal emulator
 tnoremap <Esc> <C-\><C-n>
-
-" Bubble lines
-nmap <silent> <C-Up> :let @t=@"<CR>ddkP:let @"=@t<CR>
-nmap <silent> <C-Down> :let @t=@"<CR>ddp:let @"=@t<CR>
-
-" Surround text with brackets
-" Replaced with vim-surround
-"vnoremap <silent> <leader>( <ESC>:let @t=@"<CR>gvxi()<Esc>P:let @"=@t<CR>
-"vnoremap <silent> <leader>[ <ESC>:let @t=@"<CR>gvxi[]<Esc>P:let @"=@t<CR>
-"vnoremap <silent> <leader>{ <ESC>:let @t=@"<CR>gvxi{}<Esc>P:let @"=@t<CR>
-"vnoremap <silent> <leader>$ <ESC>:let @t=@"<CR>gvxi\(\)<Esc>hP:let @"=@t<CR>
-"vnoremap <silent> <leader>" <ESC>:let @t=@"<CR>gvxi""<Esc>P:let @"=@t<CR>
-"vnoremap <silent> <leader>' <ESC>:let @t=@"<CR>gvxi''<Esc>P:let @"=@t<CR>
 
 " Get syntax group name under cursor
 nmap <F10> :call <SID>SynStack()<CR>

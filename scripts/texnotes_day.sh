@@ -9,7 +9,7 @@ source .notes_config
 
 todaysfile="${notesfileprefix}-$(date +%y%m%d)"
 if [[ ! -f "${todaysfile}.tex" ]]; then
-	echo "creating todays file"
+	echo "creating today's file"
 	notesclassname=$notesclassname \
 	notesshortname=$notesshortname \
 	noteslecturer=$noteslecturer \

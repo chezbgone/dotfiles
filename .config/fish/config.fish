@@ -1,6 +1,6 @@
 # dotfiles
 alias config "git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
-complete -c config -w git		# config autocomplete inherit from git
+complete -c config -w git		# inherit config autocomplete from git
 
 export EDITOR='nvim'
 export PDFVIEWER='zathura'
@@ -57,6 +57,10 @@ end
 
 function todaynotes
 	~/scripts/texnotes_day.sh
+end
+
+function writeup
+	~/scripts/writeup.sh $argv
 end
 
 function pdf

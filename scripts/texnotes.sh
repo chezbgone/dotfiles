@@ -28,6 +28,11 @@ if [[ ! -f .notes_config ]]; then
 	EOF
 fi
 
+source .notes_config
+
 if [[ ! -f "${notesfileprefix}-notes.tex" ]]; then
-	envsubst < ~/Dropbox/Keep/TeX_Templates/notes_template.tex >  "${notesfileprefix}-notes.tex"
+	sed "s/\$notesclassname/$notesclassname/;
+	     s/\$notesshortname/$notesshortname/;
+	     s/\$notesfileprefix/$notesfileprefix/;
+	     s/\$noteslecturer/$noteslecturer/" ~/Dropbox/Keep/TeX_Templates/notes_template.tex > "${notesfileprefix}-notes.tex"
 fi
