@@ -54,7 +54,7 @@
 
 # Lock
 "sh ~/scripts/fuzzy-lock.sh"
-	Mod4+L
+	Mod4+Shift+L
 
 # Sleep
 "sh ~/scripts/fuzzy-lock.sh; systemctl suspend"

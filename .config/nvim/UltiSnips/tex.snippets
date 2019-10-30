@@ -1,6 +1,26 @@
 global !p
-def create_row_placeholders(snip):
-	snip.expand_anon(snip.tabstops)
+def create_grid(snip):
+	line = snip.buffer[snip.line]
+	whitespace = line[:len(line) - len(line.lstrip())]
+
+	env_name, dims = line.split('matrix')
+	env_name = env_name.split(' ')[-1].strip() + 'matrix'
+	rows, cols = map(int, dims.split(':')[0].split('x'))
+
+	before = line.split(env_name)[0]
+	after = line.split('::')[-1]
+	snip.buffer[snip.line] = ''
+
+	begin = '\\begin{' + env_name + '}\n'
+	end = whitespace + '\\end{' + env_name + '}'
+
+	grid = ' \\\\\\\\\n'.join([
+		whitespace + '\t' + ' & '.join([
+			'<++>' for _ in range(cols)
+		]) for __ in range(rows)
+	])
+
+	snip.expand_anon(before + begin + whitespace + '\t' + '${0:<++>}' + grid[len(whitespace) + 5:] + '\n' + end + after)
 endglobal
 
 snippet ... "dots" Ai
@@ -45,11 +65,10 @@ snippet "\\\[ " "Display math" "len(snip.buffer[snip.line]) == snip.column + 1" 
 \]
 endsnippet
 
-# Missing last curly brace because of vim-autoclose
-snippet "\\begin{" "General environment" rA
+snippet "begin::" "General environment" rA
 \begin{${1:env}}
 	${0:<++>}
-\end{$1
+\end{$1}
 endsnippet
 
 snippet "(Equation|Align|Gather)::" "eqn environments" rA
@@ -76,7 +95,7 @@ snippet "(tabular|tab)::" "tabular" rA
 \end{tabular}
 endsnippet
 
-snippet "(matrix|smallmatrix|bmatrix|pmatrix)::" "matrix environments" rA
+snippet "((small|b|p)?matrix)::" "matrix environments" rA
 \begin{`!p snip.rv = match.group(1)`}
 	$1
 \end{`!p snip.rv = match.group(1)`}
@@ -88,6 +107,9 @@ endsnippet
 #	`!p snip.expand_anon("${1:<++>} ${2:<++>} ${3:<++>}")`
 #\end{`!p snip.rv = match.group(1)`}
 #endsnippet
+pre_expand "create_grid(snip)"
+snippet "((small|b|p)?matrix)(\d+)x(\d+)::" "Generate matrix with placeholders" rA
+endsnippet
 
 snippet "frame::" "frame" rA
 \begin{frame}{${1:<+title+>}}

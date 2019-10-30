@@ -67,5 +67,7 @@ function pdf
 	nohup zathura "$argv" >/dev/null 2>&1 &
 end
 
+complete -c pdf -x -a '(__fish_complete_suffix .pdf)'
+
 status --is-interactive; and pyenv init - | source
 status --is-interactive; and pyenv virtualenv-init - | source

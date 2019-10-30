@@ -1,5 +1,6 @@
 $pdf_mode = 1;
 
+$pvc_timeout = 1;
 $pdf_previewer = 'zathura %O %S';
 
 $clean_ext = 'pre asy';
