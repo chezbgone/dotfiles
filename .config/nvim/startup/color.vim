@@ -3,7 +3,9 @@ let g:PaperColor_Theme_Options = {
 	\		'default.dark': {
 	\			'transparent_background': 1,
 	\			'override': {
-	\				'linenumber_fg': ['#888888']
+	\				'linenumber_fg': ['#888888'],
+	\				'visual_bg': ['#174488'],
+	\				'visual_fg': ['#88CCFF']
 	\			}
 	\ 		}
 	\	}
