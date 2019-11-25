@@ -23,20 +23,6 @@ bindsym $mod+Shift+Right move right 50 px
 bindsym $mod+backslash split h
 bindsym $mod+minus split v
 
-#set $bg-color              #223020
-#set $border-color          #000088
-#set $inactive-bg-color     #202020
-#set $inactive-border-color #000000
-#set $text-color            #ffffff
-#set $inactive-text-color   #8E8E8E
-#set $urgent-bg-color       #E53935
-#
-## window colors         border             background         text                 indicator  child-border
-#client.focused          $border-color      $bg-color          $text-color          #00ff00    $border-color
-#client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00    $inactive-border-color
-#client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00    $inactive-border-color
-#client.urgent           $urgent-bg-color   $urgent-bg-color   $text-color          #00ff00    #00ff00
-
 bindsym $mod+f fullscreen toggle
 bindsym $mod+s layout stacking
 bindsym $mod+t layout tabbed
