@@ -130,7 +130,7 @@ snippet "minipage::" "minipage" rA
 endsnippet
 
 snippet "(fig|figure)::" "figure" rA
-\begin{figure}[tbp]
+\begin{figure}[tbp!]
 	${0:${VISUAL}}
 \end{figure}
 endsnippet
@@ -153,7 +153,13 @@ snippet "desc::" "description" rA
 \end{description}
 endsnippet
 
-snippet "(cases|itemize|scope)::" "environments" rA
+snippet "itemize::" "description" rA
+\begin{itemize}
+	\item ${0:${VISUAL}}
+\end{itemize}
+endsnippet
+
+snippet "(cases|scope)::" "environments" rA
 \begin{`!p snip.rv = match.group(1)`}
 	${0:${VISUAL}}
 \end{`!p snip.rv = match.group(1)`}

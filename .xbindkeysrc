@@ -59,3 +59,11 @@
 # Sleep
 "sh ~/scripts/fuzzy-lock.sh; systemctl suspend"
 	Mod4+Shift+S
+
+
+# Toggle tablet output screen
+"sh ~/scripts/toggle_wacom.sh"
+	Mod4+Tab
+
+"sh ~/scripts/toggle_wacom.sh"
+	b:11

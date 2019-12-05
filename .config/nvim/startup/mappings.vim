@@ -94,3 +94,10 @@ function! <SID>SynStack()
 endfunc
 
 nmap <F12> :NERDTreeToggle<CR>
+
+" use <tab> and <S-tab> to navigate completion list
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" use <cr> to complete (even if nothing selected
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"

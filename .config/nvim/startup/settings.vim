@@ -3,6 +3,7 @@ set relativenumber
 set linebreak " break lines
 set wrap " wrap lines
 set breakindent " indent breaks
+set nojoinspaces " one space when joining sentences with J
 
 set autochdir " set working directory to current file's location
 
@@ -48,17 +49,17 @@ let g:NERDTreeWinSize = 25
 let g:UltiSnipsExpandTrigger = "§"
 
 " Enable Deoplete
-let g:deoplete#enable_at_startup = 1
-call deoplete#custom#option({
-	\ 'auto_complete_delay': 100,
-	\ 'ignore_sources': {'tex': ['file', 'around', 'buffer']},
-	\})
-
-call deoplete#custom#var('omni', 'input_patterns', {
-	\ 'tex': g:vimtex#re#deoplete
-	\})
-" Tab goes through deoplete list
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+"let g:deoplete#enable_at_startup = 1
+"call deoplete#custom#option({
+"	\ 'auto_complete_delay': 100,
+"	\ 'ignore_sources': {'tex': ['file', 'around', 'buffer']},
+"	\})
+"
+"call deoplete#custom#var('omni', 'input_patterns', {
+"	\ 'tex': g:vimtex#re#deoplete
+"	\})
+"" Tab goes through deoplete list
+"inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 " start c++ syntax highlighting automatically
 let g:chromatica#enable_at_startup=1

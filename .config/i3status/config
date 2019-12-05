@@ -1,4 +1,4 @@
-order += "window_title_async"
+order += "window"
 order += "spotify"
 order += "backlight"
 order += "volume_status"
@@ -47,8 +47,4 @@ volume_status{
 
 wifi{
     format = "W:{ssid} {bitrate} {signal_percent}|W: down"
-}
-
-window_title_async{
-    always_show = True
 }

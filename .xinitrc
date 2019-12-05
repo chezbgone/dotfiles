@@ -1,8 +1,9 @@
 ~/scripts/disable-caps-lock.sh
+~/scripts/wacom_setup.sh
 
 [[ -f ~/.fehbg ]] && source ~/.fehbg
 
-compton &
+picom &
 xbindkeys
 
 pulseeffects --gapplication-service &

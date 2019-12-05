@@ -15,8 +15,8 @@ set fish_greeting
 
 function fish_prompt
 	set_color $fish_color_name
-	printf (whoami)@(hostname)
-	printf ' '
+	#printf (whoami)@(hostname)
+	#printf ' '
 	set_color $fish_color_cwd
 	printf (prompt_pwd)
 
