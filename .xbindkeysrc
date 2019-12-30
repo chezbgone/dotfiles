@@ -61,6 +61,10 @@
 	Mod4+Shift+S
 
 
+# Set up tablet
+"sh ~/scripts/wacom_setup.sh"
+	Mod4+W
+
 # Toggle tablet output screen
 "sh ~/scripts/toggle_wacom.sh"
 	Mod4+Tab

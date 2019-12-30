@@ -1,3 +1,3 @@
 #!/bin/sh
 
-xsetwacom set "Wacom Intuos S Pad pad" 8 11
+xsetwacom set "Wacom Intuos S Pad pad" Button 8 11
