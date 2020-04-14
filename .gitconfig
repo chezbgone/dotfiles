@@ -7,3 +7,6 @@
 	undo = reset --soft HEAD~1
 	ss = status -s -b
 	co = commit
+
+[includeIf "gitdir:~/Dropbox/MIT/6_031/"]
+	path = ~/.gitconfig.mit

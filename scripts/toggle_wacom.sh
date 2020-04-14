@@ -1,6 +1,6 @@
 #!/bin/sh
 
-TOGGLE=$HOME/.wacom_toggle
+TOGGLE=$HOME/scripts/.wacom_toggle
 
 if [ ! -e $TOGGLE ]; then
 	if [ -e $HOME/scripts/.HDMI2 ]; then

@@ -117,7 +117,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Mod4+Shift+e exit
 bindsym $mod+Shift+r exec killall -USR1 py3status
 bindsym $mod+Control+Shift+r restart
-bindsym $mod+Shift+b exec --no-startup-id "source ~/.fehbg"
+bindsym $mod+Shift+b exec --no-startup-id "source ~/scripts/fehbg.sh"
 
 bindsym $mod+y       resize shrink width 20 px or 4 ppt
 bindsym $mod+u       resize grow height 20 px or 4 ppt
@@ -133,7 +133,7 @@ bindsym $mod+c move scratchpad
 bindsym $mod+v scratchpad show
 
 # startup
-exec --no-startup-id redshift-gtk -l 42:-71
+exec --no-startup-id redshift
 exec --no-startup-id libinput-gestures-setup start
 exec --no-startup-id dunst
 exec --no-startup-id dropbox start
@@ -145,7 +145,7 @@ bar {
 	position top
 	tray_output HDMI2
 	tray_output eDP1
-	status_command py3status
+	status_command py3status --dbus-notify
 	height 16
 
 	colors{

@@ -11,9 +11,9 @@ highlight texStatement guifg=#4cb3e6
 highlight texMathSymbol guifg=#ffeb87
 highlight texGreek guifg=#ffeb87
 
-highlight texMath guifg=#87d7ff
-highlight texSuperscript guifg=#87d7ff
-highlight texSubscript guifg=#87d7ff
+highlight texMath guifg=#aad7ff
+highlight texSuperscript guifg=#aad7ff
+highlight texSubscript guifg=#aad7ff
 
 highlight texSection guifg=#ff87af
 

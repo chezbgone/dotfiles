@@ -1,4 +1,6 @@
 setlocal spell
+setlocal tabstop=2
+setlocal shiftwidth=2
 
 " Maps
 nnoremap <buffer> <F1> :w<Enter>
@@ -37,3 +39,6 @@ imap <expr> ( getline(".")[col(".") - 2] == '\' ? '(' : "\<Plug>delimitMate("
 imap <expr> [ getline(".")[col(".") - 2] == '\' ? '[' : "\<Plug>delimitMate["
 " Also \begin{
 imap <expr> { getline(".")[col(".") - 7: col(".") - 2] == '\\begin' ? '{' : "\<Plug>delimitMate{"
+
+command! TComp silent !kitty latexmk -pvc & disown
+nmap <Leader>TC :silent TComp<CR>

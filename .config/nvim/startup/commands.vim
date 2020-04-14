@@ -16,12 +16,18 @@ if has("autocmd")
 
 	augroup numbertoggle
 		autocmd!
-		autocmd InsertLeave * set relativenumber
-		autocmd InsertEnter * set norelativenumber
+		autocmd InsertLeave * if (!exists("b:NERDTree")) | set relativenumber | endif
+		autocmd InsertEnter * if (!exists("b:NERDTree")) | set norelativenumber | endif
 	augroup END
 
 	" automatically quit nerdtree if last
 	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+	autocmd CursorHold * silent call CocActionAsync('highlight')
+
+	" automatically open nerdtree if opening a directory
+	autocmd StdinReadPre * let s:std_in=1
+	autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
 
 	augroup asy_ft
 		autocmd!

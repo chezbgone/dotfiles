@@ -1,17 +1,24 @@
-" Jason Chen's vimrc
+"Jason Chen's vimrc
 set nocompatible
 filetype off
 
 call plug#begin('~/.config/nvim/plugged')
+
 Plug 'vim-airline/vim-airline-themes'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'lilydjwg/colorizer' " Makes hex codes have colored backgrounds
 Plug 'ntpeters/vim-better-whitespace'
+
 Plug 'lervag/vimtex'
 Plug 'godlygeek/tabular'
 
-Plug 'pangloss/vim-javascript'
-Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'} " Python syntax highlighting
+"Plug 'pangloss/vim-javascript'
+"Plug 'MaxMEllon/vim-jsx-pretty'
+"Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'} " Python syntax highlighting
+"Plug 'bfrg/vim-cpp-modern'
+
+" Auto previews
+Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 
 Plug 'chrisbra/Recover.vim'
 Plug 'gioele/vim-autoswap'
@@ -22,11 +29,14 @@ Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'machakann/vim-swap'
-Plug 'vim-scripts/HTML-AutoCloseTag'
+Plug 'alvan/vim-closetag'
+Plug 'justinmk/vim-sneak'
+Plug 'machakann/vim-highlightedyank'
 
 Plug 'vim-airline/vim-airline'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'kien/ctrlp.vim'
 
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'

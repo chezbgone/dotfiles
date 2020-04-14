@@ -17,6 +17,8 @@ set tabstop=4 " show tabs as width 4
 set shiftwidth=4 " indenting with > gives 4 spaces
 set noexpandtab " pressing tab does not gives spaces
 
+set updatetime=500
+
 "set spell
 set spellfile=~/Dropbox/Keep/VimSpell/en.utf-8.add
 
@@ -34,38 +36,29 @@ endif
 let g:python_host_prog = '/home/jason/.pyenv/versions/neovim2/bin/python'
 let g:python3_host_prog = '/home/jason/.pyenv/versions/neovim3/bin/python'
 
+" airline stuff
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#whitespace#enabled = 0
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
+let g:airline_skip_empty_sections = 1
+
+" closetags
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.jsx,*.js'
+
+" ctrl-p
+let g:ctrlp_custom_ignore = { 'dir': 'node_modules' }
+
+" delimimate - try to be smart
+let delimitMate_balance_matchpairs = 1
+let delimitMate_expand_cr = 2
+
+" set nerdtree width
+let g:NERDTreeWinSize = 20
+
+let g:UltiSnipsExpandTrigger = "§"
+
 " if this is not set, then empty .tex files break
 let g:tex_flavor = "latex"
 let g:vimtex_compiler_enabled = 0
 let g:vimtex_imaps_enabled = 0
-
-" airline stuff
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#whitespace#enabled = 0
-
-" set nerdtree width
-let g:NERDTreeWinSize = 25
-
-let g:UltiSnipsExpandTrigger = "§"
-
-" Enable Deoplete
-"let g:deoplete#enable_at_startup = 1
-"call deoplete#custom#option({
-"	\ 'auto_complete_delay': 100,
-"	\ 'ignore_sources': {'tex': ['file', 'around', 'buffer']},
-"	\})
-"
-"call deoplete#custom#var('omni', 'input_patterns', {
-"	\ 'tex': g:vimtex#re#deoplete
-"	\})
-"" Tab goes through deoplete list
-"inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-
-" start c++ syntax highlighting automatically
-let g:chromatica#enable_at_startup=1
-" update coloring in insert mode
-let g:chromatica#responsive_mode=1
-
-" try to be smart
-let delimitMate_balance_matchpairs = 1
-let delimitMate_expand_cr = 2

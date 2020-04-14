@@ -1,26 +1,37 @@
 global !p
-def create_grid(snip):
+def blank_array(whitespace, env_name, rows, cols, spec=False):
+	begin = '\\begin{{{}}}'.format(env_name)
+	if spec:
+		begin += '{{{}}}'.format(' '.join('c' for _ in range(cols)))
+	begin += '\n'
+
+	end = whitespace + '\\end{{{}}}'.format(env_name)
+
+	grid = ' \\\\\\\\\n'.join([
+		whitespace + '\t' + ' & '.join(
+			'<++>' for _ in range(cols)
+		) for __ in range(rows)
+	])
+
+	return begin + whitespace + '\t${0:<++>}' + grid[len(whitespace) + 5:] + '\n' + end
+
+def create_grid_general(snip, env_name, spec=True):
 	line = snip.buffer[snip.line]
 	whitespace = line[:len(line) - len(line.lstrip())]
 
-	env_name, dims = line.split('matrix')
-	env_name = env_name.split(' ')[-1].strip() + 'matrix'
+	before, dims = line.split(env_name)
 	rows, cols = map(int, dims.split(':')[0].split('x'))
 
-	before = line.split(env_name)[0]
 	after = line.split('::')[-1]
 	snip.buffer[snip.line] = ''
 
-	begin = '\\begin{' + env_name + '}\n'
-	end = whitespace + '\\end{' + env_name + '}'
+	snip.expand_anon(before + blank_array(whitespace, env_name, rows, cols, spec=spec) + after)
 
-	grid = ' \\\\\\\\\n'.join([
-		whitespace + '\t' + ' & '.join([
-			'<++>' for _ in range(cols)
-		]) for __ in range(rows)
-	])
-
-	snip.expand_anon(before + begin + whitespace + '\t' + '${0:<++>}' + grid[len(whitespace) + 5:] + '\n' + end + after)
+def create_grid_matrix(snip):
+	line = snip.buffer[snip.line]
+	prefix, dims = line.split('matrix')
+	env_name = prefix.split(' ')[-1].strip() + 'matrix'
+	create_grid_general(snip, env_name, spec=False)
 endglobal
 
 snippet ... "dots" Ai
@@ -40,32 +51,57 @@ snippet '(\S|^)__' "subscript" rAi
 endsnippet
 
 snippet () "parens" Ai
-(${1:${VISUAL}})${0:<++>}
+(${1:${VISUAL:<++>}})${0:<++>}
 endsnippet
 
 snippet [] "brackets" Ai
-[${1:${VISUAL}}]${0:<++>}
+[${1:${VISUAL:<++>}}]${0:<++>}
 endsnippet
 
-snippet "{}" "braces" rA
-{${1:${VISUAL}}}${0:<++>}
+snippet "{}" "braces" rAi
+{${1:${VISUAL:<++>}}}${0:<++>}
 endsnippet
 
-snippet "\$\$" "Inline math dollars" rA
-\(${1:${VISUAL}}\)${0:<++>}
+snippet $$ "Inline math dollars" Ai
+\(${1:${VISUAL:<++>}}\)${0:<++>}
 endsnippet
 
-snippet "\\\(" "Inline math parens" "len(snip.buffer[snip.line]) == snip.column + 1" rAe
-\(${1:${VISUAL}}\)${0:<++>}
+snippet \( "Inline math parens" "len(snip.buffer[snip.line]) == snip.column + 1" Ae
+\(${1:${VISUAL:<++>}}\)${0:<++>}
 endsnippet
 
 snippet "\\\[ " "Display math" "len(snip.buffer[snip.line]) == snip.column + 1" rAe
 \[
 	${1:${VISUAL}}
 \]
+${0:<++>}
 endsnippet
 
-snippet "\\begin::" "General environment" rA
+snippet sec:: "Section" A
+\section{${1:sec}}
+endsnippet
+
+snippet Sec:: "Starred section" A
+\section*{${1:sec}}
+endsnippet
+
+snippet ssec:: "Subsection" A
+\subsection{${1:sec}}
+endsnippet
+
+snippet SSec:: "Starred subsection" A
+\subsection*{${1:sec}}
+endsnippet
+
+snippet sssec:: "Subsubsection" A
+\subsubsection{${1:sec}}
+endsnippet
+
+snippet SSSec:: "Starred Subsubsection" A
+\subsubsection*{${1:sec}}
+endsnippet
+
+snippet "\\?begin::" "General environment" rA
 \begin{${1:env}}
 	${0:<++>}
 \end{$1}
@@ -73,17 +109,17 @@ endsnippet
 
 snippet "(Equation|Align|Gather)::" "eqn environments" rA
 \begin{`!p snip.rv = match.group(1).lower()`}
-	$1
+	${0:${VISUAL}}
 \end{`!p snip.rv = match.group(1).lower()`}
 endsnippet
 
 snippet "(equation|align|gather)::" "nonnumbered eqn environments" rA
 \begin{`!p snip.rv = match.group(1) + '*'`}
-	$1
+	${0:${VISUAL}}
 \end{`!p snip.rv = match.group(1)+ '*'`}
 endsnippet
 
-snippet "array::" "array" rA
+snippet array:: "array" A
 \begin{array}{$1}
 	${2:<++>}
 \end{array}
@@ -101,143 +137,145 @@ snippet "((small|b|p)?matrix)::" "matrix environments" rA
 \end{`!p snip.rv = match.group(1)`}
 endsnippet
 
-#post_jump "if snip.tabstop == 0: create_row_placeholders(snip)"
-#snippet "(matrix|smallmatrix|bmatrix|pmatrix)(\d+)::" "matrix environments" rA
-#\begin{`!p snip.rv = match.group(1)`}
-#	`!p snip.expand_anon("${1:<++>} ${2:<++>} ${3:<++>}")`
-#\end{`!p snip.rv = match.group(1)`}
-#endsnippet
-pre_expand "create_grid(snip)"
+pre_expand "create_grid_matrix(snip)"
 snippet "((small|b|p)?matrix)(\d+)x(\d+)::" "Generate matrix with placeholders" rA
 endsnippet
 
-snippet "frame::" "frame" rA
+pre_expand "create_grid_general(snip, 'tabular')"
+snippet "(tabular)(\d+)x(\d+)::" "Generate tabular with placeholders" rA
+endsnippet
+
+pre_expand "create_grid_general(snip, 'array')"
+snippet "(array)(\d+)x(\d+)::" "Generate array with placeholders" rA
+endsnippet
+
+snippet frame:: "frame" A
 \begin{frame}{${1:<+title+>}}
 	${2:<++>}
 \end{frame}
 endsnippet
 
-snippet "fframe::" "fragile frame" rA
+snippet fframe:: "fragile frame" A
 \begin{frame}{${1:<+title+>}}[fragile]
 	${2:<++>}
 \end{frame}
 endsnippet
 
-snippet "minipage::" "minipage" rA
+snippet minipage:: "minipage" A
 \begin{minipage}{${1:<+size+>}}
 	${2:<++>}
 \end{minipage}
 endsnippet
 
-snippet "(fig|figure)::" "figure" rA
+snippet "fig(ure)?::" "figure" rA
 \begin{figure}[tbp!]
 	${0:${VISUAL}}
 \end{figure}
 endsnippet
 
-snippet "(subfig|subfigure)::" "subfigure" rA
+snippet "subfig(ure)?::" "subfigure" rA
 \begin{subfigure}[c]{${1:<+size+>}}
 	${2:<++>}
 \end{subfigure}
 endsnippet
 
-snippet "enum::" "enumerate" rA
+snippet enum:: "enumerate" A
 \begin{enumerate}
-	\item ${0:${VISUAL}}
+	\item ${0:${VISUAL:<++>}}
 \end{enumerate}
 endsnippet
 
-snippet "desc::" "description" rA
+snippet desc:: "description" A
 \begin{description}
-	\item ${0:${VISUAL}}
+	\item ${0:${VISUAL:<++>}}
 \end{description}
 endsnippet
 
-snippet "itemize::" "description" rA
+snippet itemize:: "itemize" A
 \begin{itemize}
-	\item ${0:${VISUAL}}
+	\item ${0:${VISUAL:<++>}}
 \end{itemize}
 endsnippet
 
-snippet "(cases|scope)::" "environments" rA
+snippet "(scope|center|asy)::" "environments" rA
 \begin{`!p snip.rv = match.group(1)`}
-	${0:${VISUAL}}
+	${0:${VISUAL:<++>}}
 \end{`!p snip.rv = match.group(1)`}
 endsnippet
 
-snippet "tikz::" "tikz environments" rA
+snippet tikz:: "tikz" A
 \begin{tikzpicture}
 	${0:${VISUAL}}
 \end{tikzpicture}
 endsnippet
 
-snippet "(center|asy)::" "standard text environments" rA
-\begin{`!p snip.rv = match.group(1)`}
-	${0:${VISUAL}}
-\end{`!p snip.rv = match.group(1)`}
+snippet cases:: "cases environments" A
+\begin{cases}
+	${1:${VISUAL:<++>}} & ${2:<++>}
+\end{cases}
 endsnippet
 
 ### DELIMITERS ###
 snippet "\.(braces|parens|brackets|angles|verts|Verts|floor|ceil|set|abs|size|norm|tuple)" "autosize delimiters" rA
-\\`!p snip.rv = match.group(1)`*{${1:${VISUAL}}}${0:<++>}
+\\`!p snip.rv = match.group(1)`*{${1:${VISUAL:<++>}}}${0:<++>}
 endsnippet
 
 ### THEOREM ENVIRONMENTS ###
-snippet "(Theorem|Lemma|Proposition|Corollary|Conjecture|Definition|Fact|Exercise|Problem|Qestion|Answer|Remark|Case|Claim|Example|Proof|Question|Solution|Algorithm|Note)::" "proof enivonments" rA
+snippet "(Theorem|Lemma|Proposition|Corollary|Conjecture|Definition|Fact|Exercise|Problem|Question|Answer|Remark|Case|Claim|Example|Proof|Solution|Algorithm|Note)::" "proof enivonments" rA
 \begin{`!p snip.rv = match.group(1).lower()`}
 	${0:${VISUAL}}
 \end{`!p snip.rv = match.group(1).lower()`}
 endsnippet
 
-snippet "(Def|Defn)::" "definition enivonment abbreviation" rA
+snippet "Def(n)?::" "definition enivonment abbreviation" rA
 \begin{definition}
-	${0:${VISUAL}}
+	${0:${VISUAL:<++>}}
 \end{definition}
 endsnippet
 
-snippet "Ex::" "example enivonment abbreviation" rA
+snippet Ex:: "example enivonment abbreviation" A
 \begin{example}
-	${0:${VISUAL}}
+	${0:${VISUAL:<++>}}
 \end{example}
 endsnippet
 
-snippet "Thm::" "theorem enivonment abbreviation" rA
+snippet Thm:: "theorem enivonment abbreviation" A
 \begin{theorem}
-	${0:${VISUAL}}
+	${0:${VISUAL:<++>}}
 \end{theorem}
 endsnippet
 
-snippet "Lem::" "lemma enivonment abbreviation" rA
+snippet Lem:: "lemma enivonment abbreviation" A
 \begin{lemma}
-	${0:${VISUAL}}
+	${0:${VISUAL:<++>}}
 \end{lemma}
 endsnippet
 
-snippet "Prop::" "proposition enivonment abbreviation" rA
+snippet Prop:: "proposition enivonment abbreviation" A
 \begin{proposition}
-	${0:${VISUAL}}
+	${0:${VISUAL:<++>}}
 \end{proposition}
 endsnippet
 
-snippet "Conj::" "conjecture enivonment abbreviation" rA
+snippet Conj:: "conjecture enivonment abbreviation" A
 \begin{conjecture}
-	${0:${VISUAL}}
+	${0:${VISUAL:<++>}}
 \end{conjecture}
 endsnippet
 
-snippet "Cor::" "corollary enivonment abbreviation" rA
+snippet Cor:: "corollary enivonment abbreviation" A
 \begin{corollary}
-	${0:${VISUAL}}
+	${0:${VISUAL:<++>}}
 \end{corollary}
 endsnippet
 
-snippet "Sol::" "solution enivonment abbreviation" rA
-\begin{solution}
-	${0:${VISUAL}}
-\end{solution}
+snippet Sol:: "solution enivonment abbreviation" A
+\begin{proof*}{Solution}
+	${0:${VISUAL:<++>}}
+\end{proof*}
 endsnippet
 
-snippet "Algo::" "algorithm enivonment abbreviation" rA
+snippet Algo:: "algorithm enivonment abbreviation" A
 \begin{algorithm}
 	${0:${VISUAL}}
 \end{algorithm}
@@ -268,20 +306,33 @@ else:
 `{${2:<++>}}${0:<++>}
 endsnippet
 
-snippet / "fraction" i
-\\frac{${VISUAL}}{${2:<++>}}${0:<++>}
+snippet "\.t(-?(1|2|3|4)|5)" "text sizes" rA
+`!p
+text_sizes = {
+	-4: "\\tiny",
+	-3: "\\scriptsize",
+	-2: "\\footnotesize",
+	-1: "\\small",
+	1: "\\large",
+	2: "\\Large",
+	3: "\\LARGE",
+	4: "\\huge",
+	5: "\\Huge"
+}
+snip.rv = text_sizes[int(match.group(1))]
+`
 endsnippet
 
-snippet .frac "fraction" A
-\frac{${1}}{${2:<++>}}${0:<++>}
-endsnippet
-
-snippet "\.(dv|ddv|pdv|pddv)" "derivatives" rA
-\\`!p snip.rv = match.group(1)`{${1:${VISUAL}}}{${2:<++>}}${0:<++>}
-endsnippet
-
-snippet "\.(dnv|pdnv)" "nth derivatives" rA
-\\`!p snip.rv = match.group(1)`{${1:${VISUAL}}}{${2:<++>}}{${3:<++>}}${0:<++>}
+snippet "\.d(1|2|3|4)" "delimiter sizes" rA
+`!p
+delim_sizes = {
+	1: "\\big",
+	2: "\\Big",
+	3: "\\bigg",
+	4: "\\Bigg"
+}
+snip.rv = delim_sizes[int(match.group(1))]
+`
 endsnippet
 
 snippet tikzcd:: "commutative diagrams" A
@@ -291,13 +342,13 @@ snippet tikzcd:: "commutative diagrams" A
 endsnippet
 
 ### OTHER SNIPPETS ###
-snippet "alg::" "pseudocode" rA
-\begin{algorithm}
+snippet alg:: "pseudocode" A
+\begin{algorithmic}
 	${0:${VISUAL}}
-\end{algorithm}
+\end{algorithmic}
 endsnippet
 
-snippet "code::" "code" rA
+snippet code:: "code" A
 \begin{algorithm}
 	${0:${VISUAL}}
 \end{algorithm}
@@ -308,15 +359,15 @@ snippet .date "today's date" Ai
 endsnippet
 
 # Cool things taken from https://castel.dev/post/lecture-notes-1/
-snippet '([^<]|^)mathematica' "mathematica" wr
-`!p snip.rv = match.group(1)`mathematica> $1 <mathematica$0
+snippet 'mathematica::' "mathematica" Ari
+mathematica>> $1 <<endmathematica$0
 endsnippet
 
-snippet 'mathematica>(.*)<mathematica' "math" wr
+snippet 'mathematica>>(.*)<<endmathematica::' "run mathematica" Awr
 `!p
 import subprocess
-code = match.group(1)
-code = 'ToString[' + code + ', TeXForm]'
-snip.rv = subprocess.check_output(['wolframscript', '-code', code])
+code = 'ToString[' + match.group(1) + ', TeXForm]'
+process = subprocess.run(['wolframscript', '-code', code], stdout=subprocess.PIPE)
+snip.rv = process.stdout.decode('utf-8')[:-1]
 `
 endsnippet

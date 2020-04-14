@@ -24,9 +24,11 @@ function fish_prompt
 	printf '%s $ ' (__fish_git_prompt)
 end
 
+alias please 'eval sudo $history[1]'
+
 alias gogogo startx
-alias vim nvim
-alias vi nvim
+abbr vim nvim
+abbr vi nvim
 
 alias diff colordiff
 
@@ -59,6 +61,10 @@ function todaynotes
 	~/scripts/texnotes_day.sh
 end
 
+function sectionnotes
+	~/scripts/texnotes_section.sh
+end
+
 function writeup
 	~/scripts/writeup.sh $argv
 end
@@ -67,7 +73,7 @@ function pdf
 	nohup zathura "$argv" >/dev/null 2>&1 &
 end
 
-complete -c pdf -w zathura		# inherit zathura autocomplete from pdf
+#complete -c pdf -w zathura	   # inherit zathura autocomplete from pdf
 
-status --is-interactive; and pyenv init - | source
-status --is-interactive; and pyenv virtualenv-init - | source
+# status --is-interactive; and pyenv init - | source
+# status --is-interactive; and pyenv virtualenv-init - | source

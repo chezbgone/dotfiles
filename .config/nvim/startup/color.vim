@@ -5,7 +5,7 @@ let g:PaperColor_Theme_Options = {
 	\			'override': {
 	\				'linenumber_fg': ['#888888'],
 	\				'visual_bg': ['#174488'],
-	\				'visual_fg': ['#88CCFF']
+	\				'visual_fg': ['#88CCFF'],
 	\			}
 	\ 		}
 	\	}
@@ -14,7 +14,8 @@ let g:PaperColor_Theme_Options = {
 set termguicolors
 set background=dark
 colorscheme PaperColor
-let g:airline_theme='ayu_dark'
+"let g:airline_theme='ayu_dark'
+let g:airline_theme='deus'
 
 "colorscheme ayu
 "colorscheme janah
@@ -25,3 +26,5 @@ let g:airline_theme='ayu_dark'
 
 highlight ExtraWhitespace guibg=darkred
 let g:better_whitespace_skip_empty_lines=1
+
+highlight CocHighlightText guibg=#555555
