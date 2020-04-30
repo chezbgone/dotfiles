@@ -91,18 +91,10 @@ imap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<Plug>d
 
 " vim-sneak
 let g:sneak#s_next = 1
-nnoremap f <Plug>Sneak_f
-nnoremap F <Plug>Sneak_F
-xnoremap f <Plug>Sneak_f
-xnoremap F <Plug>Sneak_F
-onoremap f <Plug>Sneak_f
-onoremap F <Plug>Sneak_F
-nnoremap <Leader>f <Plug>Sneak_s
-nnoremap <Leader>F <Plug>Sneak_S
-xnoremap <Leader>f <Plug>Sneak_s
-xnoremap <Leader>F <Plug>Sneak_S
-onoremap <Leader>f <Plug>Sneak_s
-onoremap <Leader>F <Plug>Sneak_S
+map f <Plug>Sneak_f
+map F <Plug>Sneak_F
+map <Leader>f <Plug>Sneak_s
+map <Leader>F <Plug>Sneak_S
 
 """ coc.nvim
 " Use <c-space> to trigger completion.
