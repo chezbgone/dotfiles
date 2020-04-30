@@ -1,6 +1,7 @@
 setlocal spell
 setlocal tabstop=2
 setlocal shiftwidth=2
+setlocal expandtab
 
 " Maps
 nnoremap <buffer> <F1> :w<Enter>
@@ -35,10 +36,14 @@ nnoremap <silent> § :if search('<++>', 'c') <bar> call Select_placeholder() <ba
 let b:surround_36 = "\\(\r\\)"
 
 " Stop delimitMate from autocompleting these in LaTeX
+let delimitMate_matchpairs=&matchpairs.",`:'"
+let delimitMate_quotes="\""
 imap <expr> ( getline(".")[col(".") - 2] == '\' ? '(' : "\<Plug>delimitMate("
 imap <expr> [ getline(".")[col(".") - 2] == '\' ? '[' : "\<Plug>delimitMate["
 " Also \begin{
 imap <expr> { getline(".")[col(".") - 7: col(".") - 2] == '\\begin' ? '{' : "\<Plug>delimitMate{"
 
 command! TComp silent !kitty latexmk -pvc & disown
-nmap <Leader>TC :silent TComp<CR>
+nmap <F5> :silent TComp<CR>
+imap <F5> <C-O><F5>
+"nmap <Leader>TC :silent TComp<CR>
