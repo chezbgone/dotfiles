@@ -19,7 +19,8 @@ def create_grid_general(snip, env_name, spec=True):
 	line = snip.buffer[snip.line]
 	whitespace = line[:len(line) - len(line.lstrip())]
 
-	before, dims = line.split(env_name)
+	*before, dims = line.split(env_name)
+	before = env_name.join(before)
 	rows, cols = map(int, dims.split(':')[0].split('x'))
 
 	after = line.split('::')[-1]
@@ -29,7 +30,8 @@ def create_grid_general(snip, env_name, spec=True):
 
 def create_grid_matrix(snip):
 	line = snip.buffer[snip.line]
-	prefix, dims = line.split('matrix')
+	*prefix, dims = line.split('matrix')
+	prefix = matrix.join(prefix)
 	env_name = prefix.split(' ')[-1].strip() + 'matrix'
 	create_grid_general(snip, env_name, spec=False)
 endglobal
