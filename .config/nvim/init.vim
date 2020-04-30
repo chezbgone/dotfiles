@@ -29,7 +29,7 @@ Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'machakann/vim-swap'
-Plug 'alvan/vim-closetag'
+Plug 'alvan/vim-closetag', {'for': ['html', 'javascript']}
 Plug 'justinmk/vim-sneak'
 Plug 'machakann/vim-highlightedyank'
 
