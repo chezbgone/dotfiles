@@ -1,0 +1,81 @@
+order += "window"
+order += "spotify"
+order += "own_pomodoro"
+order += "group status"
+order += "battery_level"
+order += "sysdata"
+order += "wifi"
+order += "clock"
+
+
+general {
+	color_good = "#77ffcc"
+	color_degraded = "#ffff99"
+	color_bad = "#ff9999"
+}
+
+battery_level {
+	measurement_mode = "sys"
+	battery_id = "all"
+	format = "⚡{percent}%[ {time_remaining}]"
+	notify_low_level = True
+
+	hide_when_full = True
+	threshold_full = 78
+}
+
+clock {
+	button_change_format = 2
+	button_change_time_format = 1
+	format = ["{Local}", "{America/New_York}"]
+	format_time = ["%m/%d %H:%M:%S %Z", "%a %H:%M:%S %Z"]
+}
+
+group status {
+	button_prev = 0
+	button_next = 2
+
+	backlight{
+		brightness_delta = 5
+		format = '☀️{level}%'
+	}
+
+	volume_status{
+		cache_timeout = 3
+		command = "pactl"
+		format = '🎵{percentage}%'
+		format_muted = '🔇'
+		thresholds = [(0, 'bad'), (20, 'degraded'), (40, 'good')]
+		volume_delta = 2
+	}
+}
+
+own_pomodoro {
+	format = "{mmss}"
+	format_active = "🍅 {format}"
+	format_break = "🙂{breakno} {format}"
+	format_break_stopped = "🙂{breakno} {format}"
+	format_stopped = "🍅 {format}"
+}
+
+spotify {
+	color_playing = "#99ccff"
+	color_paused = "#ffff99"
+	color_offline = "#ff9999"
+	
+    cache_timeout = 1
+    button_play_pause = 2
+    button_previous = 1
+    button_next = 3
+    format_down = "Spotify down"
+    sanitize_words = ['bonus', 'demo', 'edit', 'explicit', 'extended', 'feat', 'mono', 'remaster', 'stereo', 'version', 'track']
+}
+
+sysdata {
+    cache_timeout = 5
+    format = "[\?color=cpu CPU {cpu_usage}%] [\?dolor=mem Mem {mem_used_percent}%]"
+}
+
+wifi {
+	format = "{ssid} {bitrate}{bitrate_unit} {signal_percent}%|wifi down"
+}
