@@ -121,7 +121,7 @@ bindsym $mod+Shift+b exec --no-startup-id "source ~/scripts/fehbg.sh"
 
 bindsym $mod+y       resize shrink width 20 px or 4 ppt
 bindsym $mod+u       resize grow height 20 px or 4 ppt
-bindsym $mod+i       resize shrink height 20 or 4 ppt
+bindsym $mod+i       resize shrink height 20 px or 4 ppt
 bindsym $mod+o       resize grow width 20 px or 4 ppt
 bindsym $mod+Shift+y resize shrink width 50 px or 10 ppt
 bindsym $mod+Shift+u resize grow height 50 px or 10 ppt
@@ -173,5 +173,4 @@ for_window [class="Mathematica"] floating enable
 for_window [class="mpv"] floating enable
 for_window [class="tridactyl_editor"] floating enable
 for_window [class="floating_term"] floating enable
-for_window [class="^chromium$"] floating disable, move window to workspace current
-for_window [class="^Chromium$"] floating disable, move window to workspace current
+for_window [class="latexmk-dock"] resize shrink height 160px or 32 ppt; focus up

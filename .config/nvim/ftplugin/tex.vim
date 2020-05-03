@@ -43,7 +43,7 @@ imap <expr> [ getline(".")[col(".") - 2] == '\' ? '[' : "\<Plug>delimitMate["
 " Also \begin{
 imap <expr> { getline(".")[col(".") - 7: col(".") - 2] == '\\begin' ? '{' : "\<Plug>delimitMate{"
 
-command! TComp silent !kitty latexmk -pvc & disown
+command! TComp silent !kitty --class="latexmk-dock" latexmk -pvc & disown
 nmap <F5> :silent TComp<CR>
 imap <F5> <C-O><F5>
 "nmap <Leader>TC :silent TComp<CR>

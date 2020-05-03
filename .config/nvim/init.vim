@@ -16,6 +16,7 @@ Plug 'godlygeek/tabular'
 "Plug 'MaxMEllon/vim-jsx-pretty'
 "Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'} " Python syntax highlighting
 "Plug 'bfrg/vim-cpp-modern'
+Plug 'uiiaoo/java-syntax.vim'
 
 " Auto previews
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
