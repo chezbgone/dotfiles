@@ -36,6 +36,10 @@
 "xfce4-screenshooter -r"
 	Print
 
+# Screenshot with delay
+"xfce4-screenshooter -r -d 2"
+	Shift+Print
+
 # Update dual-screen setup
 "sh ~/scripts/update-dual.sh"
 	Mod4+Shift+D

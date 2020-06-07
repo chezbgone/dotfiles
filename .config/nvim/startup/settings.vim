@@ -5,7 +5,7 @@ set wrap " wrap lines
 set breakindent " indent breaks
 set nojoinspaces " one space when joining sentences with J
 
-set autochdir " set working directory to current file's location
+"set autochdir " set working directory to current file's location
 
 set nocindent " disables annoying autoindent
 set showmatch " show matching parens
