@@ -28,3 +28,5 @@ highlight ExtraWhitespace guibg=darkred
 let g:better_whitespace_skip_empty_lines=1
 
 highlight CocHighlightText guibg=#555555
+highlight SignColumn guibg=NONE
+highlight Pmenu guibg=#113355

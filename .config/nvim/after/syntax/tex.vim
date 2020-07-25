@@ -1,6 +1,6 @@
 highlight texDocType guifg=#afffaf
 highlight texInputFile guifg=#00ffaf
-highlight Delimiter guifg=#afd7ff
+highlight Delimiter guifg=#888888
 
 highlight texBeginEnd guifg=#d787ff
 highlight texBeginEndName guifg=#ffaf00

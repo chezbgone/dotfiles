@@ -12,9 +12,11 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'lervag/vimtex'
 Plug 'godlygeek/tabular'
 
+Plug 'kana/vim-textobj-user'
+Plug 'bps/vim-textobj-python'
 "Plug 'pangloss/vim-javascript'
 "Plug 'MaxMEllon/vim-jsx-pretty'
-"Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'} " Python syntax highlighting
+Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins', 'for': 'python'}
 "Plug 'bfrg/vim-cpp-modern'
 Plug 'uiiaoo/java-syntax.vim'
 Plug 'kien/rainbow_parentheses.vim'
@@ -35,7 +37,10 @@ Plug 'alvan/vim-closetag', {'for': ['html', 'javascript']}
 Plug 'justinmk/vim-sneak'
 Plug 'machakann/vim-highlightedyank'
 
-Plug 'vim-airline/vim-airline'
+if !exists('g:started_by_firenvim')
+	Plug 'vim-airline/vim-airline'
+endif
+
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'kien/ctrlp.vim'
@@ -47,7 +52,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 "Plug 'deoplete-plugins/deoplete-jedi'
 
-"Plug 'aurieh/discord.nvim', { 'do': ':UpdateRemotePlugins'}
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 call plug#end()
 
 " Load custom settings
@@ -55,3 +60,9 @@ source ~/.config/nvim/startup/settings.vim
 source ~/.config/nvim/startup/mappings.vim
 source ~/.config/nvim/startup/commands.vim
 source ~/.config/nvim/startup/color.vim
+
+if exists('g:started_by_firenvim')
+  set laststatus=0
+else
+  set laststatus=2
+endif

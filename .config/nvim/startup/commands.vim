@@ -23,7 +23,10 @@ if has("autocmd")
 	" automatically quit nerdtree if last
 	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-	autocmd CursorHold * silent call CocActionAsync('highlight')
+	if has_key(plugs, 'coc.nvim')
+		" Highlight the symbol and its references when holding the cursor.
+		autocmd CursorHold * silent call CocActionAsync('highlight')
+	endif
 
 	" automatically open nerdtree if opening a directory
 	autocmd StdinReadPre * let s:std_in=1

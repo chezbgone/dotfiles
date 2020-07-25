@@ -1,6 +1,7 @@
 [user]
 	email = chezbgone@gmail.com
 	name = Jason Chen
+	signingkey = 69AB830B5EE5F093
 
 [alias]
 	hist = log --pretty=format:'%C(yellow)%h %C(red)%ad %C(reset)| %s%C(green)%d %C(cyan)[%an]' --decorate --date=human --graph

@@ -97,44 +97,47 @@ map <Leader>f <Plug>Sneak_s
 map <Leader>F <Plug>Sneak_S
 
 """ coc.nvim
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
+if has_key(plugs, 'coc.nvim')
+	" Use <c-space> to trigger completion.
+	inoremap <silent><expr> <c-space> coc#refresh()
 
-" Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
+	" Show actions.
+	nnoremap <silent> <Leader>a  :<C-u>CocList actions<cr>
+	" Show commands.
+	nnoremap <silent> <Leader>c  :<C-u>CocList commands<cr>
+	" Get outline
+	nnoremap <silent> <Leader>go :<C-u>CocList outline<CR>
 
-" Show actions.
-nnoremap <silent> <Leader>a  :<C-u>CocList actions<cr>
-" Show commands.
-nnoremap <silent> <Leader>c  :<C-u>CocList commands<cr>
-" Get outline
-nnoremap <silent> <Leader>go :<C-u>CocList outline<CR>
+	" Get hint
+	nnoremap <silent> <Leader>gh :call CocActionAsync('doHover')<CR>
+	nnoremap <expr><C-f> coc#util#has_float() ? coc#util#float_scroll(1) : "\<C-f>"
+	nnoremap <expr><C-b> coc#util#has_float() ? coc#util#float_scroll(0) : "\<C-b>"
+	" Go to definitions, etc.
+	nnoremap <silent> <Leader>gd <Plug>(coc-definition)
+	nnoremap <silent> <Leader>gy <Plug>(coc-type-definition)
+	nnoremap <silent> <Leader>gi <Plug>(coc-implementation)
 
-" Get hint
-nnoremap <silent> <Leader>gh :call CocActionAsync('doHover')<CR>
-nnoremap <expr><C-f> coc#util#has_float() ? coc#util#float_scroll(1) : "\<C-f>"
-nnoremap <expr><C-b> coc#util#has_float() ? coc#util#float_scroll(0) : "\<C-b>"
-" Go to definitions, etc.
-nnoremap <silent> <Leader>gd <Plug>(coc-definition)
-nnoremap <silent> <Leader>gy <Plug>(coc-type-definition)
-nnoremap <silent> <Leader>gi <Plug>(coc-implementation)
+	" Symbol renaming.
+	nnoremap <leader>rn <Plug>(coc-rename)
 
-" Symbol renaming.
-nnoremap <leader>rn <Plug>(coc-rename)
+	" function text-objects
+	"xnoremap if <Plug>(coc-funcobj-i)
+	"xnoremap af <Plug>(coc-funcobj-a)
+	"onoremap if <Plug>(coc-funcobj-i)
+	"onoremap af <Plug>(coc-funcobj-a)
+	"xnoremap ic <Plug>(coc-classobj-i)
+	"xnoremap ac <Plug>(coc-classobj-a)
+	"onoremap ic <Plug>(coc-classobj-i)
+	"onoremap ac <Plug>(coc-classobj-a)
 
-" function text-objects
-xnoremap if <Plug>(coc-funcobj-i)
-xnoremap af <Plug>(coc-funcobj-a)
-onoremap if <Plug>(coc-funcobj-i)
-onoremap af <Plug>(coc-funcobj-a)
+	" Use K to show documentation in preview window.
+	nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
+	function! s:show_documentation()
+	  if (index(['vim','help'], &filetype) >= 0)
+		execute 'h '.expand('<cword>')
+	  else
+		call CocAction('doHover')
+	  endif
+	endfunction
+endif

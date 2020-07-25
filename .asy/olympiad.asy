@@ -16,8 +16,7 @@ real markscalefactor = 0.03;
 ///////////////////////////////////////////
 
 // Substitutes origin for (0, 0) for ease of notation:
-pair origin;
-origin = (0, 0);
+pair origin = (0, 0);
 
 // The point r of the way along path p with respect to arc length, where r is a real value between 0 and 1 inclusive:
 pair waypoint(path p, real r){
@@ -59,7 +58,7 @@ pair bisectorpoint(pair A ... pair[] BC){
 // CIRCUMCIRCLE: //
 
 // The circumcenter of triangle ABC:
-pair circumcenter(pair A = (0, 0), pair B = (0, 0), pair C = (0, 0)){
+pair circumcenter(pair A=(0, 0), pair B=(0, 0), pair C=(0, 0)){
 	pair M, N, P, Q;
 	M = midpoint(A--B);
 	N = midpoint(B--C);
@@ -74,14 +73,14 @@ real circumradius(pair A, pair B, pair C){
 }
 
 // The circumcircle of triangle ABC:
-guide circumcircle(pair A = (0, 0), pair B = (0, 0), pair C = (0, 0)){
+guide circumcircle(pair A=(0, 0), pair B=(0, 0), pair C=(0, 0)){
 	return Circle(circumcenter(A, B, C), circumradius(A, B, C));
 }
 
 // INCIRCLE: //
 
 // The incenter of triangle ABC:
-pair incenter(pair A = (0, 0), pair B = (0, 0), pair C = (0, 0)){
+pair incenter(pair A=(0, 0), pair B=(0, 0), pair C=(0, 0)){
 	pair P, Q;
 	P = rotate((angle(C - A) - angle(B - A)) * 90 / pi, A) * B;
 	Q = rotate((angle(A - B) - angle(C - B)) * 90 / pi, B) * C;
@@ -98,14 +97,14 @@ real inradius(pair A, pair B, pair C){
 	return sqrt(s * (s - a) * (s - b) * (s - c)) / s;}
 
 // The inscribed circle of triangle ABC:
-guide incircle(pair A = (0, 0), pair B = (0, 0), pair C = (0, 0)){
+guide incircle(pair A=(0, 0), pair B=(0, 0), pair C=(0, 0)){
 	return Circle(incenter(A, B, C), inradius(A, B, C));
 }
 
 // The nth point of tangency from a point P to the circle with center O and radius r
 // where n can be 1 or 2 - the points of tangency are labeled in counterclockwise order around the circle.
 // If P is inside the circle, the center of the circle is returned rather than an error.
-pair tangent(pair P, pair O, real r, int n = 1){
+pair tangent(pair P, pair O, real r, int n=1){
 	real d, R;
 	pair X, T;
 	d = abs(P - O);
@@ -174,7 +173,7 @@ pair orthocenter(pair A, pair B, pair C){
 // Returns a right angle mark at B given a right angle ABC
 // The optional argument s specifies the side length of the mark in ps points:
 
-path rightanglemark(pair A, pair B, pair C, real s = 8){
+path rightanglemark(pair A, pair B, pair C, real s=8){
 	pair P, Q, R;
 	P = s * markscalefactor * unit(A - B) + B;
 	R = s * markscalefactor * unit(C - B) + B;
@@ -184,7 +183,7 @@ path rightanglemark(pair A, pair B, pair C, real s = 8){
 
 // Returns an angle mark on angle ABC consisting of several arcs centered at B.
 // The optional arguments t, s[] specify the radius of the arcs in increasing order:
-path anglemark(pair A, pair B, pair C, real t = 8 ... real[] s){
+path anglemark(pair A, pair B, pair C, real t=8 ... real[] s){
 	pair M, N, P[], Q[];
 	path mark;
 	int n = s.length;
@@ -214,10 +213,14 @@ path anglemark(pair A, pair B, pair C, real t = 8 ... real[] s){
 // A picture marking a path g with n ticks spaced spacing apart, with length s in ps points
 // such that the middle tick mark (or one of the two if n is even) is normal to g
 // and located r of the way along path g:
-picture pathticks(path g, int n = 1, real r = 0.5, real spacing = 6, real s = 8, pen p = currentpen){
+picture pathticks(path g, int n=1, real r=0.5, real spacing=6, real s=8, pen p=currentpen){
 	picture pict;
 	pair A, B, C, direct;
-	real t, l = arclength(g), space = spacing * markscalefactor, halftick = s * markscalefactor / 2, startpt;
+	real t,
+		l = arclength(g),
+		space = spacing * markscalefactor,
+		halftick = s * markscalefactor / 2,
+		startpt;
 	if (n>0){
 		direct = unit(dir(g, arctime(g, r * l)));
 		startpt = r * l - (n - 1) / 2 * space;
