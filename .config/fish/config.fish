@@ -1,4 +1,4 @@
-# dotfiles
+#dotfiles
 alias config "git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 complete -c config -w git		# inherit config autocomplete from git
 
@@ -79,4 +79,4 @@ status --is-interactive; and pyenv init - | source
 status --is-interactive; and pyenv virtualenv-init - | source
 
 # opam configuration
-source /home/jason/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
+#source /home/jason/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true

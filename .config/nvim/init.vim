@@ -6,7 +6,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'vim-airline/vim-airline-themes'
 Plug 'NLKNguyen/papercolor-theme'
-Plug 'lilydjwg/colorizer' " Makes hex codes have colored backgrounds
+Plug 'norcalli/nvim-colorizer.lua' " Makes hex codes have colored backgrounds
 Plug 'ntpeters/vim-better-whitespace'
 
 Plug 'lervag/vimtex'
@@ -17,8 +17,8 @@ Plug 'bps/vim-textobj-python'
 "Plug 'pangloss/vim-javascript'
 "Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins', 'for': 'python'}
-"Plug 'bfrg/vim-cpp-modern'
 Plug 'uiiaoo/java-syntax.vim'
+Plug 'jackguo380/vim-lsp-cxx-highlight'
 Plug 'kien/rainbow_parentheses.vim'
 
 " Auto previews

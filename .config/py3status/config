@@ -1,6 +1,6 @@
 order += "window"
 order += "spotify"
-order += "own_pomodoro"
+#order += "own_pomodoro"
 order += "group status"
 order += "battery_level"
 order += "sysdata"

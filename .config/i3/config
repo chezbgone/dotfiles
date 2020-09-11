@@ -58,16 +58,16 @@ workspace 8 output eDP1
 workspace 9 output eDP1
 workspace 10 output eDP1
 
-workspace 1' output HDMI2 eDP1
-workspace 2' output HDMI2 eDP1
-workspace 3' output HDMI2 eDP1
-workspace 4' output HDMI2 eDP1
-workspace 5' output HDMI2 eDP1
-workspace 6' output HDMI2 eDP1
-workspace 7' output HDMI2 eDP1
-workspace 8' output HDMI2 eDP1
-workspace 9' output HDMI2 eDP1
-workspace 10' output HDMI2 eDP1
+workspace 1' output HDMI2 VIRTUAL1 VIRTUAL2 VIRTUAL3 eDP1
+workspace 2' output HDMI2 VIRTUAL1 VIRTUAL2 VIRTUAL3 eDP1
+workspace 3' output HDMI2 VIRTUAL1 VIRTUAL2 VIRTUAL3 eDP1
+workspace 4' output HDMI2 VIRTUAL1 VIRTUAL2 VIRTUAL3 eDP1
+workspace 5' output HDMI2 VIRTUAL1 VIRTUAL2 VIRTUAL3 eDP1
+workspace 6' output HDMI2 VIRTUAL1 VIRTUAL2 VIRTUAL3 eDP1
+workspace 7' output HDMI2 VIRTUAL1 VIRTUAL2 VIRTUAL3 eDP1
+workspace 8' output HDMI2 VIRTUAL1 VIRTUAL2 VIRTUAL3 eDP1
+workspace 9' output HDMI2 VIRTUAL1 VIRTUAL2 VIRTUAL3 eDP1
+workspace 10' output HDMI2 VIRTUAL1 VIRTUAL2 VIRTUAL3 eDP1
 
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2

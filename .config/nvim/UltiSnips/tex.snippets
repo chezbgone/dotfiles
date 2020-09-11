@@ -343,6 +343,15 @@ snippet tikzcd:: "commutative diagrams" A
 \end{tikzcd}
 endsnippet
 
+snippet tikzcdsquare:: "commutative diagram square" A
+\begin{tikzcd}
+	${1:<++>}\arrow[r, "${2:<++>}"]\arrow[d, "${4:<++>}", swap] &
+		${3:<++>}\arrow[d, "${5:<++>}"] \\\\
+	${6:<++>}\arrow[r, "${7:<++>}"] &
+		${8:<++>}
+\end{tikzcd}
+endsnippet
+
 ### OTHER SNIPPETS ###
 snippet alg:: "pseudocode" A
 \begin{algorithmic}

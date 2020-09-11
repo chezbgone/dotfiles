@@ -10,6 +10,7 @@ set nojoinspaces " one space when joining sentences with J
 set nocindent " disables annoying autoindent
 set showmatch " show matching parens
 set cursorline " highlights current line
+set colorcolumn=80 " mark 80th character
 
 set scrolloff=3 " keep 3 lines above and below the cursor
 
@@ -62,3 +63,7 @@ let g:UltiSnipsExpandTrigger = "§"
 let g:tex_flavor = "latex"
 let g:vimtex_compiler_enabled = 0
 let g:vimtex_imaps_enabled = 0
+
+" start colorizer
+set termguicolors
+lua require'colorizer'.setup()

@@ -34,6 +34,12 @@ nnoremap <silent> § :if search('<++>', 'c') <bar> call Select_placeholder() <ba
 
 " vim-surround $ -> \( \)
 let b:surround_36 = "\\(\r\\)"
+" vim-surround c -> \command{ }
+let b:surround_99 = "\\\1command: \1{\r}"
+" vim-surround e -> \command{ }
+let b:surround_101 = "\\begin{\1environment: \1}\r\\end{\1\1}"
+" vim-surround t -> \text{ }
+let b:surround_116 = "\\text{\r}"
 
 " Stop delimitMate from autocompleting these in LaTeX
 let delimitMate_matchpairs=&matchpairs.",`:'"
