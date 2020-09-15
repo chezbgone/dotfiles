@@ -1,0 +1,16 @@
+CmdLine
+{
+	-n 3
+}
+
+WipeArg
+{
+	\includegraphics:[]{}
+}
+
+VerbEnvir
+{
+	tikzcd
+}
+
+TabSize = 2

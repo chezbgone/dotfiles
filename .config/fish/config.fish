@@ -75,7 +75,7 @@ end
 
 #complete -c pdf -w zathura	   # inherit zathura autocomplete from pdf
 
-status --is-interactive; and pyenv init - | source
+status --is-interactive; and pyenv init - --no-rehash | source
 status --is-interactive; and pyenv virtualenv-init - | source
 
 # opam configuration
