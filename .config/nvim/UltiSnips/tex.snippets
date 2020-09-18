@@ -26,14 +26,47 @@ def create_grid_general(snip, env_name, spec=True):
 	after = line.split('::')[-1]
 	snip.buffer[snip.line] = ''
 
-	snip.expand_anon(before + blank_array(whitespace, env_name, rows, cols, spec=spec) + after)
+	snip.expand_anon(before
+					 + blank_array(whitespace, env_name, rows, cols, spec=spec)
+					 + after)
 
 def create_grid_matrix(snip):
 	line = snip.buffer[snip.line]
 	*prefix, dims = line.split('matrix')
 	prefix = 'matrix'.join(prefix)
-	env_name = prefix.split()[-1].strip() + 'matrix'
+	env_name = (prefix.split()[-1].strip() + 'matrix') if prefix else 'matrix'
 	create_grid_general(snip, env_name, spec=False)
+
+def tikzcdchain_text(num, left=False, l_inf=False, r_inf=False, whitespace=''):
+	arrow = f" \\ar[{'l' if left else 'r'}]"
+	begin = '\\begin{tikzcd}\n' + whitespace
+	end = '\n' + whitespace + '\\end{tikzcd}'
+	def element_gen():
+		if l_inf: yield '\\cdots'
+		yield '${0:<++>}'
+		yield from ('<++>',)*(num-1)
+		if r_inf: yield '\\cdots'
+	elements = tuple(element_gen())
+	arrows = (arrow,)*(len(elements)-1)
+	arrows = ('', *arrows) if left else (*arrows, '')
+	content = (' &\n'+whitespace).join(f'\t{a}{b}' for a, b in zip(elements, arrows))
+	return begin + content + end
+
+def tikzcdchain(snip):
+	line = snip.buffer[snip.line]
+	whitespace = line[:len(line) - len(line.lstrip())]
+	pattern = re.compile(r'tikzcd(i)?(l)?chain(i)?(\d+)::')
+	match = pattern.search(line)
+	assert match
+	l_inf, left, r_inf, n = match.groups()
+	l_inf = bool(l_inf)
+	left = bool(left)
+	r_inf = bool(r_inf)
+	n = int(n)
+	before, after = line[:match.start()], line[match.end():]
+	snip.buffer[snip.line] = ''
+	snip.expand_anon(before + tikzcdchain_text(n, left, l_inf, r_inf, whitespace) + after)
+
 endglobal
 
 snippet ... "dots" Ai
@@ -118,7 +151,13 @@ endsnippet
 snippet "(equation|align|gather)::" "nonnumbered eqn environments" rA
 \begin{`!p snip.rv = match.group(1) + '*'`}
 	${0:${VISUAL}}
-\end{`!p snip.rv = match.group(1)+ '*'`}
+\end{`!p snip.rv = match.group(1) + '*'`}
+endsnippet
+
+snippet "(aligned|gathered)::" "nonnumbered eqn environments inline" rA
+\begin{`!p snip.rv = match.group(1)`}
+	${0:${VISUAL}}
+\end{`!p snip.rv = match.group(1)`}
 endsnippet
 
 snippet array:: "array" A
@@ -277,6 +316,12 @@ snippet Sol:: "solution enivonment abbreviation" A
 \end{proof*}
 endsnippet
 
+snippet Adhoc:: "adhoc enivonment abbreviation" A
+\begin{adhoctheorem}{${1:<++>}}
+	${0:${VISUAL}}
+\end{adhoctheorem}
+endsnippet
+
 snippet Algo:: "algorithm enivonment abbreviation" A
 \begin{algorithm}
 	${0:${VISUAL}}
@@ -345,11 +390,15 @@ endsnippet
 
 snippet tikzcdsquare:: "commutative diagram square" A
 \begin{tikzcd}
-	${1:<++>}\arrow[r, "${2:<++>}"]\arrow[d, "${4:<++>}", swap] &
-		${3:<++>}\arrow[d, "${5:<++>}"] \\\\
-	${6:<++>}\arrow[r, "${7:<++>}"] &
+	${1:<++>} \arrow[r] \arrow[d] &
+		${3:<++>} \arrow[d] \\\\
+	${6:<++>} \arrow[r] &
 		${8:<++>}
 \end{tikzcd}
+endsnippet
+
+pre_expand "tikzcdchain(snip)"
+snippet 'tikzcd(i)?(l)?chain(i)?(\d+)::' "commutative diagram chain" rA
 endsnippet
 
 ### OTHER SNIPPETS ###
@@ -370,15 +419,15 @@ snippet .date "today's date" Ai
 endsnippet
 
 # Cool things taken from https://castel.dev/post/lecture-notes-1/
-snippet 'mathematica::' "mathematica" Ari
-mathematica>> $1 <<endmathematica$0
-endsnippet
-
-snippet 'mathematica>>(.*)<<endmathematica::' "run mathematica" Awr
-`!p
-import subprocess
-code = 'ToString[' + match.group(1) + ', TeXForm]'
-process = subprocess.run(['wolframscript', '-code', code], stdout=subprocess.PIPE)
-snip.rv = process.stdout.decode('utf-8')[:-1]
-`
-endsnippet
+#snippet 'mathematica::' "mathematica" Ari
+#mathematica>> $1 <<endmathematica$0
+#endsnippet
+#
+#snippet 'mathematica>>(.*)<<endmathematica::' "run mathematica" Awr
+#`!p
+#import subprocess
+#code = 'ToString[' + match.group(1) + ', TeXForm]'
+#process = subprocess.run(['wolframscript', '-code', code], stdout=subprocess.PIPE)
+#snip.rv = process.stdout.decode('utf-8')[:-1]
+#`
+#endsnippet
