@@ -6,6 +6,7 @@ export EDITOR='nvim'
 export PDFVIEWER='zathura'
 export PYENV_ROOT=$HOME/.pyenv
 export TEXMFHOME=$HOME/.texmf
+set -eg fish_user_paths
 
 set fish_color_greeting 8888ff
 set fish_color_name ffbb77
@@ -26,7 +27,6 @@ end
 
 alias please 'eval sudo $history[1]'
 
-alias gogogo startx
 abbr vim nvim
 abbr vi nvim
 

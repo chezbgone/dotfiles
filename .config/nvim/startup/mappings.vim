@@ -93,6 +93,8 @@ imap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<Plug>d
 let g:sneak#s_next = 1
 map f <Plug>Sneak_f
 map F <Plug>Sneak_F
+map t <Plug>Sneak_t
+map T <Plug>Sneak_T
 map <Leader>f <Plug>Sneak_s
 map <Leader>F <Plug>Sneak_S
 

@@ -16,10 +16,10 @@ set scrolloff=3 " keep 3 lines above and below the cursor
 
 set tabstop=4 " show tabs as width 4
 set shiftwidth=4 " indenting with > gives 4 spaces
-set noexpandtab " pressing tab does not gives spaces
+set expandtab " pressing tab gives spaces
 
 set updatetime=500
-set pumheight=15
+set pumheight=20
 
 "set spell
 set spellfile=~/Dropbox/Keep/VimSpell/en.utf-8.add

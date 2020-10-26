@@ -173,4 +173,4 @@ for_window [class="Mathematica"] floating enable
 for_window [class="mpv"] floating enable
 for_window [class="tridactyl_editor"] floating enable
 for_window [class="floating_term"] floating enable
-for_window [class="latexmk-dock"] resize shrink height 160px or 32 ppt; focus up
+for_window [class="latexmk-dock"] exec i3-msg "resize set height 160px" && i3-msg "focus up"

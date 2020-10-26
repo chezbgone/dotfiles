@@ -8,6 +8,12 @@ WipeArg
 	\includegraphics:[]{}
 }
 
+Silent
+{
+	\iffalse
+	\pog
+}
+
 VerbEnvir
 {
 	tikzcd

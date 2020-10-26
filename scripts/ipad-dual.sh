@@ -11,7 +11,7 @@ WIDTH=1024  # 1368 for iPad Pro
 HEIGHT=768  # 1024 for iPad Pro
 MODE_NAME="mode_ipad"       # Set whatever name you like, you may need to change
                             # this when you change resolution, or just reboot.
-DIS_NAME="VIRTUAL2"         # Don't change it unless you know what it is
+DIS_NAME="VIRTUAL1"         # Don't change it unless you know what it is
 RANDR_POS="--right-of"      # Default position setting for xrandr command
 
 # Parse arguments
@@ -50,7 +50,7 @@ xrandr --output $DIS_NAME $RANDR_POS $PRIMARY_DISPLAY
 
 # Cleanup before exit
 function finish {
-  xrandr --output $DIS_NAME --off 
+  xrandr --output $DIS_NAME --off
   xrandr --delmode $DIS_NAME $MODE_NAME
   echo "Second monitor disabled."
 }
@@ -61,7 +61,8 @@ trap finish EXIT
 CLIP_POS=$(xrandr | perl -ne 'print "$1" if /'$DIS_NAME'\s*connected\s*(\d*x\d*\+\d*\+\d*)/')
 echo $CLIP_POS
 # Share screen
-x11vnc -multiptr -repeat -clip $CLIP_POS
+#x11vnc -multiptr -repeat -clip $CLIP_POS
+x11vnc -repeat -clip $CLIP_POS
 # Possible alternative is x0vncserver but it does not show the mouse cursor.
 #   x0vncserver -display :0 -geometry $DIS_NAME -overlaymode -passwordfile ~/.vnc/passwd
 if ! [ $? -eq 0 ]; then

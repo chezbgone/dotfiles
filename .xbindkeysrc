@@ -33,8 +33,12 @@
 
 
 # Screenshot
-"xfce4-screenshooter -r"
+"xfce4-screenshooter -r -c"
 	Print
+
+# Screenshot with popup
+"xfce4-screenshooter -r"
+	Control+Print
 
 # Screenshot with delay
 "xfce4-screenshooter -r -d 2"

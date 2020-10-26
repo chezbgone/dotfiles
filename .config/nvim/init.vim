@@ -6,6 +6,8 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'vim-airline/vim-airline-themes'
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'mhartington/oceanic-next'
+Plug 'ayu-theme/ayu-vim'
 Plug 'norcalli/nvim-colorizer.lua' " Makes hex codes have colored backgrounds
 Plug 'ntpeters/vim-better-whitespace'
 
@@ -20,6 +22,7 @@ Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins', 'for': 'python'}
 Plug 'uiiaoo/java-syntax.vim'
 Plug 'jackguo380/vim-lsp-cxx-highlight'
 Plug 'kien/rainbow_parentheses.vim'
+Plug 'neovimhaskell/haskell-vim'
 
 " Auto previews
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
@@ -52,7 +55,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 "Plug 'deoplete-plugins/deoplete-jedi'
 
-Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+"Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 call plug#end()
 
 " Load custom settings

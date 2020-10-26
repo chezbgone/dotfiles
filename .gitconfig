@@ -17,3 +17,5 @@
 
 [includeIf "gitdir:~/Dropbox/MIT/6_172/"]
 	path = ~/.gitconfig.mit
+[pull]
+	rebase = false

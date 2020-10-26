@@ -112,6 +112,14 @@ snippet "\\\[ " "Display math" "len(snip.buffer[snip.line]) == snip.column + 1" 
 ${0:<++>}
 endsnippet
 
+snippet fmap:: "Function with mapsto" A
+\begin{align*}
+	${1:${VISUAL:<++>}} \colon& ${2:<++>} \to ${3:<++>} \\\\
+		& ${4:<++>} \mapsto ${5:<++>}
+\end{align*}
+${0:<++>}
+endsnippet
+
 snippet sec:: "Section" A
 \section{${1:sec}}
 endsnippet
@@ -209,7 +217,7 @@ snippet minipage:: "minipage" A
 endsnippet
 
 snippet "fig(ure)?::" "figure" rA
-\begin{figure}[tbp!]
+\begin{figure}
 	${0:${VISUAL}}
 \end{figure}
 endsnippet
@@ -250,9 +258,17 @@ snippet tikz:: "tikz" A
 \end{tikzpicture}
 endsnippet
 
+snippet Cases:: "cases environments" A
+\begin{cases*}
+	${1:${VISUAL:<++>}} & ${2:<++>} \\\\[-1ex]
+	${3:<++>} & ${4:<++>}
+\end{cases*}
+endsnippet
+
 snippet cases:: "cases environments" A
 \begin{cases}
-	${1:${VISUAL:<++>}} & ${2:<++>}
+	${1:${VISUAL:<++>}} & ${2:<++>} \\\\[-1ex]
+	${3:<++>} & ${4:<++>}
 \end{cases}
 endsnippet
 
