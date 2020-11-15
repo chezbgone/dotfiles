@@ -7,7 +7,7 @@ def blank_array(whitespace, env_name, rows, cols, spec=False):
 
 	end = whitespace + '\\end{{{}}}'.format(env_name)
 
-	grid = ' \\\\\\\\\n'.join([
+	grid = r' \\\\''\n'.join([
 		whitespace + '\t' + ' & '.join(
 			'<++>' for _ in range(cols)
 		) for __ in range(rows)
@@ -37,36 +37,47 @@ def create_grid_matrix(snip):
 	env_name = (prefix.split()[-1].strip() + 'matrix') if prefix else 'matrix'
 	create_grid_general(snip, env_name, spec=False)
 
-def tikzcdchain_text(num, left=False, l_inf=False, r_inf=False, whitespace=''):
+def tikzcdchain_text(num, lines=1, left=False, l_inf=False, r_inf=False, whitespace=''):
 	arrow = f" \\ar[{'l' if left else 'r'}]"
+	down_arrow = f'\\ar[d]'
 	begin = '\\begin{tikzcd}\n' + whitespace
 	end = '\n' + whitespace + '\\end{tikzcd}'
-	def element_gen():
+	def element_gen(first=False):
 		if l_inf: yield '\\cdots'
-		yield '${0:<++>}'
+		yield '${0:<++>}' if first else '<++>'
 		yield from ('<++>',)*(num-1)
 		if r_inf: yield '\\cdots'
+	first_elements = tuple(element_gen(True))
 	elements = tuple(element_gen())
 	arrows = (arrow,)*(len(elements)-1)
 	arrows = ('', *arrows) if left else (*arrows, '')
-	content = (' &\n'+whitespace).join(f'\t{a}{b}' for a, b in zip(elements, arrows))
-	return begin + content + end
+	init_arrows = [(arrow + ' ' + down_arrow if arrow else down_arrow) for arrow in arrows]
+	if l_inf: init_arrows[0] = '' if left else arrow
+	if r_inf: init_arrows[-1] = '' if not left else arrow
+	sep = (' &\n'+whitespace+'\t')
+	head_line = sep.join(f'\t{a}{b}' for a, b in zip(first_elements, init_arrows))
+	midd_line = sep.join(f'\t{a}{b}' for a, b in zip(elements, init_arrows))
+	last_line = sep.join(f'\t{a}{b}' for a, b in zip(elements if lines > 1 else first_elements, arrows))
+	lines_text = [midd_line,] * lines
+	lines_text[0] = head_line
+	lines_text[-1] = last_line
+	return begin + (r' \\\\''\n'+whitespace).join(lines_text) + end
 
 def tikzcdchain(snip):
 	line = snip.buffer[snip.line]
 	whitespace = line[:len(line) - len(line.lstrip())]
-	pattern = re.compile(r'tikzcd(i)?(l)?chain(i)?(\d+)::')
+	pattern = re.compile(r'tikzcd(\d+)?(i)?(l)?chain(i)?(\d+)::')
 	match = pattern.search(line)
 	assert match
-	l_inf, left, r_inf, n = match.groups()
+	lines, l_inf, left, r_inf, n = match.groups()
+	lines = int(lines or 1)
 	l_inf = bool(l_inf)
 	left = bool(left)
 	r_inf = bool(r_inf)
 	n = int(n)
 	before, after = line[:match.start()], line[match.end():]
 	snip.buffer[snip.line] = ''
-	snip.expand_anon(before + tikzcdchain_text(n, left, l_inf, r_inf, whitespace) + after)
-
+	snip.expand_anon(before + tikzcdchain_text(n, lines, left, l_inf, r_inf, whitespace) + after)
 endglobal
 
 snippet ... "dots" Ai
@@ -114,7 +125,7 @@ endsnippet
 
 snippet fmap:: "Function with mapsto" A
 \begin{align*}
-	${1:${VISUAL:<++>}} \colon& ${2:<++>} \to ${3:<++>} \\\\
+	${1:${VISUAL:<++>}} \colon& ${2:<++>} \to ${3:<++>} \\\\[-1ex]
 		& ${4:<++>} \mapsto ${5:<++>}
 \end{align*}
 ${0:<++>}
@@ -406,15 +417,25 @@ endsnippet
 
 snippet tikzcdsquare:: "commutative diagram square" A
 \begin{tikzcd}
-	${1:<++>} \arrow[r] \arrow[d] &
-		${3:<++>} \arrow[d] \\\\
-	${6:<++>} \arrow[r] &
+	${1:<++>} \ar[r] \ar[d] &
+		${3:<++>} \ar[d] \\\\
+	${6:<++>} \ar[r] &
 		${8:<++>}
 \end{tikzcd}
 endsnippet
 
 pre_expand "tikzcdchain(snip)"
-snippet 'tikzcd(i)?(l)?chain(i)?(\d+)::' "commutative diagram chain" rA
+snippet 'tikzcd(\d+)?(i)?(l)?chain(i)?(\d+)::' "commutative diagram chain" rA
+endsnippet
+
+snippet 'tikzcdses::' "commutative diagram chain" rA
+\begin{tikzcd}
+	0 \arrow[r] &
+	${1:<++>} \arrow[r] &
+	${2:<++>} \arrow[r] &
+	${3:<++>} \arrow[r] &
+	0
+\end{tikzcd}
 endsnippet
 
 ### OTHER SNIPPETS ###

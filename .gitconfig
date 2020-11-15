@@ -19,3 +19,5 @@
 	path = ~/.gitconfig.mit
 [pull]
 	rebase = false
+[init]
+	defaultBranch = main
