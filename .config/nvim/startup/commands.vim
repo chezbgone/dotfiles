@@ -1,17 +1,21 @@
 if has("autocmd")
 	augroup templates
-		autocmd BufNewFile *.cpp exe "0r ~/.config/nvim/templates/".input("Template Name (c - competitive | b - basic | n - none): ").".cpp" |
-			\ set syntax=cpp |
-			\ set filetype=cpp
-		autocmd BufNewFile *.html 0r ~/.config/nvim/templates/skeleton.html |
-			\ set syntax=html |
-			\ set filetype=html
-		autocmd BufNewFile *.sh 0r ~/.config/nvim/templates/skeleton.sh |
-			\ set syntax=sh |
-			\ set filetype=tex
-		autocmd BufNewFile *.tex 0r ~/.config/nvim/templates/skeleton.tex |
-			\ set syntax=tex |
-			\ set filetype=tex
+		autocmd BufNewFile *.cpp exe "read ~/.config/nvim/templates/".input("Template Name (c - competitive | b - basic | n - none): ").".cpp" |
+                    \ set syntax=cpp |
+                    \ set filetype=cpp |
+                    \ 0norm dd
+		autocmd BufNewFile *.html read ~/.config/nvim/templates/skeleton.html |
+                    \ set syntax=html |
+                    \ set filetype=html |
+                    \ 0norm dd
+		autocmd BufNewFile *.sh read ~/.config/nvim/templates/skeleton.sh |
+                    \ set syntax=sh |
+                    \ set filetype=sh |
+                    \ 0norm dd
+		autocmd BufNewFile *.tex read ~/.config/nvim/templates/skeleton.tex |
+                    \ set syntax=tex |
+                    \ set filetype=tex |
+                    \ 0norm dd
 	augroup END
 
 	augroup numbertoggle

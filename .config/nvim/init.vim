@@ -23,6 +23,7 @@ Plug 'uiiaoo/java-syntax.vim'
 Plug 'jackguo380/vim-lsp-cxx-highlight'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'neovimhaskell/haskell-vim'
+Plug 'whonore/Coqtail'
 
 " Auto previews
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
@@ -35,14 +36,16 @@ Plug 'SirVer/ultisnips'
 Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-commentary'
 Plug 'machakann/vim-swap'
 Plug 'alvan/vim-closetag', {'for': ['html', 'javascript']}
 Plug 'justinmk/vim-sneak'
 Plug 'machakann/vim-highlightedyank'
+Plug 'mg979/vim-visual-multi'
 
-if !exists('g:started_by_firenvim')
-	Plug 'vim-airline/vim-airline'
-endif
+"if !exists('g:started_by_firenvim')
+Plug 'vim-airline/vim-airline'
+"endif
 
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'

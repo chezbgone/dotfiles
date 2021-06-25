@@ -133,6 +133,7 @@ bindsym $mod+c move scratchpad
 bindsym $mod+v scratchpad show
 
 # startup
+exec --no-startup-id xrdb ~/.config/Xresources
 exec --no-startup-id redshift
 exec --no-startup-id libinput-gestures-setup start
 exec --no-startup-id dunst

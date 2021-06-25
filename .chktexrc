@@ -1,6 +1,6 @@
 CmdLine
 {
-	-n 3
+	-n 3 -n 31
 }
 
 WipeArg
@@ -17,7 +17,8 @@ Silent
 
 VerbEnvir
 {
-	tikzcd
+    tikzcd
+    asy
 }
 
 TabSize = 2

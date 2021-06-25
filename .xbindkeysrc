@@ -1,15 +1,15 @@
 # Increase volume
-"amixer -q sset Master 1%+ unmute & py3-cmd refresh volume_status"
+"amixer -q sset Master 2%+ unmute & py3-cmd refresh volume_status"
    XF86AudioRaiseVolume
 
-"amixer -q sset Master 5%+ unmute & py3-cmd refresh volume_status"
+"amixer -q sset Master 10%+ unmute & py3-cmd refresh volume_status"
    Shift+XF86AudioRaiseVolume
 
 # Decrease volume
-"amixer -q sset Master 1%- unmute & py3-cmd refresh volume_status"
+"amixer -q sset Master 2%- unmute & py3-cmd refresh volume_status"
    XF86AudioLowerVolume
 
-"amixer -q sset Master 5%- unmute & py3-cmd refresh volume_status"
+"amixer -q sset Master 10%- unmute & py3-cmd refresh volume_status"
    Shift+XF86AudioLowerVolume
 
 # Mute volume
@@ -33,7 +33,7 @@
 
 
 # Screenshot
-"xfce4-screenshooter -r -c"
+"maim -sul -c 0,0.35,0.5,0.15 | xclip -selection clipboard -t image/png && notify-send -t 1000 copied"
 	Print
 
 # Screenshot with popup

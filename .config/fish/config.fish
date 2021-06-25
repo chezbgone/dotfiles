@@ -47,6 +47,7 @@ abbr latexmkpvcshellesc 'latexmk -pvc -latexoption="-shell-escape"'
 
 abbr r ranger
 abbr p sudo pacman
+abbr nn nvim .
 
 function classnotes
 	~/scripts/texnotes.sh
@@ -78,5 +79,8 @@ end
 status --is-interactive; and pyenv init - --no-rehash | source
 status --is-interactive; and pyenv virtualenv-init - | source
 
-# opam configuration
-#source /home/jason/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
+if status is-login
+    if test -z "$DISPLAY" -a "$XDG_VTNR" = 1
+        exec startx -- -keeptty
+    end
+end

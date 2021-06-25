@@ -21,3 +21,5 @@
 	rebase = false
 [init]
 	defaultBranch = main
+[push]
+	default = matching

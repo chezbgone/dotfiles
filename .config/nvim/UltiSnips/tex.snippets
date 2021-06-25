@@ -289,7 +289,7 @@ snippet "\.(braces|parens|brackets|angles|verts|Verts|floor|ceil|set|abs|size|no
 endsnippet
 
 ### THEOREM ENVIRONMENTS ###
-snippet "(Theorem|Lemma|Proposition|Corollary|Conjecture|Definition|Fact|Exercise|Problem|Question|Answer|Remark|Case|Claim|Example|Proof|Solution|Algorithm|Note)::" "proof enivonments" rA
+snippet "(Theorem|Lemma|Proposition|Corollary|Conjecture|Definition|Fact|Exercise|Problem|Question|Answer|Remark|Case|Claim|Example|Proof|Algorithm|Note)::" "proof enivonments" rA
 \begin{`!p snip.rv = match.group(1).lower()`}
 	${0:${VISUAL}}
 \end{`!p snip.rv = match.group(1).lower()`}
@@ -345,7 +345,7 @@ endsnippet
 
 snippet Adhoc:: "adhoc enivonment abbreviation" A
 \begin{adhoctheorem}{${1:<++>}}
-	${0:${VISUAL}}
+	${0:${VISUAL:<++>}}
 \end{adhoctheorem}
 endsnippet
 

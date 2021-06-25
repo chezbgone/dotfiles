@@ -33,7 +33,7 @@ highlight SignColumn guibg=NONE
 highlight Pmenu guibg=#113355
 
 " for ayu (dark)
-highlight Comment guifg=#666666
+highlight Comment guifg=#777777
 highlight LineNr guifg=#777777
 highlight MatchParen gui=NONE guifg=#c6c6c6 guibg=#4e4e4e
 highlight ColorColumn guibg=#282828
@@ -41,3 +41,4 @@ highlight Visual guibg=#174488
 highlight Normal guifg=#e0e0e0
 highlight Directory guifg=#999999
 highlight VertSplit guifg=#4e4e4e
+highlight Folded guifg=#445566

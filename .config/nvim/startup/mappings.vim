@@ -1,23 +1,25 @@
 " H and L move to beginning and end of line
 nnoremap H ^
-vnoremap H ^
+xnoremap H ^
 onoremap H ^
 nnoremap gH g^
-vnoremap gH g^
+xnoremap gH g^
 onoremap gH g^
 nnoremap L $
-vnoremap L $
+xnoremap L $
 onoremap L $
 nnoremap gL g$
-vnoremap gL g$
+xnoremap gL g$
 onoremap gL g$
 
 nnoremap <Tab> >>
 nnoremap <S-Tab> <<
-vnoremap <Tab> >gv
-vnoremap <S-Tab> <gv
-vnoremap > >gv
-vnoremap < <gv
+xnoremap <Tab> >gv
+xnoremap <S-Tab> <gv
+xnoremap > >gv
+xnoremap < <gv
+
+"let mapleader = "\<Space>"
 
 " Fix most recent spelling error to top suggestion
 inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
@@ -49,10 +51,6 @@ nnoremap <C-l> <C-w>l
 nnoremap <C-h> <C-w>h
 nnoremap <C-k> <C-w>k
 nnoremap <C-j> <C-w>j
-nnoremap <leader>l <c-w>L
-nnoremap <leader>h <c-w>H
-nnoremap <leader>k <c-w>K
-nnoremap <leader>j <c-w>J
 
 " Disable F1
 nnoremap <F1> <nop>
@@ -60,14 +58,14 @@ inoremap <F1> <nop>
 vnoremap <F1> <nop>
 
 " Disable highlighting
-nnoremap <silent> <leader><space> :noh<CR>
+nnoremap <silent> <bslash><space> :noh<CR>
 
 " Disable Ex-Mode
 nnoremap Q <NOP>
 map q: <NOP>
 
 " Disable K
-"nnoremap K <nop>
+nnoremap K <nop>
 
 " Getting out of the terminal emulator
 tnoremap <Esc> <C-\><C-n>
@@ -97,6 +95,7 @@ map t <Plug>Sneak_t
 map T <Plug>Sneak_T
 map <Leader>f <Plug>Sneak_s
 map <Leader>F <Plug>Sneak_S
+
 
 """ coc.nvim
 if has_key(plugs, 'coc.nvim')

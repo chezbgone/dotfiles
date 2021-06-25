@@ -31,6 +31,10 @@ set splitright
 " Allows for incrementing of letters with <C-A>
 set nrformats+=alpha
 
+" save undo tree in files
+set undofile
+set undolevels=10000
+
 if has('mouse')
 	set mouse=a
 endif
@@ -59,12 +63,18 @@ let delimitMate_expand_cr = 2
 let g:NERDTreeWinSize = 20
 
 let g:UltiSnipsExpandTrigger = "§"
+let g:UltiSnipsJumpForwardTrigger = "§"
+let g:UltiSnipsJumpBackwardTrigger = "<s-§>"
 
 " if this is not set, then empty .tex files break
-let g:tex_flavor = "latex"
+" let g:tex_flavor = "latex"
 let g:vimtex_compiler_enabled = 0
 let g:vimtex_imaps_enabled = 0
 
 " start colorizer
 set termguicolors
 lua require'colorizer'.setup()
+
+" vim-visual-multi
+let g:VM_show_warnings = 0
+let g:VM_silent_exit = 1
