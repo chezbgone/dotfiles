@@ -1,11 +1,14 @@
 {-# LANGUAGE ExplicitForAll #-}
 {-# LANGUAGE PartialTypeSignatures #-}
+{-# LANGUAGE TypeApplications #-}
 
 import XMonad
 import XMonad.Actions.CycleWS
-  (prevScreen, nextScreen, shiftPrevScreen, shiftNextScreen)
+  (prevScreen, nextScreen, shiftPrevScreen, shiftNextScreen
+  , moveTo, Direction1D(Next, Prev), WSType(..))
 import XMonad.Hooks.EwmhDesktops
   (ewmh, fullscreenEventHook)
+import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
   (avoidStruts, docks)
 import XMonad.Hooks.ManageHelpers
@@ -15,20 +18,34 @@ import XMonad.Layout.NoBorders
   (lessBorders, Ambiguity (Screen))
 import XMonad.Layout.Spacing
   (spacingRaw, Border (Border))
-import XMonad.Util.EZConfig
+import XMonad.Util.EZConfig (mkKeymap)
+import XMonad.Util.Run (spawnPipe, hPutStrLn)
 import XMonad.Util.SpawnOnce (spawnOnce)
+import XMonad.Util.WorkspaceCompare (mkWsSort)
 import qualified XMonad.Actions.FlexibleResize as Flex
 import qualified XMonad.StackSet as W
 
-import Data.Function ((&))
+import Data.Function ((&), on)
 import Data.Monoid (All)
 import Data.Map (Map)
 import qualified Data.Map as Map
+import System.IO (Handle)
+
+data MonitorSetup = Laptop | Dual ScreenId
 
 main :: IO ()
 main = do
   nScreens <- countScreens
-  let config = myConfig { workspaces = withScreens nScreens myWorkspaces }
+  logHook' <- if nScreens == 1
+                 then myLogHook Laptop <$>
+                   spawnPipe "xmobar ~/.config/xmobar/xmobar-laptop.hs"
+                 else (myLogHook (Dual 0) <$>
+                   spawnPipe "xmobar ~/.config/xmobar/xmobar-dual-side.hs")
+                   <> (myLogHook (Dual 1) <$>
+                     spawnPipe "xmobar ~/.config/xmobar/xmobar-dual-main.hs")
+  let config = myConfig { workspaces = withScreens nScreens myWorkspaces
+                        , logHook = logHook'
+                        }
   xmonad $ docks $ ewmh config
 
 myConfig :: XConfig _
@@ -40,7 +57,6 @@ myConfig = def
   , modMask            = mod1Mask
   , normalBorderColor  = "#333333"
   , focusedBorderColor = "#4c7899"
-  , workspaces         = myWorkspaces
 
   -- key bindings
   , keys               = myKeys
@@ -50,7 +66,6 @@ myConfig = def
   , layoutHook         = myLayoutHook
   , manageHook         = myManageHook
   , handleEventHook    = myHandleEventHook
-  , logHook            = myLogHook
   , startupHook        = myStartupHook
   }
 
@@ -59,6 +74,10 @@ myTerminal = "kitty"
 myWorkspaces, myWorkspaceKeys :: [String]
 myWorkspaces = show <$> [1..10]
 myWorkspaceKeys = show <$> [1..9] <> pure 0
+
+wsToKey :: String -> String
+wsToKey "10" = "0"
+wsToKey ws = ws
 
 layouts = tiled ||| Mirror tiled ||| Full
   where
@@ -74,7 +93,7 @@ layouts = tiled ||| Mirror tiled ||| Full
 myLayoutHook =
   layouts
   -- gaps
-  & spacingRaw True (Border 0 10 10 10) True (Border 10 10 10 10) True
+  & spacingRaw True (Border 0 0 0 0) True (Border 5 5 5 5) True
   -- don't draw border when only one window on the screen
   & lessBorders Screen
   -- reserve space for statusbar
@@ -88,14 +107,55 @@ myManageHook = composeAll
 myHandleEventHook :: Event -> X All
 myHandleEventHook = handleEventHook def <> fullscreenEventHook
 
-myLogHook :: X ()
-myLogHook = logHook def
+myLogHook :: MonitorSetup -> Handle -> X ()
+myLogHook scr xmproc =
+  let screenId = case scr of
+                   Laptop -> 0
+                   Dual n -> n
+      switchToWS ws = "~/scripts/change_ws " <> ws
+      clickable ws = xmobarAction (switchToWS $ marshall screenId ws) "1"
+      ppCurrent ws = xmobarColor "yellow" "" $ wrap "[" "]" ws
+      ppVisible ws = clickable ws $ wrap "(" ")" ws
+      ppHidden ws = clickable ws ws
+      scrollable out =
+        let (ws, rest) = span (/=':') out
+            scrollMove dir buttons =
+              xmobarAction (unwords [ "~/scripts/move_next_ws"
+                                    , show (case screenId of S m -> m)
+                                    , dir
+                                    , show $ xmobarStrip out
+                                    ]) buttons
+            prevScroll = scrollMove "prev" "4"
+            nextScroll = scrollMove "next" "5"
+         in prevScroll (nextScroll ws) <> rest
+   in dynamicLogWithPP $ marshallPP screenId $ xmobarPP
+     { ppOutput          = hPutStrLn xmproc . scrollable
+     , ppCurrent         = ppCurrent
+     , ppHiddenNoWindows = const ""
+     , ppHidden          = ppHidden
+     , ppTitle           = xmobarColor "green"  "" . shorten 50
+     , ppVisible         = ppVisible
+     , ppUrgent          = xmobarColor "red" "yellow"
+     , ppSort            = mkWsSort $ pure (compare `on` read @Int)
+     }
 
 myStartupHook :: X ()
 myStartupHook = do
   spawnOnce "redshift"
-  spawnOnce "xmobar -x 0"
+  spawnOnce "xfce4-clipman"
+  spawnOnce $ unwords [ "trayer"
+                      , "--edge", "top"
+                      , "--height", show 15
+                      , "--widthtype", "request"
+                      , "--distancefrom", "right"
+                      , "--distance", show 0
+                      , "--align", "right"
+                      , "--transparent", "true"
+                      , "--alpha", show 0
+                      , "--tint", "0x000000"
+                      ]
   spawn "notify-send \"restarted xmonad\""
+    where trayerWidth = 5 * 15
 
 toggleFloat :: Window -> X ()
 toggleFloat w = do
@@ -103,6 +163,10 @@ toggleFloat w = do
   windows $ \s -> if w `Map.member` W.floating s
                     then W.sink w s
                     else W.float w windowRect s
+
+
+onScreen :: WindowSpace -> ScreenId -> Bool
+onScreen ws s = unmarshallS (W.tag ws) == s
 
 myKeys :: XConfig Layout -> Map (ButtonMask, KeySym) (X ())
 myKeys conf = mkKeymap conf $
@@ -123,6 +187,8 @@ myKeys conf = mkKeymap conf $
   , ("M-l",          sendMessage Expand)
   , ("M-<Left>",     prevScreen)
   , ("M-<Right>",    nextScreen)
+  , ("M-<F11>",      moveTo Prev NonEmptyWS) -- for xmobar
+  , ("M-<F12>",      moveTo Next NonEmptyWS) -- for xmobar
   , ("M-S-<Left>",   shiftPrevScreen >> prevScreen)
   , ("M-S-<Right>",  shiftNextScreen >> nextScreen)
   ]
