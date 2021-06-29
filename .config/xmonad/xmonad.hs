@@ -13,18 +13,22 @@ import XMonad.Hooks.ManageDocks
   (avoidStruts, docks)
 import XMonad.Hooks.ManageHelpers
   (doCenterFloat)
+import XMonad.Layout.HintedGrid
 import XMonad.Layout.IndependentScreens
+import XMonad.Layout.MouseResizableTile
 import XMonad.Layout.NoBorders
   (lessBorders, Ambiguity (Screen))
 import XMonad.Layout.Spacing
   (spacingRaw, Border (Border))
 import XMonad.Util.EZConfig (mkKeymap)
-import XMonad.Util.Run (spawnPipe, hPutStrLn)
+import XMonad.Util.Run
+  (safeSpawn, safeSpawnProg, spawnPipe, hPutStrLn)
 import XMonad.Util.SpawnOnce (spawnOnce)
 import XMonad.Util.WorkspaceCompare (mkWsSort)
 import qualified XMonad.Actions.FlexibleResize as Flex
 import qualified XMonad.StackSet as W
 
+import Control.Monad
 import Data.Function ((&), on)
 import Data.Monoid (All)
 import Data.Map (Map)
@@ -79,7 +83,7 @@ wsToKey :: String -> String
 wsToKey "10" = "0"
 wsToKey ws = ws
 
-layouts = tiled ||| Mirror tiled ||| Full
+layouts = tiled ||| mouseResizableTile ||| Grid False ||| Full
   where
     tiled = Tall nmaster delta ratio
     -- number of windows in master pane
@@ -102,6 +106,9 @@ myLayoutHook =
 myManageHook :: ManageHook
 myManageHook = composeAll
   [ className =? "floating_term" --> doCenterFloat
+  , className =? "mpv" --> doCenterFloat
+  , className =? "Sxiv" --> doCenterFloat
+  , className =? "feh" --> doCenterFloat
   ]
 
 myHandleEventHook :: Event -> X All
@@ -142,7 +149,7 @@ myLogHook scr xmproc =
 myStartupHook :: X ()
 myStartupHook = do
   spawnOnce "redshift"
-  spawnOnce "xfce4-clipman"
+  spawnOnce "dunst"
   spawnOnce $ unwords [ "trayer"
                       , "--edge", "top"
                       , "--height", show 15
@@ -154,8 +161,10 @@ myStartupHook = do
                       , "--alpha", show 0
                       , "--tint", "0x000000"
                       ]
+  spawnOnce "dropbox start"
+  spawnOnce "blueman-applet"
+  spawnOnce "xfce4-clipman"
   spawn "notify-send \"restarted xmonad\""
-    where trayerWidth = 5 * 15
 
 toggleFloat :: Window -> X ()
 toggleFloat w = do
@@ -170,8 +179,8 @@ onScreen ws s = unmarshallS (W.tag ws) == s
 
 myKeys :: XConfig Layout -> Map (ButtonMask, KeySym) (X ())
 myKeys conf = mkKeymap conf $
-  [ ("M-<Return>",   spawn $ terminal conf)
-  , ("M-S-<Return>", spawn "kitty --class floating_term")
+  [ ("M-<Return>",   spawn "kitty & disown")
+  , ("M-S-<Return>", spawn "kitty --class floating_term & disown")
   , ("M-S-q",        kill)
   , ("M-d",          spawn "rofi -show run")
   , ("M-<Tab>",      sendMessage NextLayout)

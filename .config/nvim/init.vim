@@ -58,7 +58,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 "Plug 'deoplete-plugins/deoplete-jedi'
 
-"Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 call plug#end()
 
 " Load custom settings
@@ -66,9 +65,3 @@ source ~/.config/nvim/startup/settings.vim
 source ~/.config/nvim/startup/mappings.vim
 source ~/.config/nvim/startup/commands.vim
 source ~/.config/nvim/startup/color.vim
-
-if exists('g:started_by_firenvim')
-  set laststatus=0
-else
-  set laststatus=2
-endif
