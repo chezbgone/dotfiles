@@ -1,4 +1,5 @@
 {-# LANGUAGE ExplicitForAll #-}
+{-# LANGUAGE LambdaCase #-}
 {-# LANGUAGE PartialTypeSignatures #-}
 {-# LANGUAGE TypeApplications #-}
 
@@ -18,6 +19,7 @@ import XMonad.Layout.IndependentScreens
 import XMonad.Layout.MouseResizableTile
 import XMonad.Layout.NoBorders
   (lessBorders, Ambiguity (Screen))
+import XMonad.Layout.Renamed (renamed, Rename(CutWordsLeft))
 import XMonad.Layout.Spacing
   (spacingRaw, Border (Border))
 import XMonad.Util.EZConfig (mkKeymap)
@@ -30,7 +32,7 @@ import qualified XMonad.StackSet as W
 
 import Control.Monad
 import Data.Function ((&), on)
-import Data.Monoid (All)
+import Data.Monoid (All(..))
 import Data.Map (Map)
 import qualified Data.Map as Map
 import System.IO (Handle)
@@ -102,6 +104,7 @@ myLayoutHook =
   & lessBorders Screen
   -- reserve space for statusbar
   & avoidStruts
+  & renamed [CutWordsLeft 1]
 
 myManageHook :: ManageHook
 myManageHook = composeAll
@@ -111,16 +114,29 @@ myManageHook = composeAll
   , className =? "feh" --> doCenterFloat
   ]
 
+bringFocusedToTop :: X ()
+bringFocusedToTop = windows $ W.modify' $
+  \(W.Stack t ls rs) -> W.Stack t [] (reverse ls <> rs)
+
+floatClickFocusHandler :: Event -> X All
+floatClickFocusHandler ButtonEvent { ev_window=w } = do
+  s <- gets windowset
+  when (w `Map.member` W.floating s) $
+    focus w >> bringFocusedToTop
+  pure mempty
+floatClickFocusHandler _ = pure mempty
+
 myHandleEventHook :: Event -> X All
-myHandleEventHook = handleEventHook def <> fullscreenEventHook
+myHandleEventHook = floatClickFocusHandler <> fullscreenEventHook
 
 myLogHook :: MonitorSetup -> Handle -> X ()
 myLogHook scr xmproc =
   let screenId = case scr of
                    Laptop -> 0
                    Dual n -> n
-      switchToWS ws = "~/scripts/change_ws " <> ws
-      clickable ws = xmobarAction (switchToWS $ marshall screenId ws) "1"
+      screenId' = show $ case screenId of S m -> m
+      switchToWS ws = unwords [ "~/scripts/change_ws", screenId', ws ]
+      clickable ws = xmobarAction (switchToWS ws) "1"
       ppCurrent ws = xmobarColor "yellow" "" $ wrap "[" "]" ws
       ppVisible ws = clickable ws $ wrap "(" ")" ws
       ppHidden ws = clickable ws ws
@@ -128,7 +144,7 @@ myLogHook scr xmproc =
         let (ws, rest) = span (/=':') out
             scrollMove dir buttons =
               xmobarAction (unwords [ "~/scripts/move_next_ws"
-                                    , show (case screenId of S m -> m)
+                                    , screenId'
                                     , dir
                                     , show $ xmobarStrip out
                                     ]) buttons
@@ -140,7 +156,7 @@ myLogHook scr xmproc =
      , ppCurrent         = ppCurrent
      , ppHiddenNoWindows = const ""
      , ppHidden          = ppHidden
-     , ppTitle           = xmobarColor "green"  "" . shorten 50
+     , ppTitle           = xmobarColor "green" "" . shorten 80
      , ppVisible         = ppVisible
      , ppUrgent          = xmobarColor "red" "yellow"
      , ppSort            = mkWsSort $ pure (compare `on` read @Int)
@@ -164,7 +180,7 @@ myStartupHook = do
   spawnOnce "dropbox start"
   spawnOnce "blueman-applet"
   spawnOnce "xfce4-clipman"
-  spawn "notify-send \"restarted xmonad\""
+  spawn "notify-send \"(re)started xmonad\""
 
 toggleFloat :: Window -> X ()
 toggleFloat w = do
@@ -196,10 +212,12 @@ myKeys conf = mkKeymap conf $
   , ("M-l",          sendMessage Expand)
   , ("M-<Left>",     prevScreen)
   , ("M-<Right>",    nextScreen)
-  , ("M-<F11>",      moveTo Prev NonEmptyWS) -- for xmobar
-  , ("M-<F12>",      moveTo Next NonEmptyWS) -- for xmobar
   , ("M-S-<Left>",   shiftPrevScreen >> prevScreen)
   , ("M-S-<Right>",  shiftNextScreen >> nextScreen)
+  , ("M-<F11>",      screenWorkspace 0 >>= \case Nothing -> pure ()
+                                                 Just ws -> windows $ W.view ws) -- for xmobar
+  , ("M-<F12>",      screenWorkspace 1 >>= \case Nothing -> pure ()
+                                                 Just ws -> windows $ W.view ws) -- for xmobar
   ]
   <> -- Meta-n goes to workspace n on current screen
   [ ("M-" <> k, windows (onCurrentScreen W.greedyView w)) |

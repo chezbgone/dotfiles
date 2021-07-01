@@ -2,21 +2,21 @@ import Control.Monad
 import System.Environment
 import System.Process
 
+wsToKey :: String -> String
+wsToKey "10" = "0"
+wsToKey w = w
+
 main :: IO ()
 main = do
-  args <- getArgs
+  (targetScreen:_) : targetWs : _ <- getArgs
   workspaces <- lines <$> readCreateProcess (shell "wmctrl -d") ""
-  let targetWsName = head args
-      targetScreen:_  = takeWhile (/='_') targetWsName
-  let targetWsLine:_ = filter (\ws -> last (words ws) == targetWsName) workspaces
-      targetWsId = head $ words targetWsLine
-      currentWsLine:_ = filter (elem '*') workspaces
+  let currentWsLine:_ = filter (elem '*') workspaces
       currentScreen:_ = last $ words currentWsLine
   when (targetScreen /= currentScreen) $
-    -- go to correct screen
-    -- assumes there are only two screens total
-    callCommand "xdotool key alt+Left"
-  callCommand $ "wmctrl -s" <> targetWsId
+    if targetScreen == '0'
+       then callCommand "xdotool key alt+F11"
+       else callCommand "xdotool key alt+F12"
+  callCommand $ "xdotool key alt+" <> show (wsToKey targetWs)
 
 
 
