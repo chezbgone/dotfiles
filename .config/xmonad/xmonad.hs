@@ -142,12 +142,12 @@ myLogHook scr xmproc =
       ppHidden ws = clickable ws ws
       scrollable out =
         let (ws, rest) = span (/=':') out
-            scrollMove dir buttons =
-              xmobarAction (unwords [ "~/scripts/move_next_ws"
-                                    , screenId'
-                                    , dir
-                                    , show $ xmobarStrip out
-                                    ]) buttons
+            scrollMove dir = xmobarAction $
+              unwords [ "~/scripts/move_next_ws"
+                      , screenId'
+                      , dir
+                      , show $ xmobarStrip out
+                      ]
             prevScroll = scrollMove "prev" "4"
             nextScroll = scrollMove "next" "5"
          in prevScroll (nextScroll ws) <> rest
@@ -214,10 +214,8 @@ myKeys conf = mkKeymap conf $
   , ("M-<Right>",    nextScreen)
   , ("M-S-<Left>",   shiftPrevScreen >> prevScreen)
   , ("M-S-<Right>",  shiftNextScreen >> nextScreen)
-  , ("M-<F11>",      screenWorkspace 0 >>= \case Nothing -> pure ()
-                                                 Just ws -> windows $ W.view ws) -- for xmobar
-  , ("M-<F12>",      screenWorkspace 1 >>= \case Nothing -> pure ()
-                                                 Just ws -> windows $ W.view ws) -- for xmobar
+  , ("M-<F11>",      screenWorkspace 0 >>= mapM_ (windows . W.view))
+  , ("M-<F12>",      screenWorkspace 1 >>= mapM_ (windows . W.view))
   ]
   <> -- Meta-n goes to workspace n on current screen
   [ ("M-" <> k, windows (onCurrentScreen W.greedyView w)) |

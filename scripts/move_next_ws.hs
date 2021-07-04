@@ -22,4 +22,4 @@ main = do
     if screen == "0"
        then callCommand "xdotool key alt+F11"
        else callCommand "xdotool key alt+F12"
-  callCommand $ "xdotool key alt+" <> show (wsToKey target)
+  callCommand $ "xdotool key alt+" <> wsToKey target
