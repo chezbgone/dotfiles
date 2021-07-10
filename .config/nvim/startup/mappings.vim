@@ -73,10 +73,10 @@ tnoremap <Esc> <C-\><C-n>
 " Get syntax group name under cursor
 nmap <F10> :call <SID>SynStack()<CR>
 function! <SID>SynStack()
-    if !exists("*synstack")
-        return
-    endif
-    echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
 nmap <F12> :NERDTreeToggle<CR>
@@ -99,46 +99,58 @@ map <Leader>F <Plug>Sneak_S
 
 """ coc.nvim
 if has_key(plugs, 'coc.nvim')
-	" Use <c-space> to trigger completion.
-	inoremap <silent><expr> <c-space> coc#refresh()
+  " always show signcolumn so it doesnt shift back and forth
+  set signcolumn=number
 
-	" Show actions.
-	nnoremap <silent> <Leader>a  :<C-u>CocList actions<cr>
-	" Show commands.
-	nnoremap <silent> <Leader>c  :<C-u>CocList commands<cr>
-	" Get outline
-	nnoremap <silent> <Leader>go :<C-u>CocList outline<CR>
+  " Use <c-space> to trigger completion.
+  inoremap <silent><expr> <c-space> coc#refresh()
 
-	" Get hint
-	nnoremap <silent> <Leader>gh :call CocActionAsync('doHover')<CR>
-	nnoremap <expr><C-f> coc#util#has_float() ? coc#util#float_scroll(1) : "\<C-f>"
-	nnoremap <expr><C-b> coc#util#has_float() ? coc#util#float_scroll(0) : "\<C-b>"
-	" Go to definitions, etc.
-	nnoremap <silent> <Leader>gd <Plug>(coc-definition)
-	nnoremap <silent> <Leader>gy <Plug>(coc-type-definition)
-	nnoremap <silent> <Leader>gi <Plug>(coc-implementation)
+  " Show actions.
+  nnoremap <silent> <Leader>aa :<C-u>CocList actions<cr>
+  " Show commands.
+  nnoremap <silent> <Leader>c  :<C-u>CocList commands<cr>
+  " Get outline
+  nnoremap <silent> <Leader>go :<C-u>CocList outline<CR>
 
-	" Symbol renaming.
-	nnoremap <leader>rn <Plug>(coc-rename)
+  " Get hint
+  nnoremap <silent> <Leader>gh :call CocActionAsync('doHover')<CR>
+  nnoremap <expr><C-f> coc#util#has_float() ? coc#util#float_scroll(1) : "\<C-f>"
+  nnoremap <expr><C-b> coc#util#has_float() ? coc#util#float_scroll(0) : "\<C-b>"
+  " Go to definitions, etc.
+  nnoremap <silent> <Leader>gd <Plug>(coc-definition)
+  nnoremap <silent> <Leader>gy <Plug>(coc-type-definition)
+  nnoremap <silent> <Leader>gi <Plug>(coc-implementation)
 
-	" function text-objects
-	"xnoremap if <Plug>(coc-funcobj-i)
-	"xnoremap af <Plug>(coc-funcobj-a)
-	"onoremap if <Plug>(coc-funcobj-i)
-	"onoremap af <Plug>(coc-funcobj-a)
-	"xnoremap ic <Plug>(coc-classobj-i)
-	"xnoremap ac <Plug>(coc-classobj-a)
-	"onoremap ic <Plug>(coc-classobj-i)
-	"onoremap ac <Plug>(coc-classobj-a)
+  " Symbol renaming.
+  nnoremap <leader>rn <Plug>(coc-rename)
 
-	" Use K to show documentation in preview window.
-	nnoremap <silent> K :call <SID>show_documentation()<CR>
+  " Applying codeAction to the selected region.
+  xmap <leader>a <Plug>(coc-codeaction-selected)
+  nmap <leader>a <Plug>(coc-codeaction-selected)
+  " Remap keys for applying codeAction to the current buffer.
+  nmap <leader>ac  <Plug>(coc-codeaction)
 
-	function! s:show_documentation()
-	  if (index(['vim','help'], &filetype) >= 0)
-		execute 'h '.expand('<cword>')
-	  else
-		call CocAction('doHover')
-	  endif
-	endfunction
+  " Apply AutoFix to problem on the current line.
+  nmap <leader>qf  <Plug>(coc-fix-current)
+
+  " function and class text-objects
+  xnoremap if <Plug>(coc-funcobj-i)
+  xnoremap af <Plug>(coc-funcobj-a)
+  onoremap if <Plug>(coc-funcobj-i)
+  onoremap af <Plug>(coc-funcobj-a)
+  xnoremap ic <Plug>(coc-classobj-i)
+  xnoremap ac <Plug>(coc-classobj-a)
+  onoremap ic <Plug>(coc-classobj-i)
+  onoremap ac <Plug>(coc-classobj-a)
+
+  " Use K to show documentation in preview window.
+  nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+  function! s:show_documentation()
+    if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+    else
+    call CocAction('doHover')
+    endif
+  endfunction
 endif

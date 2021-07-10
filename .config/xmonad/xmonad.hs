@@ -10,27 +10,43 @@ import XMonad.Actions.CycleWS
 import XMonad.Hooks.EwmhDesktops
   (ewmh, fullscreenEventHook)
 import XMonad.Hooks.DynamicLog
+    ( dynamicLogWithPP,
+      shorten,
+      wrap,
+      xmobarAction,
+      xmobarColor,
+      xmobarPP,
+      xmobarRaw,
+      xmobarStrip,
+      PP(ppOutput, ppCurrent, ppHiddenNoWindows, ppHidden, ppTitle,
+         ppVisible, ppUrgent, ppSort) )
 import XMonad.Hooks.ManageDocks
   (avoidStruts, docks)
 import XMonad.Hooks.ManageHelpers
   (doCenterFloat)
-import XMonad.Layout.HintedGrid
+import XMonad.Layout.HintedGrid ( Grid(Grid) )
 import XMonad.Layout.IndependentScreens
-import XMonad.Layout.MouseResizableTile
+    ( countScreens,
+      marshallPP,
+      onCurrentScreen,
+      unmarshallS,
+      withScreens,
+      workspaces' )
+import XMonad.Layout.MouseResizableTile ( mouseResizableTile )
 import XMonad.Layout.NoBorders
   (lessBorders, Ambiguity (Screen))
-import XMonad.Layout.Renamed (renamed, Rename(CutWordsLeft))
+import XMonad.Layout.Renamed
+  (renamed, Rename(CutWordsLeft))
 import XMonad.Layout.Spacing
   (spacingRaw, Border (Border))
 import XMonad.Util.EZConfig (mkKeymap)
-import XMonad.Util.Run
-  (safeSpawn, safeSpawnProg, spawnPipe, hPutStrLn)
+import XMonad.Util.Run (spawnPipe, hPutStrLn)
 import XMonad.Util.SpawnOnce (spawnOnce)
 import XMonad.Util.WorkspaceCompare (mkWsSort)
 import qualified XMonad.Actions.FlexibleResize as Flex
 import qualified XMonad.StackSet as W
 
-import Control.Monad
+import Control.Monad ( when )
 import Data.Function ((&), on)
 import Data.Monoid (All(..))
 import Data.Map (Map)
@@ -99,8 +115,8 @@ layouts = tiled ||| mouseResizableTile ||| Grid False ||| Full
 myLayoutHook =
   layouts
   -- gaps
-  & spacingRaw True (Border 0 0 0 0) True (Border 5 5 5 5) True
-  -- don't draw border when only one window on the screen
+  & spacingRaw True (Border 0 0 0 0) True (Border 10 10 10 10) True
+  -- don't draw border when there's only one window on the screen
   & lessBorders Screen
   -- reserve space for statusbar
   & avoidStruts
@@ -156,7 +172,7 @@ myLogHook scr xmproc =
      , ppCurrent         = ppCurrent
      , ppHiddenNoWindows = const ""
      , ppHidden          = ppHidden
-     , ppTitle           = xmobarColor "green" "" . shorten 80
+     , ppTitle           = xmobarColor "green" "" . xmobarRaw . shorten 80
      , ppVisible         = ppVisible
      , ppUrgent          = xmobarColor "red" "yellow"
      , ppSort            = mkWsSort $ pure (compare `on` read @Int)
