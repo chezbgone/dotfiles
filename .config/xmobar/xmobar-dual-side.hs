@@ -95,7 +95,7 @@ config = defaultConfig
                , Run AlsaPlus
                , Run UnsafeStdinReader
                ]
-  , template = left <> " } " <> mid <> " { " <> right
+  , template = left <> "}" <> mid <> "{" <> right
   }
   where
     left  = "%UnsafeStdinReader%"
