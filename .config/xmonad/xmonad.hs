@@ -2,6 +2,7 @@
 {-# LANGUAGE LambdaCase #-}
 {-# LANGUAGE PartialTypeSignatures #-}
 {-# LANGUAGE TypeApplications #-}
+{-# OPTIONS_GHC -Wno-partial-type-signatures #-}
 
 import XMonad
 import XMonad.Actions.CycleWS
@@ -10,35 +11,38 @@ import XMonad.Actions.CycleWS
 import XMonad.Hooks.EwmhDesktops
   (ewmh, fullscreenEventHook)
 import XMonad.Hooks.DynamicLog
-    ( dynamicLogWithPP,
-      shorten,
-      wrap,
-      xmobarAction,
-      xmobarColor,
-      xmobarPP,
-      xmobarRaw,
-      xmobarStrip,
-      PP(ppOutput, ppCurrent, ppHiddenNoWindows, ppHidden, ppTitle,
-         ppVisible, ppUrgent, ppSort) )
+  ( dynamicLogWithPP
+  , shorten
+  , wrap
+  , xmobarAction
+  , xmobarColor
+  , xmobarPP
+  , xmobarRaw
+  , xmobarStrip
+  , PP(ppOutput, ppCurrent, ppHiddenNoWindows, ppHidden, ppTitle,
+       ppVisible, ppUrgent, ppSort) )
 import XMonad.Hooks.ManageDocks
   (avoidStruts, docks)
 import XMonad.Hooks.ManageHelpers
   (doCenterFloat)
 import XMonad.Layout.HintedGrid ( Grid(Grid) )
 import XMonad.Layout.IndependentScreens
-    ( countScreens,
-      marshallPP,
-      onCurrentScreen,
-      unmarshallS,
-      withScreens,
-      workspaces' )
-import XMonad.Layout.MouseResizableTile ( mouseResizableTile )
+  ( countScreens
+  , marshallPP
+  , onCurrentScreen
+  , unmarshallS
+  , withScreens
+  , workspaces' )
+import XMonad.Layout.MouseResizableTile
+  ( mouseResizableTile
+  , MouseResizableTile (draggerType)
+  , DraggerType(..) )
 import XMonad.Layout.NoBorders
-  (lessBorders, Ambiguity (Screen))
+  (lessBorders, Ambiguity(Screen))
 import XMonad.Layout.Renamed
   (renamed, Rename(CutWordsLeft))
 import XMonad.Layout.Spacing
-  (spacingRaw, Border (Border))
+  (spacingRaw, Border(Border))
 import XMonad.Util.EZConfig (mkKeymap)
 import XMonad.Util.Run (spawnPipe, hPutStrLn)
 import XMonad.Util.SpawnOnce (spawnOnce)
@@ -48,6 +52,7 @@ import qualified XMonad.StackSet as W
 
 import Control.Monad ( when )
 import Data.Function ((&), on)
+import Data.Maybe (isJust)
 import Data.Monoid (All(..))
 import Data.Map (Map)
 import qualified Data.Map as Map
@@ -62,9 +67,9 @@ main = do
                  then myLogHook Laptop <$>
                    spawnPipe "xmobar ~/.config/xmobar/xmobar-laptop.hs"
                  else (myLogHook (Dual 0) <$>
-                   spawnPipe "xmobar ~/.config/xmobar/xmobar-dual-side.hs")
+                   spawnPipe "xmobar ~/.config/xmobar/xmobar-dual-main.hs")
                    <> (myLogHook (Dual 1) <$>
-                     spawnPipe "xmobar ~/.config/xmobar/xmobar-dual-main.hs")
+                     spawnPipe "xmobar ~/.config/xmobar/xmobar-dual-side.hs")
   let config = myConfig { workspaces = withScreens nScreens myWorkspaces
                         , logHook = logHook'
                         }
@@ -101,26 +106,30 @@ wsToKey :: String -> String
 wsToKey "10" = "0"
 wsToKey ws = ws
 
-layouts = tiled ||| mouseResizableTile ||| Grid False ||| Full
+layouts = borderSpacing mouseResizable
+      ||| spacing tiled
+      ||| spacing (Grid False)
+      ||| spacing Full
   where
     tiled = Tall nmaster delta ratio
+    mouseResizable = mouseResizableTile { draggerType = FixedDragger 10 10 }
     -- number of windows in master pane
     nmaster = 1
     -- proportion of screen occupied by master pane
     ratio = 1/2
     -- proportion of screen changed when resizing
     delta = 3/100
+    -- don't draw border when there's only one window on the screen
+    spacing = renamed [CutWordsLeft 1]
+      . spacingRaw True (Border 5 5 5 5) True (Border 5 5 5 5) True
+    borderSpacing = renamed [CutWordsLeft 1]
+      . spacingRaw True (Border 10 10 10 10) True (Border 0 0 0 0) True
 
-
-myLayoutHook =
-  layouts
-  -- gaps
-  & spacingRaw True (Border 0 0 0 0) True (Border 10 10 10 10) True
-  -- don't draw border when there's only one window on the screen
-  & lessBorders Screen
-  -- reserve space for statusbar
-  & avoidStruts
-  & renamed [CutWordsLeft 1]
+myLayoutHook = layouts
+               -- gaps
+             & lessBorders Screen
+               -- reserve space for statusbar
+             & avoidStruts
 
 myManageHook :: ManageHook
 myManageHook = composeAll
@@ -156,6 +165,7 @@ myLogHook scr xmproc =
       ppCurrent ws = xmobarColor "yellow" "" $ wrap "[" "]" ws
       ppVisible ws = clickable ws $ wrap "(" ")" ws
       ppHidden ws = clickable ws ws
+      scrollable :: String -> String
       scrollable out =
         let (ws, rest) = span (/=':') out
             scrollMove dir = xmobarAction $
@@ -172,7 +182,9 @@ myLogHook scr xmproc =
      , ppCurrent         = ppCurrent
      , ppHiddenNoWindows = const ""
      , ppHidden          = ppHidden
-     , ppTitle           = xmobarColor "green" "" . xmobarRaw . shorten 80
+     , ppTitle           = xmobarColor "green" "" . xmobarRaw
+                                                  . shorten 80
+                                                  . filter (/='`')
      , ppVisible         = ppVisible
      , ppUrgent          = xmobarColor "red" "yellow"
      , ppSort            = mkWsSort $ pure (compare `on` read @Int)
@@ -196,6 +208,7 @@ myStartupHook = do
   spawnOnce "dropbox start"
   spawnOnce "blueman-applet"
   spawnOnce "xfce4-clipman"
+  spawnOnce "node ~/Documents/auto-attest/index.js"
   spawn "notify-send \"(re)started xmonad\""
 
 toggleFloat :: Window -> X ()
@@ -205,9 +218,15 @@ toggleFloat w = do
                     then W.sink w s
                     else W.float w windowRect s
 
-
 onScreen :: WindowSpace -> ScreenId -> Bool
 onScreen ws s = unmarshallS (W.tag ws) == s
+
+nonEmptyOnCurrentScreen :: WSType
+nonEmptyOnCurrentScreen = WSIs $ do
+  cur <- groupName . W.workspace . W.current <$> gets windowset
+  pure $ \w -> cur == groupName w && isJust (W.stack w)
+    where groupName = takeWhile (/= '_') . W.tag
+
 
 myKeys :: XConfig Layout -> Map (ButtonMask, KeySym) (X ())
 myKeys conf = mkKeymap conf $
@@ -232,6 +251,8 @@ myKeys conf = mkKeymap conf $
   , ("M-S-<Right>",  shiftNextScreen >> nextScreen)
   , ("M-<F11>",      screenWorkspace 0 >>= mapM_ (windows . W.view))
   , ("M-<F12>",      screenWorkspace 1 >>= mapM_ (windows . W.view))
+  , ("M-S-<F11>",    moveTo Prev nonEmptyOnCurrentScreen)
+  , ("M-S-<F12>",    moveTo Next nonEmptyOnCurrentScreen)
   ]
   <> -- Meta-n goes to workspace n on current screen
   [ ("M-" <> k, windows (onCurrentScreen W.greedyView w)) |

@@ -90,8 +90,15 @@ config = defaultConfig
                               , "-p", "2"
                               , "--align", "l"
                               ] 10
-               , Run $ Date "%a %b %_d %H:%M:%S" "date" 10
+               , Run $ Date "%a %b %d %H:%M:%S" "date" 10
                , Run $ Com "/home/jason/scripts/trayer-padding-icon" [] "trayerpad" 10
+               , Run $ Battery [ "-t", "B: <left>% <timeleft><acstatus>"
+                               , "--"
+                               , "-o", "-"
+                               , "-i", ""
+                               , "-O", "+"
+                               , "-a", "notify-send -u critical 'Battery running out!!'"
+                               ] 60
                , Run Spotify
                , Run AlsaPlus
                , Run UnsafeStdinReader
@@ -103,6 +110,7 @@ config = defaultConfig
     mid   = ""
     right = intercalate " | " [ "%spotify%"
                               , "%alsaplus%"
+                              , "%battery%"
                               , "%cpu%"
                               , "%memory%"
                               , "%dynnetwork%"

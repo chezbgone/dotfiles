@@ -100,22 +100,26 @@ map <Leader>F <Plug>Sneak_S
 """ coc.nvim
 if has_key(plugs, 'coc.nvim')
   " always show signcolumn so it doesnt shift back and forth
-  set signcolumn=number
+  set signcolumn=yes
 
   " Use <c-space> to trigger completion.
   inoremap <silent><expr> <c-space> coc#refresh()
 
   " Show actions.
-  nnoremap <silent> <Leader>aa :<C-u>CocList actions<cr>
+  nnoremap <silent> <Leader>aa :CocAction<CR>
   " Show commands.
-  nnoremap <silent> <Leader>c  :<C-u>CocList commands<cr>
+  nnoremap <silent> <Leader>c  :<C-u>CocList commands<CR>
   " Get outline
   nnoremap <silent> <Leader>go :<C-u>CocList outline<CR>
 
   " Get hint
   nnoremap <silent> <Leader>gh :call CocActionAsync('doHover')<CR>
-  nnoremap <expr><C-f> coc#util#has_float() ? coc#util#float_scroll(1) : "\<C-f>"
-  nnoremap <expr><C-b> coc#util#has_float() ? coc#util#float_scroll(0) : "\<C-b>"
+  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
   " Go to definitions, etc.
   nnoremap <silent> <Leader>gd <Plug>(coc-definition)
   nnoremap <silent> <Leader>gy <Plug>(coc-type-definition)
@@ -128,7 +132,7 @@ if has_key(plugs, 'coc.nvim')
   xmap <leader>a <Plug>(coc-codeaction-selected)
   nmap <leader>a <Plug>(coc-codeaction-selected)
   " Remap keys for applying codeAction to the current buffer.
-  nmap <leader>ac  <Plug>(coc-codeaction)
+  "nmap <leader>ac  <Plug>(coc-codeaction)
 
   " Apply AutoFix to problem on the current line.
   nmap <leader>qf  <Plug>(coc-fix-current)
@@ -148,9 +152,9 @@ if has_key(plugs, 'coc.nvim')
 
   function! s:show_documentation()
     if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
+      execute 'h '.expand('<cword>')
     else
-    call CocAction('doHover')
+      call CocAction('doHover')
     endif
   endfunction
 endif

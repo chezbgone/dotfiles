@@ -59,3 +59,7 @@ syntax match texMathSymbol "\\iso\>"
 " call TexNewMathZone("E", "equation", 1)
 " call TexNewMathZone("F", "flalign", 1)
 " call TexNewMathZone("G", "gather", 1)
+
+syn match coqError "\S\+"
+syntax clear CoqError
+syntax spell toplevel

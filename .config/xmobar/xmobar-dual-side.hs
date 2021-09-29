@@ -67,7 +67,7 @@ config = defaultConfig
   , bgColor = "black"
   , fgColor = "grey"
   , alpha = 255
-  , position = Top
+  , position = Static { xpos = 1920, ypos = 0, width = 1920, height = 15 }
   , textOffset = -1
   , iconOffset = -1
   , iconRoot = "."
@@ -90,7 +90,7 @@ config = defaultConfig
                               , "-p", "2"
                               , "--align", "l"
                               ] 10
-               , Run $ Date "%a %b %_d %H:%M:%S" "date" 10
+               , Run $ Date "%a %b %d %H:%M:%S" "date" 10
                , Run Spotify
                , Run AlsaPlus
                , Run UnsafeStdinReader
