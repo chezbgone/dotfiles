@@ -83,13 +83,13 @@
 
 # DUNST
 "dunstctl close"
-    Control+space
+    Mod4+Escape
 
 "dunstctl close-all"
-    Control+Shift+space
+    Mod4+Shift+Escape
 
 "dunstctl history-pop"
-    Control+grave
+    Mod4+Shift+grave
 
 "dunstctl context"
-    Control+Shift+period
+    Mod4+Shift+period

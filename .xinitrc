@@ -4,7 +4,7 @@ source ~/scripts/wacom_setup.sh &
 [[ -f ~/scripts/fehbg.sh ]] && source ~/scripts/fehbg.sh
 
 picom &
-xbindkeys
+xbindkeys -f "$XDG_CONFIG_HOME"/xbindkeys/config
 
 # pulseeffects --gapplication-service &
 # xautolock -time 30 -locker "~/scripts/fuzzy-lock.sh" -corners 000- &
