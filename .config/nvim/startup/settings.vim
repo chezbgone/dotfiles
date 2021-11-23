@@ -78,3 +78,7 @@ lua require'colorizer'.setup()
 " vim-visual-multi
 let g:VM_show_warnings = 0
 let g:VM_silent_exit = 1
+
+" ocaml told me to do this
+let g:opamshare = substitute(system('opam var share'),'\n$','','''')
+execute "set rtp+=" . g:opamshare . "/merlin/vim"

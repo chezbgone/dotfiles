@@ -14,7 +14,7 @@ main = do
       currentScreen:_ = last $ words currentWsLine
   when (targetScreen /= currentScreen) $
     if targetScreen == '0'
-       then callCommand "xdotool key alt+F11"
-       else callCommand "xdotool key alt+F12"
-  callCommand $ "xdotool key alt+" <> wsToKey targetWs
+       then callCommand "xdotool key super+F11"
+       else callCommand "xdotool key super+F12"
+  callCommand $ "xdotool key super+" <> wsToKey targetWs
 

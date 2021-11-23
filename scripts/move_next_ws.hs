@@ -20,6 +20,6 @@ main = do
   when (head visible == '(') $
     -- go to correct screen
     if screen == "0"
-       then callCommand "xdotool key alt+F11"
-       else callCommand "xdotool key alt+F12"
-  callCommand $ "xdotool key alt+" <> wsToKey target
+       then callCommand "xdotool key super+F11"
+       else callCommand "xdotool key super+F12"
+  callCommand $ "xdotool key super+" <> wsToKey target

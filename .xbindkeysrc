@@ -44,6 +44,7 @@
 "xfce4-screenshooter -r -d 2"
 	Shift+Print
 
+
 # Update dual-screen setup
 "sh ~/scripts/update-dual.sh"
 	Mod4+Shift+D
@@ -58,15 +59,15 @@
 
 # Unicode character picker
 "sh ~/scripts/dmenuunicode"
-	Mod1+grave
+	Mod4+grave
 
 # Lock
 "sh ~/scripts/fuzzy-lock.sh"
 	Mod4+Shift+L
 
 # Sleep
-"sh ~/scripts/fuzzy-lock.sh; systemctl suspend"
-	Mod4+Shift+S
+#"sh ~/scripts/fuzzy-lock.sh; systemctl suspend"
+	#Mod4+Shift+S
 
 
 # Set up tablet
@@ -79,3 +80,16 @@
 
 "sh ~/scripts/toggle_wacom.sh"
 	b:11
+
+# DUNST
+"dunstctl close"
+    Control+space
+
+"dunstctl close-all"
+    Control+Shift+space
+
+"dunstctl history-pop"
+    Control+grave
+
+"dunstctl context"
+    Control+Shift+period

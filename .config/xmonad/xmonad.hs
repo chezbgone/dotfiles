@@ -38,7 +38,7 @@ import XMonad.Layout.MouseResizableTile
   , MouseResizableTile (draggerType)
   , DraggerType(..) )
 import XMonad.Layout.NoBorders
-  (lessBorders, Ambiguity(Screen))
+  (lessBorders, Ambiguity(..), With(..))
 import XMonad.Layout.Renamed
   (renamed, Rename(CutWordsLeft))
 import XMonad.Layout.Spacing
@@ -64,12 +64,12 @@ main :: IO ()
 main = do
   nScreens <- countScreens
   logHook' <- if nScreens == 1
-                 then myLogHook Laptop <$>
-                   spawnPipe "xmobar ~/.config/xmobar/xmobar-laptop.hs"
-                 else (myLogHook (Dual 0) <$>
-                   spawnPipe "xmobar ~/.config/xmobar/xmobar-dual-main.hs")
-                   <> (myLogHook (Dual 1) <$>
-                     spawnPipe "xmobar ~/.config/xmobar/xmobar-dual-side.hs")
+              then myLogHook Laptop <$>
+                spawnPipe "xmobar ~/.config/xmobar/xmobar-laptop.hs"
+              else (myLogHook (Dual 0) <$>
+                spawnPipe "xmobar ~/.config/xmobar/xmobar-dual-main.hs")
+                <> (myLogHook (Dual 1) <$>
+                  spawnPipe "xmobar ~/.config/xmobar/xmobar-dual-side.hs")
   let config = myConfig { workspaces = withScreens nScreens myWorkspaces
                         , logHook = logHook'
                         }
@@ -81,7 +81,7 @@ myConfig = def
   , focusFollowsMouse  = False
   , clickJustFocuses   = False
   , borderWidth        = 1
-  , modMask            = mod1Mask
+  , modMask            = mod4Mask
   , normalBorderColor  = "#333333"
   , focusedBorderColor = "#4c7899"
 
@@ -107,7 +107,6 @@ wsToKey "10" = "0"
 wsToKey ws = ws
 
 layouts = borderSpacing mouseResizable
-      ||| spacing tiled
       ||| spacing (Grid False)
       ||| spacing Full
   where
@@ -126,10 +125,8 @@ layouts = borderSpacing mouseResizable
       . spacingRaw True (Border 10 10 10 10) True (Border 0 0 0 0) True
 
 myLayoutHook = layouts
-               -- gaps
-             & lessBorders Screen
-               -- reserve space for statusbar
-             & avoidStruts
+             & lessBorders Screen -- gaps
+             & avoidStruts -- reserve space for statusbar
 
 myManageHook :: ManageHook
 myManageHook = composeAll
@@ -208,7 +205,7 @@ myStartupHook = do
   spawnOnce "dropbox start"
   spawnOnce "blueman-applet"
   spawnOnce "xfce4-clipman"
-  spawnOnce "node ~/Documents/auto-attest/index.js"
+  -- spawnOnce "node ~/Documents/auto-attest/index.js"
   spawn "notify-send \"(re)started xmonad\""
 
 toggleFloat :: Window -> X ()

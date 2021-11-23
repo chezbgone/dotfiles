@@ -11,6 +11,8 @@ Plug 'ayu-theme/ayu-vim'
 Plug 'norcalli/nvim-colorizer.lua' " Makes hex codes have colored backgrounds
 Plug 'ntpeters/vim-better-whitespace'
 
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
 Plug 'lervag/vimtex'
 Plug 'godlygeek/tabular'
 
@@ -24,6 +26,7 @@ Plug 'jackguo380/vim-lsp-cxx-highlight'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'whonore/Coqtail'
+Plug 'bohlender/vim-smt2'
 
 " Auto previews
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
@@ -49,7 +52,7 @@ Plug 'vim-airline/vim-airline'
 
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'kien/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
