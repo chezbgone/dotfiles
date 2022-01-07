@@ -1,5 +1,5 @@
 import Xmobar
-import qualified XMonad.Hooks.DynamicLog as H
+import qualified XMonad.Hooks.StatusBar.PP as H
 
 import Data.List
 import System.Process
@@ -101,12 +101,12 @@ config = defaultConfig
                                ] 60
                , Run Spotify
                , Run AlsaPlus
-               , Run UnsafeStdinReader
+               , Run $ UnsafeXPropertyLog "_UNSAFE_XMONAD_LOG"
                ]
   , template = left <> "}" <> mid <> "{" <> right
   }
   where
-    left  = "%UnsafeStdinReader%"
+    left  = "%_UNSAFE_XMONAD_LOG%"
     mid   = ""
     right = intercalate " | " [ "%spotify%"
                               , "%alsaplus%"

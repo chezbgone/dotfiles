@@ -25,7 +25,7 @@ instance Exec AlsaPlus where
 data Spotify = Spotify deriving (Read, Show)
 instance Exec Spotify where
   alias Spotify = "spotify"
-  start   Spotify callback = start baseMpris (callback' . spotifyActions)
+  start Spotify callback = start baseMpris (callback' . spotifyActions)
       where baseMpris = Mpris2 "spotify" ["-t", "<artist> - <title>"] 5
             spotifyCommand cmd = unwords
               [ "dbus-send"
@@ -38,7 +38,7 @@ instance Exec Spotify where
                              . H.xmobarAction (spotifyCommand "Previous") "1"
                              . H.xmobarAction (spotifyCommand "Next") "3"
             spotifyStatusCommand = readCreateProcess $
-              shell (unwords ["dbus-send"
+              shell (unwords [ "dbus-send"
                              , "--print-reply"
                              , "--dest=org.mpris.MediaPlayer2.spotify" -- client
                              , "/org/mpris/MediaPlayer2"
@@ -102,12 +102,12 @@ config = defaultConfig
                , Run Spotify
                , Run Spotify
                , Run AlsaPlus
-               , Run UnsafeStdinReader
+               , Run $ UnsafeXPropertyLog "_UNSAFE_XMONAD_LOG_1"
                ]
   , template = left <> "}" <> mid <> "{" <> right
   }
   where
-    left  = "%UnsafeStdinReader%"
+    left  = "%_UNSAFE_XMONAD_LOG_1%"
     mid   = ""
     right = intercalate " | " [ "%spotify%"
                               , "%alsaplus%"

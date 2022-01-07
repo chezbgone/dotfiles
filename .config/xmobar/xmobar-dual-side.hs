@@ -1,8 +1,9 @@
 import Xmobar
-import qualified XMonad.Hooks.DynamicLog as H
+import qualified XMonad.Hooks.StatusBar.PP as H
 
 import Data.List
 import System.Process
+
 
 data AlsaPlus = AlsaPlus deriving (Read, Show)
 instance Exec AlsaPlus where
@@ -38,7 +39,7 @@ instance Exec Spotify where
                              . H.xmobarAction (spotifyCommand "Previous") "1"
                              . H.xmobarAction (spotifyCommand "Next") "3"
             spotifyStatusCommand = readCreateProcess $
-              shell (unwords ["dbus-send"
+              shell (unwords [ "dbus-send"
                              , "--print-reply"
                              , "--dest=org.mpris.MediaPlayer2.spotify" -- client
                              , "/org/mpris/MediaPlayer2"
@@ -93,12 +94,12 @@ config = defaultConfig
                , Run $ Date "%a %b %d %H:%M:%S" "date" 10
                , Run Spotify
                , Run AlsaPlus
-               , Run UnsafeStdinReader
+               , Run $ UnsafeXPropertyLog "_UNSAFE_XMONAD_LOG_0"
                ]
   , template = left <> "}" <> mid <> "{" <> right
   }
   where
-    left  = "%UnsafeStdinReader%"
+    left  = "%_UNSAFE_XMONAD_LOG_0%"
     mid   = ""
     right = intercalate " | " [ "%spotify%"
                               , "%alsaplus%"

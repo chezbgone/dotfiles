@@ -6,6 +6,8 @@ wsToKey :: String -> String
 wsToKey "10" = "0"
 wsToKey w = w
 
+-- usage: `change_ws 0 10` to go to workspace 10 on screen 0
+
 main :: IO ()
 main = do
   (targetScreen:_) : targetWs : _ <- getArgs

@@ -6,25 +6,17 @@
 
 import XMonad
 import XMonad.Actions.CycleWS
-  (prevScreen, nextScreen, shiftPrevScreen, shiftNextScreen
+  ( prevScreen, nextScreen, shiftPrevScreen, shiftNextScreen
   , moveTo, Direction1D(Next, Prev), WSType(..))
 import XMonad.Hooks.EwmhDesktops
-  (ewmh, fullscreenEventHook)
+  (ewmh, ewmhFullscreen)
 import XMonad.Hooks.DynamicLog
-  ( dynamicLogWithPP
-  , shorten
-  , wrap
-  , xmobarAction
-  , xmobarColor
-  , xmobarPP
-  , xmobarRaw
-  , xmobarStrip
-  , PP(ppOutput, ppCurrent, ppHiddenNoWindows, ppHidden, ppTitle,
-       ppVisible, ppUrgent, ppSort) )
 import XMonad.Hooks.ManageDocks
   (avoidStruts, docks)
 import XMonad.Hooks.ManageHelpers
   (doCenterFloat)
+import XMonad.Hooks.StatusBar
+import XMonad.Hooks.StatusBar.PP
 import XMonad.Layout.HintedGrid ( Grid(Grid) )
 import XMonad.Layout.IndependentScreens
   ( countScreens
@@ -38,42 +30,48 @@ import XMonad.Layout.MouseResizableTile
   , MouseResizableTile (draggerType)
   , DraggerType(..) )
 import XMonad.Layout.NoBorders
-  (lessBorders, Ambiguity(..), With(..))
+  (lessBorders, Ambiguity(..), With(..), noBorders)
 import XMonad.Layout.Renamed
   (renamed, Rename(CutWordsLeft))
 import XMonad.Layout.Spacing
   (spacingRaw, Border(Border))
 import XMonad.Util.EZConfig (mkKeymap)
+import XMonad.Util.Loggers (logTitles)
 import XMonad.Util.Run (spawnPipe, hPutStrLn)
 import XMonad.Util.SpawnOnce (spawnOnce)
-import XMonad.Util.WorkspaceCompare (mkWsSort)
+import XMonad.Util.WorkspaceCompare (getSortByIndex, mkWsSort)
 import qualified XMonad.Actions.FlexibleResize as Flex
 import qualified XMonad.StackSet as W
 
-import Control.Monad ( when )
-import Data.Function ((&), on)
-import Data.Maybe (isJust)
+import Control.Monad
+import Data.Function
+import Data.Functor
+import Data.Maybe
 import Data.Monoid (All(..))
 import Data.Map (Map)
 import qualified Data.Map as Map
-import System.IO (Handle)
+import Data.List
+import System.IO
+import XMonad.Layout.Tabbed
 
 data MonitorSetup = Laptop | Dual ScreenId
 
 main :: IO ()
 main = do
   nScreens <- countScreens
-  logHook' <- if nScreens == 1
-              then myLogHook Laptop <$>
-                spawnPipe "xmobar ~/.config/xmobar/xmobar-laptop.hs"
-              else (myLogHook (Dual 0) <$>
-                spawnPipe "xmobar ~/.config/xmobar/xmobar-dual-main.hs")
-                <> (myLogHook (Dual 1) <$>
-                  spawnPipe "xmobar ~/.config/xmobar/xmobar-dual-side.hs")
-  let config = myConfig { workspaces = withScreens nScreens myWorkspaces
-                        , logHook = logHook'
-                        }
-  xmonad $ docks $ ewmh config
+  let mySB =
+        if nScreens == 1
+           then statusBarPropTo "_UNSAFE_XMONAD_LOG"
+                  "xmobar ~/.config/xmobar/xmobar-laptop.hs"
+                  ((clickablePP >=> scrollablePP) (marshallPP 0 myXMobarPP))
+           else statusBarPropTo "_UNSAFE_XMONAD_LOG_1"
+                  "xmobar ~/.config/xmobar/xmobar-dual-main.hs"
+                  ((clickablePP >=> scrollablePP) (marshallPP 0 myXMobarPP))
+                <> statusBarPropTo "_UNSAFE_XMONAD_LOG_0"
+                  "xmobar ~/.config/xmobar/xmobar-dual-side.hs"
+                  ((clickablePP >=> scrollablePP) (marshallPP 1 myXMobarPP))
+      config = myConfig { workspaces = withScreens nScreens myWorkspaces }
+  xmonad $ withSB mySB $ ewmh $ docks $ xmobarProp config
 
 myConfig :: XConfig _
 myConfig = def
@@ -102,14 +100,22 @@ myWorkspaces, myWorkspaceKeys :: [String]
 myWorkspaces = show <$> [1..10]
 myWorkspaceKeys = show <$> [1..9] <> pure 0
 
-wsToKey :: String -> String
-wsToKey "10" = "0"
-wsToKey ws = ws
-
-layouts = borderSpacing mouseResizable
-      ||| spacing (Grid False)
-      ||| spacing Full
+layouts = (borderSpacing mouseResizable & lessBorders Screen)
+      ||| noBorders (tabbed shrinkText myTabConfig)
+      ||| (spacing (Grid False) & lessBorders Screen)
+      ||| (spacing Full & lessBorders Screen)
   where
+    myTabConfig = def { activeColor = "#273450"
+                      , activeBorderColor = "#273450"
+                      , inactiveColor = "#333333"
+                      , inactiveBorderColor = "#333333"
+                      , urgentColor = "#FDF6E3"
+                      , urgentBorderColor = "#268BD2"
+                      , activeTextColor = "#80FFF9"
+                      , inactiveTextColor = "#1ACCCC"
+                      , urgentTextColor = "#1ABC9C"
+                      , fontName = "xft:Source Code Pro:size=9:antialias=true"
+                      }
     tiled = Tall nmaster delta ratio
     mouseResizable = mouseResizableTile { draggerType = FixedDragger 10 10 }
     -- number of windows in master pane
@@ -125,7 +131,6 @@ layouts = borderSpacing mouseResizable
       . spacingRaw True (Border 10 10 10 10) True (Border 0 0 0 0) True
 
 myLayoutHook = layouts
-             & lessBorders Screen -- gaps
              & avoidStruts -- reserve space for statusbar
 
 myManageHook :: ManageHook
@@ -149,13 +154,12 @@ floatClickFocusHandler ButtonEvent { ev_window=w } = do
 floatClickFocusHandler _ = pure mempty
 
 myHandleEventHook :: Event -> X All
-myHandleEventHook = floatClickFocusHandler <> fullscreenEventHook
+myHandleEventHook = floatClickFocusHandler
 
 myLogHook :: MonitorSetup -> Handle -> X ()
 myLogHook scr xmproc =
-  let screenId = case scr of
-                   Laptop -> 0
-                   Dual n -> n
+  let screenId = case scr of Laptop -> 0
+                             Dual n -> n
       screenId' = show $ case screenId of S m -> m
       switchToWS ws = unwords [ "~/scripts/change_ws", screenId', ws ]
       clickable ws = xmobarAction (switchToWS ws) "1"
@@ -179,13 +183,65 @@ myLogHook scr xmproc =
      , ppCurrent         = ppCurrent
      , ppHiddenNoWindows = const ""
      , ppHidden          = ppHidden
-     , ppTitle           = xmobarColor "green" "" . xmobarRaw
-                                                  . shorten 80
-                                                  . filter (/='`')
+     , ppTitle           = xmobarColor "green" ""
+                           . xmobarRaw
+                           . shorten 80
+                           . filter (/='`')
      , ppVisible         = ppVisible
      , ppUrgent          = xmobarColor "red" "yellow"
      , ppSort            = mkWsSort $ pure (compare `on` read @Int)
      }
+
+myXMobarPP :: PP
+myXMobarPP = def
+    { ppSep             = magenta " | "
+    , ppTitleSanitize   = xmobarStrip
+    , ppCurrent         = wrap " " "" . xmobarBorder "Top" "#8be9dd" 2
+    , ppVisible         = wrap " " "" . xmobarBorder "Top" "#bd93f9" 1
+    , ppHidden          = wrap " " ""
+    , ppHiddenNoWindows = const ""
+    , ppUrgent          = red . wrap (yellow "!") (yellow "!")
+    , ppOrder           = \[ws, l, _, wins] -> [ws, l, wins]
+    , ppExtras          = [logTitles formatFocused formatUnfocused]
+    }
+  where
+    formatFocused   = wrap (white "[") (white "]") . magenta . ppWindow
+    formatUnfocused = wrap (white "[") (white "]") . purple  . ppWindow
+    ppWindow :: String -> String
+    ppWindow = xmobarRaw
+               . (\w -> if null w then "untitled" else w)
+               . shorten 30
+               . filter (/='`')
+    purple, magenta, red, white, yellow :: String -> String
+    magenta  = xmobarColor "#ff79c6" ""
+    purple   = xmobarColor "#bd93f9" ""
+    white    = xmobarColor "#f8f8f2" ""
+    yellow   = xmobarColor "#f1fa8c" ""
+    red      = xmobarColor "#ff5555" ""
+
+-- | Apply clickable wrapping to the given PP.
+-- copied from XMonad.Util.ClickableWorkspaces
+clickablePP :: PP -> X PP
+clickablePP = scriptOnActionPP "~/scripts/change_ws.sh" "1"
+
+scrollablePP :: PP -> X PP
+scrollablePP = scriptOnActionPP "~/scripts/move_next_ws.sh left" "4"
+           >=> scriptOnActionPP "~/scripts/move_next_ws.sh right" "5"
+
+scriptOnActionPP :: String -> String -> PP -> X PP
+scriptOnActionPP script button pp =
+  getScripted <&> \ren -> pp{ ppRename = ppRename pp >=> ren }
+    where
+      getScripted :: X (String -> WindowSpace -> String)
+      getScripted = getWsIndex <&> \idx s w -> maybe id scriptWrap (idx (W.tag w)) s
+      scriptWrap :: Int -> String -> String
+      scriptWrap i = xmobarAction (script ++ " " ++ show i) button
+
+getWsIndex :: X (WorkspaceId -> Maybe Int)
+getWsIndex = do
+  wSort <- getSortByIndex
+  spaces <- gets (map W.tag . wSort . W.workspaces . windowset)
+  return $ flip elemIndex spaces
 
 myStartupHook :: X ()
 myStartupHook = do
@@ -231,6 +287,10 @@ myKeys conf = mkKeymap conf $
   , ("M-S-<Return>", spawn "kitty --class floating_term & disown")
   , ("M-S-q",        kill)
   , ("M-d",          spawn "rofi -show run")
+  , ("M-e",          spawn "emacs")
+  , ("M-o",          spawn "emacs ~/org/main.org")
+  , ("M-v",          spawn "kitty nvim")
+  , ("M-S-v",        spawn "kitty --class floating_term nvim")
   , ("M-<Tab>",      sendMessage NextLayout)
   , ("M-S-<Space>",  withFocused toggleFloat)
   , ("M-r",          spawn "xmonad --recompile && xmonad --restart")
