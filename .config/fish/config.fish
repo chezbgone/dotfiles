@@ -5,7 +5,8 @@ complete -c config -w git		# inherit config autocomplete from git
 export EDITOR='nvim'
 export PDFVIEWER='zathura'
 export PYENV_ROOT=$HOME/.pyenv
-export TEXMFHOME=$HOME/.texmf
+export TEXMFHOME=$XDG_DATA_HOME/texmf
+export CHKTEXRC=$XDG_CONFIG_HOME/chktex
 set -eg fish_user_paths
 
 set fish_color_greeting 8888ff
@@ -95,13 +96,11 @@ function fish_user_key_bindings
     fish_vi_key_bindings --no-erase insert
 end
 
-# Emulates vim's cursor shape behavior
-# Set the normal and visual mode cursors to a block
 set fish_cursor_default block
-# Set the insert mode cursor to a line
 set fish_cursor_insert line blink
-# Set the replace mode cursor to an underscore
 set fish_cursor_replace_one underscore
-# The following variable can be used to configure cursor shape in
-# visual mode, but due to fish_cursor_default, is redundant here
 set fish_cursor_visual block
+
+if test "$TERM" = "dumb"
+    function fish_title; end
+end
