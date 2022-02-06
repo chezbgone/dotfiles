@@ -37,8 +37,8 @@ nnoremap <leader>evb :e ~/.config/nvim/init.vim<CR>
 nnoremap <leader>ezs :split $HOME/.zshrc<CR>
 nnoremap <leader>ezb :e $HOME/.zshrc<CR>
 " Edit jason.sty
-nnoremap <leader>ets :split ~/.texmf/tex/latex/chez-sty/chezbase.sty<CR>
-nnoremap <leader>etb :e ~/.texmf/tex/latex/chez-sty/chezbase.sty<CR>
+nnoremap <leader>ets :split ~/.local/share/texmf/tex/latex/chez-sty/chezbase.sty<CR>
+nnoremap <leader>etb :e ~/.local/share/texmf/tex/latex/chez-sty/chezbase.sty<CR>
 
 " Window commands
 nnoremap <silent> <leader>v  :vsp<CR>
@@ -89,12 +89,24 @@ imap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<Plug>d
 
 " vim-sneak
 let g:sneak#s_next = 1
-map f <Plug>Sneak_f
-map F <Plug>Sneak_F
-map t <Plug>Sneak_t
-map T <Plug>Sneak_T
-map <Leader>f <Plug>Sneak_s
-map <Leader>F <Plug>Sneak_S
+nmap f <Plug>Sneak_f
+nmap F <Plug>Sneak_F
+nmap t <Plug>Sneak_t
+nmap T <Plug>Sneak_T
+nmap <Leader>f <Plug>Sneak_s
+nmap <Leader>F <Plug>Sneak_S
+xmap f <Plug>Sneak_f
+xmap F <Plug>Sneak_F
+xmap t <Plug>Sneak_t
+xmap T <Plug>Sneak_T
+xmap <Leader>f <Plug>Sneak_s
+xmap <Leader>F <Plug>Sneak_S
+omap f <Plug>Sneak_f
+omap F <Plug>Sneak_F
+omap t <Plug>Sneak_t
+omap T <Plug>Sneak_T
+omap <Leader>f <Plug>Sneak_s
+omap <Leader>F <Plug>Sneak_S
 
 
 """ coc.nvim

@@ -5,6 +5,7 @@ set wrap " wrap lines
 set breakindent " indent breaks
 set nojoinspaces " one space when joining sentences with J
 
+set inccommand=nosplit " live preview of commands
 "set autochdir " set working directory to current file's location
 
 set nocindent " disables annoying autoindent

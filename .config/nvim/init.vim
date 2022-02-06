@@ -12,6 +12,8 @@ Plug 'norcalli/nvim-colorizer.lua' " Makes hex codes have colored backgrounds
 Plug 'ntpeters/vim-better-whitespace'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+Plug 'ray-x/cmp-treesitter'
 
 Plug 'lervag/vimtex'
 Plug 'godlygeek/tabular'
@@ -36,7 +38,8 @@ Plug 'gioele/vim-autoswap'
 
 Plug 'SirVer/ultisnips'
 
-Plug 'Raimondi/delimitMate'
+" Plug 'Raimondi/delimitMate'
+Plug 'windwp/nvim-autopairs'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
@@ -57,9 +60,15 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-"Plug 'deoplete-plugins/deoplete-jedi'
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'quangnguyen30192/cmp-nvim-ultisnips'
+Plug 'ray-x/lsp_signature.nvim'
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
@@ -68,3 +77,5 @@ source ~/.config/nvim/startup/settings.vim
 source ~/.config/nvim/startup/mappings.vim
 source ~/.config/nvim/startup/commands.vim
 source ~/.config/nvim/startup/color.vim
+lua require('chezlsp')
+lua require('chezother')

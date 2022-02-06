@@ -34,5 +34,5 @@ if [[ ! -f "${notesfileprefix}-notes.tex" ]]; then
 	sed "s/\$notesclassname/$notesclassname/;
 	     s/\$notesshortname/$notesshortname/;
 	     s/\$notesfileprefix/$notesfileprefix/;
-	     s/\$noteslecturer/$noteslecturer/" ~/Dropbox/Keep/TeX_Templates/notes_template.tex > "${notesfileprefix}-notes.tex"
+	     s/\$noteslecturer/$noteslecturer/" ~/Dropbox/keep/tex-templates/notes_template.tex > "${notesfileprefix}-notes.tex"
 fi

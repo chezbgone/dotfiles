@@ -14,7 +14,7 @@ if [[ ! -f "${todaysfile}.tex" ]]; then
 	notesshortname=$notesshortname \
 	noteslecturer=$noteslecturer \
 	todaysdate=$(date +"%B %d, %Y") \
-	envsubst < ~/Dropbox/Keep/TeX_Templates/notes_section_template.tex > "${todaysfile}.tex"
+	envsubst < ~/Dropbox/keep/tex_templates/notes_section_template.tex > "${todaysfile}.tex"
 fi
 
 if [[ -z $(grep "${todaysfile}" "${notesfileprefix}-notes.tex") ]]; then
