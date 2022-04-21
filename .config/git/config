@@ -9,14 +9,9 @@
 	ss = status -s -b
 	co = commit
 
-[includeIf "gitdir:~/Dropbox/MIT/6_031/"]
-	path = ~/.gitconfig.mit
+[includeIf "gitdir:~/documents/koika/"]
+	path = ~/.config/git/config.mit
 
-[includeIf "gitdir:~/Dropbox/MIT/6_004/"]
-	path = ~/.gitconfig.mit
-
-[includeIf "gitdir:~/Dropbox/MIT/6_172/"]
-	path = ~/.gitconfig.mit
 [pull]
 	rebase = false
 [init]

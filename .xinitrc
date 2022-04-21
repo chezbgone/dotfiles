@@ -17,4 +17,3 @@ xrdb ~/.config/Xresources
 dunst &
 
 exec xmonad
-#exec i3

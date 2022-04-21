@@ -11,3 +11,5 @@ set guioptions ""
 map [normal] b toggle_statusbar
 
 set synctex true
+
+set scroll-step 50

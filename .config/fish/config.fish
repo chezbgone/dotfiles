@@ -4,7 +4,7 @@ complete -c config -w git		# inherit config autocomplete from git
 
 export EDITOR='nvim'
 export PDFVIEWER='zathura'
-export PYENV_ROOT=$HOME/.pyenv
+export PYENV_ROOT="$XDG_DATA_HOME/pyenv"
 export TEXMFHOME=$XDG_DATA_HOME/texmf
 export CHKTEXRC=$XDG_CONFIG_HOME/chktex
 set -eg fish_user_paths
@@ -82,9 +82,6 @@ if status is-login
     end
 end
 
-# opam configuration
-source /home/jason/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
-
 function fish_user_key_bindings
     # Execute this once per mode that emacs bindings should be used in
     fish_default_key_bindings -M insert
@@ -104,3 +101,6 @@ set fish_cursor_visual block
 if test "$TERM" = "dumb"
     function fish_title; end
 end
+
+# opam configuration
+source /home/jason/.local/share/opam/opam-init/init.fish > /dev/null 2> /dev/null; or true

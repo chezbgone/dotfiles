@@ -14,9 +14,9 @@
   (define-key evil-motion-state-map (kbd "L") 'evil-end-of-line)
   :hook
   (evil-insert-state-entry . (lambda ()
-                               (setq display-line-numbers 'relative)))
+                               (setq display-line-numbers t)))
   (evil-insert-state-exit . (lambda ()
-                              (setq display-line-numbers t))))
+                              (setq display-line-numbers 'relative))))
 
 (use-package which-key
   :config
@@ -82,9 +82,13 @@
   :config
   (setq evil-snipe-scope `whole-visible)
   (setq evil-snipe-repeat-scope `whole-visible)
-  (evil-snipe-override-mode 1)
-  )
+  (evil-snipe-override-mode 1))
 
+
+(use-package org
+  :config
+  (setq org-agenda-files '("~/org"))
+  (setq org-agenda-todo-list-sublevels nil))
 
 (use-package evil-org
   :after org
@@ -102,8 +106,7 @@
     '((t :family "Symbola"
         ))
     "Face for org-bullets bullets.")
-  (setq org-bullets-face-name (quote my-org-bullets))
-  )
+  (setq org-bullets-face-name (quote my-org-bullets)))
 
 
 
@@ -180,7 +183,8 @@
 (show-paren-mode 1)
 (electric-pair-mode 1)
 (setq electric-pair-open-newline-between-pairs 1)
-(load-theme 'atom-one-dark t)
+; (load-theme 'atom-one-dark t)
+(load-theme 'darcula t)
 
 ;(global-display-line-numbers-mode)
 ;(add-hook 'doc-view-mode-hook 'display-line-numbers-mode 0)
@@ -199,6 +203,10 @@
                 minibuffer-setup-hook))
  (add-hook hook
    (lambda () (setq-local show-trailing-whitespace nil))))
+
+(global-set-key (kbd "C-c l") #'org-store-link)
+(global-set-key (kbd "C-c a") #'org-agenda)
+(global-set-key (kbd "C-c c") #'org-capture)
 
 (setq delete-old-versions t)
 (setq version-control t)
@@ -233,3 +241,7 @@
 (add-hook 'eshell-mode-hook (lambda () (local-set-key (kbd "C-l") (eshell/clear 1))))
 
 (set-face-foreground 'font-lock-comment-face "#888888")
+
+;; Normal bindings for xref (scheme tags stuff)
+(define-key evil-normal-state-map (kbd "M-.") 'xref-find-definitions)
+(define-key evil-normal-state-map (kbd "M-,") 'xref-pop-marker-stack)

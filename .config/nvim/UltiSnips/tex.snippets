@@ -116,11 +116,10 @@ snippet \( "Inline math parens" "len(snip.buffer[snip.line]) == snip.column + 1"
 \(${1:${VISUAL:<++>}}\)${0:<++>}
 endsnippet
 
-snippet "\\\[ " "Display math" "len(snip.buffer[snip.line]) == snip.column + 1" rAe
+snippet "\\\[ " "Display math" "len(snip.buffer[snip.line]) == snip.column + 2" rAe
 \[
 	${1:${VISUAL}}
-\]
-${0:<++>}
+\
 endsnippet
 
 snippet fmap:: "Function with mapsto" A

@@ -55,7 +55,7 @@
 
 # Reset caps lock to §
 "sh ~/scripts/reset-keyboard.sh"
-	Mod4+K
+	Mod4+Alt+K
 
 # Unicode character picker
 "sh ~/scripts/dmenuunicode"

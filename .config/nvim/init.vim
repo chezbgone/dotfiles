@@ -18,6 +18,7 @@ Plug 'ray-x/cmp-treesitter'
 Plug 'lervag/vimtex'
 Plug 'godlygeek/tabular'
 
+" Language specific
 Plug 'kana/vim-textobj-user'
 Plug 'bps/vim-textobj-python'
 "Plug 'pangloss/vim-javascript'
@@ -29,6 +30,7 @@ Plug 'kien/rainbow_parentheses.vim'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'whonore/Coqtail'
 Plug 'bohlender/vim-smt2'
+Plug 'Julian/lean.nvim'
 
 " Auto previews
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
@@ -79,3 +81,4 @@ source ~/.config/nvim/startup/commands.vim
 source ~/.config/nvim/startup/color.vim
 lua require('chezlsp')
 lua require('chezother')
+lua require('lean')

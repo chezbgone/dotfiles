@@ -23,7 +23,7 @@ set updatetime=500
 set pumheight=20
 
 "set spell
-set spellfile=~/Dropbox/Keep/VimSpell/en.utf-8.add
+set spellfile=~/Dropbox/keep/vimspell/en.utf-8.add
 
 " More natural splitting
 set splitbelow
@@ -40,8 +40,8 @@ if has('mouse')
 	set mouse=a
 endif
 
-let g:python_host_prog = '/home/jason/.pyenv/versions/neovim2/bin/python'
-let g:python3_host_prog = '/home/jason/.pyenv/versions/neovim3/bin/python'
+let g:python_host_prog = '/home/jason/.local/share/pyenv/versions/neovim2/bin/python'
+let g:python3_host_prog = '/home/jason/.local/share/pyenv/versions/neovim3/bin/python'
 
 " airline stuff
 let g:airline_powerline_fonts = 1
@@ -55,10 +55,6 @@ let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.jsx,*.js'
 
 " ctrl-p
 let g:ctrlp_custom_ignore = { 'dir': 'node_modules' }
-
-" delimimate - try to be smart
-let delimitMate_balance_matchpairs = 1
-let delimitMate_expand_cr = 2
 
 " set nerdtree width
 let g:NERDTreeWinSize = 20
@@ -81,5 +77,5 @@ let g:VM_show_warnings = 0
 let g:VM_silent_exit = 1
 
 " ocaml told me to do this
-let g:opamshare = substitute(system('opam var share'),'\n$','','''')
-execute "set rtp+=" . g:opamshare . "/merlin/vim"
+" let g:opamshare = substitute(system('opam var share'),'\n$','','''')
+" execute "set rtp+=" . g:opamshare . "/merlin/vim"
