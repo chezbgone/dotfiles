@@ -15,8 +15,8 @@ set colorcolumn=80 " mark 80th character
 
 set scrolloff=3 " keep 3 lines above and below the cursor
 
-set tabstop=4 " show tabs as width 4
-set shiftwidth=4 " indenting with > gives 4 spaces
+set tabstop=2 " show tabs as width 4
+set shiftwidth=2 " indenting with > gives 4 spaces
 set expandtab " pressing tab gives spaces
 
 set updatetime=500
@@ -42,6 +42,10 @@ endif
 
 let g:python_host_prog = '/home/jason/.local/share/pyenv/versions/neovim2/bin/python'
 let g:python3_host_prog = '/home/jason/.local/share/pyenv/versions/neovim3/bin/python'
+
+" -------------
+" -- PLUGINS --
+" -------------
 
 " airline stuff
 let g:airline_powerline_fonts = 1
@@ -76,6 +80,19 @@ lua require'colorizer'.setup()
 let g:VM_show_warnings = 0
 let g:VM_silent_exit = 1
 
-" ocaml told me to do this
-" let g:opamshare = substitute(system('opam var share'),'\n$','','''')
-" execute "set rtp+=" . g:opamshare . "/merlin/vim"
+" vim-instant-markdown
+let g:instant_markdown_slow = 1
+let g:instant_markdown_mathjax = 1
+
+" vim-wiki
+let g:vimwiki_list = [{ 'path': '~/Dropbox/vimwiki/'
+                     \, 'path_html': '~/Dropbox/vimwiki/site/'
+                     \, 'name': 'Journal'
+                     \, 'auto_export': 1
+                     \, 'auto_toc': 1
+                     \, 'index': 'main'
+                     \, 'links_space_char': '_'
+                     \, 'diary_rel_path': 'journal/'
+                     \, 'diary_index': 'journal'
+                     \, 'diary_header': 'Journal'
+                     \}]

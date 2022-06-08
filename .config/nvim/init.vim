@@ -3,6 +3,7 @@ set nocompatible
 filetype off
 
 call plug#begin('~/.config/nvim/plugged')
+Plug 'nvim-lua/plenary.nvim'
 
 Plug 'vim-airline/vim-airline-themes'
 Plug 'NLKNguyen/papercolor-theme'
@@ -32,15 +33,19 @@ Plug 'whonore/Coqtail'
 Plug 'bohlender/vim-smt2'
 Plug 'Julian/lean.nvim'
 
+Plug 'neovimhaskell/nvim-hs.vim' " for cornelis
+Plug 'liuchengxu/vim-which-key' " for cornelis
+Plug 'isovector/cornelis'
+
 " Auto previews
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
+Plug 'vimwiki/vimwiki'
 
 Plug 'chrisbra/Recover.vim'
 Plug 'gioele/vim-autoswap'
 
 Plug 'SirVer/ultisnips'
 
-" Plug 'Raimondi/delimitMate'
 Plug 'windwp/nvim-autopairs'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
@@ -51,9 +56,7 @@ Plug 'justinmk/vim-sneak'
 Plug 'machakann/vim-highlightedyank'
 Plug 'mg979/vim-visual-multi'
 
-"if !exists('g:started_by_firenvim')
 Plug 'vim-airline/vim-airline'
-"endif
 
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -70,7 +73,7 @@ Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 Plug 'ray-x/lsp_signature.nvim'
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 
 call plug#end()
 
@@ -81,4 +84,4 @@ source ~/.config/nvim/startup/commands.vim
 source ~/.config/nvim/startup/color.vim
 lua require('chezlsp')
 lua require('chezother')
-lua require('lean')
+" lua require('lean') " broken

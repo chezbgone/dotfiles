@@ -80,14 +80,6 @@ def tikzcdchain(snip):
   snip.expand_anon(before + tikzcdchain_text(n, lines, left, l_inf, r_inf, whitespace) + after)
 endglobal
 
-# snippet ... "dots" Ai
-# \dots
-# endsnippet
-
-snippet == "align equals" iA
-&=
-endsnippet
-
 snippet '(\S|^)\^\^' "superscript" rAi
 `!p snip.rv = match.group(1)`^{$1}${0:<++>}
 endsnippet
@@ -96,23 +88,7 @@ snippet '(\S|^)__' "subscript" rAi
 `!p snip.rv = match.group(1)`_{$1}${0:<++>}
 endsnippet
 
-snippet () "parens" Ai
-(${1:${VISUAL:<++>}})${0:<++>}
-endsnippet
-
-snippet [] "brackets" Ai
-[${1:${VISUAL:<++>}}]${0:<++>}
-endsnippet
-
-snippet "{}" "braces" rAi
-{${1:${VISUAL:<++>}}}${0:<++>}
-endsnippet
-
 snippet $$ "Inline math dollars" Ai
-\(${1:${VISUAL:<++>}}\)${0:<++>}
-endsnippet
-
-snippet \( "Inline math parens" "len(snip.buffer[snip.line]) == snip.column + 1" Ae
 \(${1:${VISUAL:<++>}}\)${0:<++>}
 endsnippet
 
@@ -121,38 +97,6 @@ snippet "\\\[ " "Display math" "len(snip.buffer[snip.line]) == snip.column + 2" 
 	${1:${VISUAL}}
 \
 endsnippet
-
-snippet fmap:: "Function with mapsto" A
-\begin{align*}
-	${1:${VISUAL:<++>}} \colon& ${2:<++>} \to ${3:<++>} \\\\[-1ex]
-		& ${4:<++>} \mapsto ${5:<++>}
-\end{align*}
-${0:<++>}
-endsnippet
-
-# snippet sec:: "Section" A
-# \section{${1:sec}}
-# endsnippet
-
-# snippet Sec:: "Starred section" A
-# \section*{${1:sec}}
-# endsnippet
-
-# snippet ssec:: "Subsection" A
-# \subsection{${1:sec}}
-# endsnippet
-
-# snippet SSec:: "Starred subsection" A
-# \subsection*{${1:sec}}
-# endsnippet
-
-# snippet sssec:: "Subsubsection" A
-# \subsubsection{${1:sec}}
-# endsnippet
-
-# snippet SSSec:: "Starred Subsubsection" A
-# \subsubsection*{${1:sec}}
-# endsnippet
 
 snippet "\\?begin::" "General environment" rA
 \begin{${1:env}}
@@ -184,7 +128,7 @@ snippet array:: "array" A
 \end{array}
 endsnippet
 
-snippet "(tabular|tab)::" "tabular" rA
+snippet "tabular::" "tabular" A
 \begin{tabular}{$1}
 	${2:<++>}
 \end{tabular}
@@ -208,43 +152,7 @@ pre_expand "create_grid_general(snip, 'array')"
 snippet "(array)(\d+)x(\d+)::" "Generate array with placeholders" rA
 endsnippet
 
-# snippet frame:: "frame" A
-# \begin{frame}{${1:<+title+>}}
-# 	${2:<++>}
-# \end{frame}
-# endsnippet
-
-# snippet fframe:: "fragile frame" A
-# \begin{frame}{${1:<+title+>}}[fragile]
-# 	${2:<++>}
-# \end{frame}
-# endsnippet
-
-# snippet minipage:: "minipage" A
-# \begin{minipage}{${1:<+size+>}}
-# 	${2:<++>}
-# \end{minipage}
-# endsnippet
-
-# snippet "fig(ure)?::" "figure" rA
-# \begin{figure}
-# 	${0:${VISUAL}}
-# \end{figure}
-# endsnippet
-
-# snippet "subfig(ure)?::" "subfigure" rA
-# \begin{subfigure}[c]{${1:<+size+>}}
-# 	${2:<++>}
-# \end{subfigure}
-# endsnippet
-
 snippet enum:: "enumerate" A
-\begin{enumerate}
-	\item ${0:${VISUAL:<++>}}
-\end{enumerate}
-endsnippet
-
-snippet 1.:: "short enumerate" A
 \begin{enumerate}
 	\item ${0:${VISUAL:<++>}}
 \end{enumerate}
@@ -262,13 +170,7 @@ snippet itemize:: "itemize" A
 \end{itemize}
 endsnippet
 
-snippet -:: "short itemize" A
-\begin{itemize}
-	\item ${0:${VISUAL:<++>}}
-\end{itemize}
-endsnippet
-
-snippet "(scope|center|asy)::" "environments" rA
+snippet center:: "environments" A
 \begin{`!p snip.rv = match.group(1)`}
 	${0:${VISUAL:<++>}}
 \end{`!p snip.rv = match.group(1)`}
@@ -278,13 +180,6 @@ snippet tikz:: "tikz" A
 \begin{tikzpicture}
 	${0:${VISUAL:<++>}}
 \end{tikzpicture}
-endsnippet
-
-snippet Cases:: "cases environments" A
-\begin{cases*}
-	${1:${VISUAL:<++>}} & ${2:<++>} \\\\[-1ex]
-	${3:<++>} & ${4:<++>}
-\end{cases*}
 endsnippet
 
 snippet cases:: "cases environments" A
@@ -324,12 +219,6 @@ snippet Thm:: "theorem enivonment abbreviation" A
 \end{theorem}
 endsnippet
 
-snippet Lem:: "lemma enivonment abbreviation" A
-\begin{lemma}
-	${0:${VISUAL:<++>}}
-\end{lemma}
-endsnippet
-
 snippet Prop:: "proposition enivonment abbreviation" A
 \begin{proposition}
 	${0:${VISUAL:<++>}}
@@ -358,12 +247,6 @@ snippet Adhoc:: "adhoc enivonment abbreviation" A
 \begin{adhoctheorem}{${1:<++>}}
 	${0:${VISUAL:<++>}}
 \end{adhoctheorem}
-endsnippet
-
-snippet Algo:: "algorithm enivonment abbreviation" A
-\begin{algorithm}
-	${0:${VISUAL:<++>}}
-\end{algorithm}
 endsnippet
 
 ### MATH SNIPPETS ###
@@ -448,45 +331,3 @@ endsnippet
 # 	0
 # \end{tikzcd}
 # endsnippet
-
-### OTHER SNIPPETS ###
-snippet alg:: "pseudocode" A
-\begin{algorithmic}
-	${0:${VISUAL:<++>}}
-\end{algorithmic}
-endsnippet
-
-snippet code:: "code" A
-\begin{minted}{${1:text}}
-${0:${VISUAL:<++>}}
-\end{minted}
-endsnippet
-
-snippet icode:: "inline code" A
-\mintinline{${1:text}}{${0:${VISUAL:<++>}}}
-endsnippet
-
-snippet hask:: "haskell code" A
-\begin{minted}{haskell}
-${0:${VISUAL:<++>}}
-\end{minted}
-endsnippet
-
-snippet ihask:: "inline haskell code" A
-\mintinline{haskell}{${0:${VISUAL:<++>}}}
-endsnippet
-
-	
-snippet coq:: "coq code" A
-\begin{minted}{coq}
-${0:${VISUAL:<++>}}
-\end{minted}
-endsnippet
-
-snippet icoq:: "inline coq code" A
-\mintinline{coq}{${0:${VISUAL:<++>}}}
-endsnippet
-
-snippet .date "today's date" Ai
-`date "+%B %d, %Y"`
-endsnippet

@@ -18,8 +18,6 @@ let g:airline_theme='deus'
 
 "colorscheme PaperColor
 colorscheme ayu
-"colorscheme janah
-"colorscheme OceanicNext
 
 " transparent background
 " exists in PaperColor already

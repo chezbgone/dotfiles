@@ -12,11 +12,18 @@
   (evil-mode 1)
   (define-key evil-motion-state-map (kbd "H") 'evil-first-non-blank)
   (define-key evil-motion-state-map (kbd "L") 'evil-end-of-line)
+  ;; bindings for switching windows
+  (define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
+  (define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)
+  (define-key evil-normal-state-map (kbd "C-k") 'evil-window-up)
+  (define-key evil-normal-state-map (kbd "C-l") 'evil-window-right)
+  ;; tab in org mode opens/closes bullets
+  (evil-define-key 'normal org-mode-map (kbd "<tab>") #'org-cycle)
   :hook
   (evil-insert-state-entry . (lambda ()
                                (setq display-line-numbers t)))
   (evil-insert-state-exit . (lambda ()
-                              (setq display-line-numbers 'relative))))
+                              (setq display-line-numbers 'visual))))
 
 (use-package which-key
   :config
@@ -245,3 +252,7 @@
 ;; Normal bindings for xref (scheme tags stuff)
 (define-key evil-normal-state-map (kbd "M-.") 'xref-find-definitions)
 (define-key evil-normal-state-map (kbd "M-,") 'xref-pop-marker-stack)
+
+;; agda mode
+(load-file (let ((coding-system-for-read 'utf-8))
+                (shell-command-to-string "agda-mode locate")))
