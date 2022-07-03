@@ -35,7 +35,7 @@ Plug 'Julian/lean.nvim'
 
 Plug 'neovimhaskell/nvim-hs.vim' " for cornelis
 Plug 'liuchengxu/vim-which-key' " for cornelis
-Plug 'isovector/cornelis'
+Plug 'isovector/cornelis', { 'do': 'stack build' }
 
 " Auto previews
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
@@ -56,7 +56,7 @@ Plug 'justinmk/vim-sneak'
 Plug 'machakann/vim-highlightedyank'
 Plug 'mg979/vim-visual-multi'
 
-Plug 'vim-airline/vim-airline'
+Plug 'nvim-lualine/lualine.nvim'
 
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -73,7 +73,6 @@ Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 Plug 'ray-x/lsp_signature.nvim'
-
 
 call plug#end()
 

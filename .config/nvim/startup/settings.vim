@@ -10,7 +10,7 @@ set inccommand=nosplit " live preview of commands
 
 set nocindent " disables annoying autoindent
 set showmatch " show matching parens
-set cursorline " highlights current line
+"set cursorline " highlights current line (disabled because causes lag?)
 set colorcolumn=80 " mark 80th character
 
 set scrolloff=3 " keep 3 lines above and below the cursor
@@ -47,12 +47,19 @@ let g:python3_host_prog = '/home/jason/.local/share/pyenv/versions/neovim3/bin/p
 " -- PLUGINS --
 " -------------
 
-" airline stuff
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#whitespace#enabled = 0
-let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
-let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
-let g:airline_skip_empty_sections = 1
+" lualine stuff
+lua << END
+require('lualine').setup {
+  options = {
+    theme = 'OceanicNext',
+    component_separators = '',
+    section_separators = { left = '', right = '' }
+  },
+  sections = {
+    lualine_x = {'encoding', {'fileformat', icons_enabled = false}, 'filetype'}
+  }
+}
+END
 
 " closetags
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.jsx,*.js'
