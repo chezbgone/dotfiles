@@ -47,4 +47,15 @@ if has("autocmd")
   augroup vimwiki_journal
     autocmd BufNewFile */journal/*.wiki execute "silent 0r !~/.config/nvim/bin/generate-vimwiki-journal-template '%'"
   augroup END
+
+  augroup agda
+    function! CornelisLoadWrapper()
+      if exists(":CornelisLoad") ==# 2
+        CornelisLoad
+      endif
+    endfunction
+
+    autocmd BufReadPre *.agda call CornelisLoadWrapper()
+    autocmd BufReadPre *.lagda* call CornelisLoadWrapper()
+  augroup END
 endif

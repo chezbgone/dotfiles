@@ -40,6 +40,8 @@ if has('mouse')
 	set mouse=a
 endif
 
+let mapleader="\<Space>"
+
 let g:python_host_prog = '/home/jason/.local/share/pyenv/versions/neovim2/bin/python'
 let g:python3_host_prog = '/home/jason/.local/share/pyenv/versions/neovim3/bin/python'
 
