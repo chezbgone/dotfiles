@@ -19,8 +19,6 @@ xnoremap <S-Tab> <gv
 xnoremap > >gv
 xnoremap < <gv
 
-"let mapleader = "\<Space>"
-
 " Fix most recent spelling error to top suggestion
 inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 
@@ -61,7 +59,7 @@ map q: <NOP>
 nnoremap K <nop>
 
 " Getting out of the terminal emulator
-tnoremap <Esc> <C-\><C-n>
+tnoremap <Esc><Esc> <C-\><C-n>
 
 " Get syntax group name under cursor
 nmap <F10> :call <SID>SynStack()<CR>
@@ -78,7 +76,6 @@ nmap <F12> :NERDTreeToggle<CR>
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " use <cr> to complete (even if nothing selected)
-"imap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<Plug>delimitMateCR"
 
 " vim-sneak
 let g:sneak#s_next = 1

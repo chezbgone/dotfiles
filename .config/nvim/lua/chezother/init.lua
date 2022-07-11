@@ -22,10 +22,11 @@ npairs.add_rules({
 
 npairs.add_rules({
   Rule("\\(", "\\)", "tex"),
-  Rule("\\[", "\\]", "tex")
+  Rule("\\[", "\\]", "tex"),
+  Rule("`", "'", "tex"),
 })
 
 -- Don't add pairs if it already has a close pair in the same line
-require('nvim-autopairs').setup({
-  enable_check_bracket_line = false
-})
+-- require('nvim-autopairs').setup({
+--   enable_check_bracket_line = false
+-- })

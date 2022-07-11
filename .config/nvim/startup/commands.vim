@@ -32,7 +32,7 @@ if has("autocmd")
 
   augroup nerdtree_auto
     " automatically quit nerdtree if last
-    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+    autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
     " automatically open nerdtree if opening a directory
     autocmd StdinReadPre * let s:std_in=1
@@ -48,7 +48,17 @@ if has("autocmd")
     autocmd BufNewFile */journal/*.wiki execute "silent 0r !~/.config/nvim/bin/generate-vimwiki-journal-template '%'"
   augroup END
 
+  augroup term
+    autocmd TermOpen * setlocal nonumber norelativenumber
+  augroup END
+
+
   augroup agda
+    autocmd BufNewFile,BufRead *.lagda.md set filetype=agda.markdown
+
+    " automatically quit if cornelis status window is last buffer
+    autocmd BufEnter * if (winnr("$") == 1 && exists("b:cornelis_window")) | q | endif
+
     function! CornelisLoadWrapper()
       if exists(":CornelisLoad") ==# 2
         CornelisLoad
@@ -59,3 +69,9 @@ if has("autocmd")
     autocmd BufReadPre *.lagda* call CornelisLoadWrapper()
   augroup END
 endif
+
+" Because shift is hard to let go of okay
+command! Wq wq
+command! WQ wq
+command! W w
+command! Q q

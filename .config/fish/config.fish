@@ -7,6 +7,7 @@ export PDFVIEWER='zathura'
 export PYENV_ROOT="$XDG_DATA_HOME/pyenv"
 export TEXMFHOME=$XDG_DATA_HOME/texmf
 export CHKTEXRC=$XDG_CONFIG_HOME/chktex
+export AGDA_DIR=$XDG_CONFIG_HOME/agda
 set -eg fish_user_paths
 
 set fish_color_greeting 8888ff
@@ -28,9 +29,6 @@ end
 
 alias please 'eval sudo $history[1]'
 
-abbr vim nvim
-abbr vi nvim
-
 alias diff colordiff
 
 abbr bwsess 'export BW_SESSION=(bw unlock --raw)'
@@ -43,8 +41,6 @@ function cs
 end
 
 abbr r ranger
-abbr p sudo pacman
-abbr nn nvim .
 
 function classnotes
 	~/scripts/texnotes.sh
