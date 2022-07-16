@@ -35,7 +35,7 @@ Plug 'Julian/lean.nvim'
 
 Plug 'neovimhaskell/nvim-hs.vim' " for cornelis
 Plug 'liuchengxu/vim-which-key' " for cornelis
-Plug 'isovector/cornelis', { 'do': 'stack build' }
+Plug 'JakobBruenker/cornelis', { 'do': 'stack build' }
 
 " Auto previews
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
@@ -44,7 +44,7 @@ Plug 'vimwiki/vimwiki'
 Plug 'chrisbra/Recover.vim'
 Plug 'gioele/vim-autoswap'
 
-Plug 'SirVer/ultisnips'
+" Plug 'SirVer/ultisnips'
 
 Plug 'windwp/nvim-autopairs'
 Plug 'tpope/vim-surround'
@@ -71,7 +71,7 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
-Plug 'quangnguyen30192/cmp-nvim-ultisnips'
+" Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 Plug 'ray-x/lsp_signature.nvim'
 
 call plug#end()

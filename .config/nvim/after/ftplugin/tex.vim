@@ -2,16 +2,14 @@ setlocal spell
 setlocal tabstop=2
 setlocal shiftwidth=2
 setlocal expandtab
+setlocal colorcolumn=100
+setlocal textwidth=100
 syntax sync fromstart
 syntax spell toplevel
 
 " Maps
 nnoremap <silent> <S-k> <nop>
 nnoremap <silent> <leader>hh :syntax sync fromstart<CR>:syntax spell toplevel<CR>
-
-nnoremap <buffer> <F1> :w<Enter>
-inoremap <buffer> <F1> <ESC>:w<Enter>
-vnoremap <buffer> <F1> <ESC>:w<Enter>
 
 nnoremap <buffer> <F2> :w<Enter>:silent !pdflatex %<Enter>
 inoremap <buffer> <F2> <ESC>:w<Enter>:silent !pdflatex %<Enter>
@@ -51,4 +49,3 @@ let b:surround_116 = "\\text{\r}"
 command! TComp silent !kitty --class="latexmk-dock" latexmk -pvc & disown
 nmap <F5> :silent TComp<CR>
 imap <F5> <C-O><F5>
-"nmap <Leader>TC :silent TComp<CR>

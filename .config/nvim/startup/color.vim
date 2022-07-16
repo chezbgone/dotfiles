@@ -42,3 +42,8 @@ highlight VertSplit guifg=#4e4e4e
 highlight Folded guifg=#445566
 highlight CocErrorSign guifg=#EE2222
 highlight CocErrorVirtualText guifg=#CC2222
+
+highlight link GitGutterAddLineNr    GitGutterAdd
+highlight link GitGutterChangeLineNr GitGutterChange
+highlight link GitGutterDeleteLineNr GitGutterDelete
+highlight link GitGutterChangeLineNr GitGutterChange

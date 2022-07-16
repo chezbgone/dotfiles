@@ -5,9 +5,11 @@ complete -c config -w git		# inherit config autocomplete from git
 export EDITOR='nvim'
 export PDFVIEWER='zathura'
 export PYENV_ROOT="$XDG_DATA_HOME/pyenv"
-export TEXMFHOME=$XDG_DATA_HOME/texmf
-export CHKTEXRC=$XDG_CONFIG_HOME/chktex
-export AGDA_DIR=$XDG_CONFIG_HOME/agda
+export TEXMFROOT="/usr/share/texmf-dist"
+export TEXMFLOCAL="/usr/share/texmf-dist"
+export TEXMFHOME="$XDG_DATA_HOME/texmf"
+export CHKTEXRC="$XDG_CONFIG_HOME/chktex"
+export AGDA_DIR="$XDG_CONFIG_HOME/agda"
 set -eg fish_user_paths
 
 set fish_color_greeting 8888ff

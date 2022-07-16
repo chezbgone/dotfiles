@@ -6,7 +6,6 @@ set breakindent " indent breaks
 set nojoinspaces " one space when joining sentences with J
 
 set inccommand=nosplit " live preview of commands
-"set autochdir " set working directory to current file's location
 
 set nocindent " disables annoying autoindent
 set showmatch " show matching parens
@@ -72,9 +71,9 @@ let g:ctrlp_custom_ignore = { 'dir': 'node_modules' }
 " set nerdtree width
 let g:NERDTreeWinSize = 20
 
-let g:UltiSnipsExpandTrigger = "§"
-let g:UltiSnipsJumpForwardTrigger = "§"
-let g:UltiSnipsJumpBackwardTrigger = "<s-§>"
+" let g:UltiSnipsExpandTrigger = "§"
+" let g:UltiSnipsJumpForwardTrigger = "§"
+" let g:UltiSnipsJumpBackwardTrigger = "<s-§>"
 
 " if this is not set, then empty .tex files break
 " let g:tex_flavor = "latex"
@@ -105,3 +104,7 @@ let g:vimwiki_list = [{ 'path': '~/Dropbox/vimwiki/'
                      \, 'diary_index': 'journal'
                      \, 'diary_header': 'Journal'
                      \}]
+
+" gitgutter
+set signcolumn=no
+let g:gitgutter_highlight_linenrs = 1
