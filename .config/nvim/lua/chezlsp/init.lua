@@ -7,7 +7,7 @@ local cmp = require'cmp'
 cmp.setup({
   snippet = {
     expand = function(args)
-      vim.fn["UltiSnips#Anon"](args.body)
+      require('snippy').expand_snippet(args.body)
     end,
   },
   completion = { keyword_length = 3 },
@@ -26,7 +26,7 @@ cmp.setup({
   },
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
-    { name = 'ultisnips' }, -- For ultisnips users.
+     { name = 'snippy' },
   }, {
     { name = 'buffer' },
   }),

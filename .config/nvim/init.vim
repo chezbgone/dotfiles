@@ -45,6 +45,8 @@ Plug 'chrisbra/Recover.vim'
 Plug 'gioele/vim-autoswap'
 
 " Plug 'SirVer/ultisnips'
+Plug 'dcampos/nvim-snippy'
+Plug 'dcampos/cmp-snippy'
 
 Plug 'windwp/nvim-autopairs'
 Plug 'tpope/vim-surround'
@@ -83,4 +85,3 @@ source ~/.config/nvim/startup/commands.vim
 source ~/.config/nvim/startup/color.vim
 lua require('chezlsp')
 lua require('chezother')
-" lua require('lean') " broken

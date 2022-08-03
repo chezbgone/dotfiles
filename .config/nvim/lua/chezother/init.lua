@@ -3,6 +3,7 @@ local npairs = require("nvim-autopairs")
 -- use treesitter to prevent autopairs sometimes
 npairs.setup({
   check_ts = true,
+  enable_check_bracket_line = false,
   ts_config = {
     lua = {'string'},-- it will not add a pair on that treesitter node
     javascript = {'template_string'},
@@ -26,7 +27,14 @@ npairs.add_rules({
   Rule("`", "'", "tex"),
 })
 
--- Don't add pairs if it already has a close pair in the same line
--- require('nvim-autopairs').setup({
---   enable_check_bracket_line = false
--- })
+require('snippy').setup({
+    mappings = {
+        is = {
+            ['<Tab>'] = 'expand_or_advance',
+            ['<S-Tab>'] = 'previous',
+        },
+        nx = {
+            ['<leader>x'] = 'cut_text',
+        },
+    },
+})

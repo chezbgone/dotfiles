@@ -140,8 +140,8 @@ startup_notification = false
 browser = /usr/bin/firefox -new-tab
 
 # Align icons left/right/off
-icon_position = off
-max_icon_size = 80
+icon_position = left
+max_icon_size = 40
 
 # Paths to default icons.
 # icon_folders = /usr/share/icons/Paper/16x16/mimetypes/:/usr/share/icons/Paper/48x48/status/:/usr/share/icons/Paper/16x16/devices/:/usr/share/icons/Paper/48x48/notifications/:/usr/share/icons/Paper/48x48/emblems/

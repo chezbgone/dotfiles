@@ -29,6 +29,9 @@ function fish_prompt
 	printf '%s $ ' (__fish_git_prompt)
 end
 
+function fish_right_prompt
+end
+
 alias please 'eval sudo $history[1]'
 
 alias diff colordiff

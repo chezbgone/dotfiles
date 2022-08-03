@@ -1,11 +1,11 @@
 setlocal nospell
-setlocal tabstop=4
-setlocal shiftwidth=4
+setlocal tabstop=2
+setlocal shiftwidth=2
 setlocal expandtab
 setlocal signcolumn=yes
 
-nnoremap <silent> <leader>ee :Semshi error<CR>
-nmap <silent> <leader>rr :Semshi rename<CR>
+nnoremap <silent> <leader>er :Semshi error<CR>
+nmap <silent> <leader>re :Semshi rename<CR>
 
 nmap <f5> :silent !kitty --hold python % & disown <cr>
 vmap <f5> <esc>:silent !kitty --hold python % & disown <cr>

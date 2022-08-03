@@ -20,3 +20,5 @@
 	default = matching
 [merge]
 	conflictstyle = diff3
+[commit]
+	gpgsign = true

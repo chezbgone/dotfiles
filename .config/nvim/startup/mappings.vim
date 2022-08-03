@@ -28,15 +28,15 @@ inoremap <C-e> <C-\><C-o><C-e>
 nnoremap <C-s> :w<CR>
 inoremap <C-s> <C-\><C-o>:w<CR>
 
-" Edit init.vim
-nnoremap <leader>evs :split ~/.config/nvim/init.vim<CR>
-nnoremap <leader>evb :e ~/.config/nvim/init.vim<CR>
-" Edit .zshrc
-nnoremap <leader>ezs :split $HOME/.zshrc<CR>
-nnoremap <leader>ezb :e $HOME/.zshrc<CR>
-" Edit jason.sty
-nnoremap <leader>ets :split ~/.local/share/texmf/tex/latex/chez-sty/chezbase.sty<CR>
-nnoremap <leader>etb :e ~/.local/share/texmf/tex/latex/chez-sty/chezbase.sty<CR>
+"" Edit init.vim
+"nnoremap <leader>evs :split ~/.config/nvim/init.vim<CR>
+"nnoremap <leader>evb :e ~/.config/nvim/init.vim<CR>
+"" Edit .zshrc
+"nnoremap <leader>ezs :split $HOME/.zshrc<CR>
+"nnoremap <leader>ezb :e $HOME/.zshrc<CR>
+"" Edit jason.sty
+"nnoremap <leader>ets :split ~/.local/share/texmf/tex/latex/chez-sty/chezbase.sty<CR>
+"nnoremap <leader>etb :e ~/.local/share/texmf/tex/latex/chez-sty/chezbase.sty<CR>
 
 nnoremap <C-l> <C-w>l
 nnoremap <C-h> <C-w>h

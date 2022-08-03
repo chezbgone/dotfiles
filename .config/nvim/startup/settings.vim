@@ -4,6 +4,7 @@ set linebreak " break lines
 set wrap " wrap lines
 set breakindent " indent breaks
 set nojoinspaces " one space when joining sentences with J
+set foldmethod=marker
 
 set inccommand=nosplit " live preview of commands
 
@@ -67,6 +68,7 @@ let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.jsx,*.js'
 
 " ctrl-p
 let g:ctrlp_custom_ignore = { 'dir': 'node_modules' }
+let g:ctrlp_root_markers = ['.ctrlp-root']
 
 " set nerdtree width
 let g:NERDTreeWinSize = 20
@@ -104,6 +106,7 @@ let g:vimwiki_list = [{ 'path': '~/Dropbox/vimwiki/'
                      \, 'diary_index': 'journal'
                      \, 'diary_header': 'Journal'
                      \}]
+let g:vimwiki_folding = 'custom'
 
 " gitgutter
 set signcolumn=no
