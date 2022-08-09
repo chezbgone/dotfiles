@@ -2,7 +2,6 @@ setlocal nospell
 setlocal tabstop=2
 setlocal shiftwidth=2
 setlocal expandtab
-setlocal signcolumn=yes
 
 nnoremap <silent> <leader>er :Semshi error<CR>
 nmap <silent> <leader>re :Semshi rename<CR>

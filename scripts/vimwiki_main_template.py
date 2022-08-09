@@ -35,7 +35,7 @@ def set_var(var: str):
 # CONTENT
 
 @set_var('journal_list')
-def asdf() -> str:
+def _() -> str:
   journal_dir = WIKI_ROOT / JOURNAL_SUBDIRECTORY
   def is_entry(p: Path) -> bool:
     return bool(fullmatch(r'\d\d\d\d-\d\d-\d\d\.wiki', p.name))

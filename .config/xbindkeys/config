@@ -33,16 +33,20 @@
 
 
 # Screenshot
-"maim -sul -c 0,0.35,0.5,0.15 | xclip -selection clipboard -t image/png && notify-send -t 1000 copied"
+"maim --select --hidecursor --highlight --color=0,0.35,0.5,0.15 | xclip -selection clipboard -target image/png"
 	Print
 
-# Screenshot with popup
-"xfce4-screenshooter -r"
+# Screenshot and upload
+"export NAME="$(uuidgen).png" ; maim --select --hidecursor --highlight -c 0,0.35,0.5,0.15 /tmp/screenshot-$NAME && aws s3 cp /tmp/screenshot-$NAME s3://jasonchen.dev/screenshots/$NAME --cache-control 'max-age=600' && echo "https://jasonchen.dev/screenshots/$NAME" | xclip -selection clipboard && notify-send --expire-time=1000 "uploaded to jasonchen.dev""
 	Control+Print
 
 # Screenshot with delay
-"xfce4-screenshooter -r -d 2"
+"maim --delay=2 --select --hidecursor --highlight --color=0,0.35,0.5,0.15 | xclip -selection clipboard -target image/png && notify-send --expire-time=1000 "copied to clipboard""
 	Shift+Print
+
+# Screenshot with delay and upload
+"export NAME="$(uuidgen).png" ; maim --delay=2 --select --hidecursor --highlight -c 0,0.35,0.5,0.15 /tmp/screenshot-$NAME && aws s3 cp /tmp/screenshot-$NAME s3://jasonchen.dev/screenshots/$NAME --cache-control 'max-age=600' && echo "https://jasonchen.dev/screenshots/$NAME" | xclip -selection clipboard ; notify-send --expire-time=1000 "uploaded to jasonchen.dev""
+	Control+Shift+Print
 
 
 # Update dual-screen setup
