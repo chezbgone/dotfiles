@@ -288,7 +288,7 @@ myKeys conf = mkKeymap conf $
   , ("M-S-q",        kill)
   , ("M-d",          spawn "rofi -show run")
   , ("M-e",          spawn "emacs")
-  , ("M-o",          spawn "emacs ~/org/main.org")
+  -- , ("M-o",          spawn "emacs ~/org/main.org")
   , ("M-v",          spawn "kitty nvim")
   , ("M-S-v",        spawn "kitty --class floating_term nvim")
   , ("M-<Tab>",      sendMessage NextLayout)
