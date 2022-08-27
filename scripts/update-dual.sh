@@ -10,7 +10,7 @@ function connect(){
 
 function disconnect(){
 	xrandr --output HDMI2 --off
-	rm $HOME/scripts/.HDMI2
+	rm -f $HOME/scripts/.HDMI2 # -f to not care if file doesnt exist
 	#xrandr | grep -q "HDMI2 disconnected" && pactl set-card-profile 0 output:analog-stereo+2input:analog-stereo
 }
 
