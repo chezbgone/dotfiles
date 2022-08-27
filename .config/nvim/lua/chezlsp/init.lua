@@ -88,6 +88,16 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
   buf_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
+  if client.server_capabilities.codeLensProvider ~= nil then
+    buf_set_keymap('n', '<leader>cl', "<cmd>lua vim.lsp.codelens.run()<CR>", opts)
+    vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI', 'InsertLeave' }, {
+      group = vim.api.nvim_create_augroup('codelens', {}),
+      callback = function()
+        vim.lsp.codelens.refresh()
+      end,
+    })
+    vim.lsp.codelens.refresh()
+  end
 end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
