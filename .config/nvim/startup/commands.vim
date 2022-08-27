@@ -24,12 +24,6 @@ if has("autocmd")
     autocmd InsertEnter * if (!exists("b:NERDTree")) | set norelativenumber | endif
   augroup END
 
-
-  if has_key(plugs, 'coc.nvim')
-    " Highlight the symbol and its references when holding the cursor.
-    autocmd CursorHold * silent call CocActionAsync('highlight')
-  endif
-
   augroup nerdtree_auto
     " automatically quit nerdtree if last
     autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif

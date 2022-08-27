@@ -28,6 +28,7 @@ set spellfile=~/Dropbox/keep/vimspell/en.utf-8.add
 " More natural splitting
 set splitbelow
 set splitright
+set noequalalways " don't resize splits to be equal when closing one
 
 " Allows for incrementing of letters with <C-A>
 set nrformats+=alpha
@@ -73,12 +74,6 @@ let g:ctrlp_root_markers = ['.ctrlp-root']
 " set nerdtree width
 let g:NERDTreeWinSize = 20
 
-" let g:UltiSnipsExpandTrigger = "§"
-" let g:UltiSnipsJumpForwardTrigger = "§"
-" let g:UltiSnipsJumpBackwardTrigger = "<s-§>"
-
-" if this is not set, then empty .tex files break
-" let g:tex_flavor = "latex"
 let g:vimtex_compiler_enabled = 0
 let g:vimtex_imaps_enabled = 0
 
