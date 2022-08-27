@@ -40,6 +40,8 @@ alias ghci "ghci -v0"
 
 abbr r ranger
 
+export FZF_DEFAULT_OPTS='--height 60% --layout=reverse --border'
+
 function classnotes
 	~/scripts/texnotes.sh
 	cd notes
