@@ -71,7 +71,7 @@ main = do
                   "xmobar ~/.config/xmobar/xmobar-dual-side.hs"
                   ((clickablePP >=> scrollablePP) (marshallPP 1 myXMobarPP))
       config = myConfig { workspaces = withScreens nScreens myWorkspaces }
-  xmonad $ withSB mySB $ ewmh $ docks $ xmobarProp config
+  xmonad $ withSB mySB $ docks $ ewmh $ xmobarProp config
 
 myConfig :: XConfig _
 myConfig = def
