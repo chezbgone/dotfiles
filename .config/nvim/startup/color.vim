@@ -26,9 +26,7 @@ hi Normal guibg=NONE ctermbg=NONE
 highlight ExtraWhitespace guibg=darkred
 let g:better_whitespace_skip_empty_lines=1
 
-highlight CocHighlightText guibg=#555555
 highlight SignColumn guibg=NONE
-highlight Pmenu guibg=#103050
 
 " for ayu (dark)
 highlight Comment guifg=#777777
@@ -40,10 +38,5 @@ highlight Normal guifg=#e0e0e0
 highlight Directory guifg=#999999
 highlight VertSplit guifg=#4e4e4e
 highlight Folded guifg=#445566
-highlight CocErrorSign guifg=#EE2222
-highlight CocErrorVirtualText guifg=#CC2222
-
-highlight link GitGutterAddLineNr    GitGutterAdd
-highlight link GitGutterChangeLineNr GitGutterChange
-highlight link GitGutterDeleteLineNr GitGutterDelete
-highlight link GitGutterChangeLineNr GitGutterChange
+highlight DiagnosticError guifg=#EE8888
+highlight LspCodeLens guifg=#777777
