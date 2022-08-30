@@ -45,23 +45,6 @@ if has("autocmd")
   augroup term
     autocmd TermOpen * setlocal nonumber norelativenumber
   augroup END
-
-
-  augroup agda
-    autocmd BufNewFile,BufRead *.lagda.md set filetype=agda.markdown
-
-    " automatically quit if cornelis status window is last buffer
-    autocmd BufEnter * if (winnr("$") == 1 && exists("b:cornelis_window")) | q | endif
-
-    function! CornelisLoadWrapper()
-      if exists(":CornelisLoad") ==# 2
-        CornelisLoad
-      endif
-    endfunction
-
-    autocmd BufReadPre *.agda call CornelisLoadWrapper()
-    autocmd BufReadPre *.lagda* call CornelisLoadWrapper()
-  augroup END
 endif
 
 " Because shift is hard to let go of okay

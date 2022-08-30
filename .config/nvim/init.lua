@@ -1,4 +1,5 @@
-require ('plugins')
+require('plugins')
+require('settings')
 
 -- Load custom settings
 vim.cmd("source ~/.config/nvim/startup/settings.vim")

@@ -9,8 +9,12 @@ return {
           section_separators = { left = '', right = '' }
         },
         sections = {
-          lualine_x = {'encoding', {'fileformat', icons_enabled = false}, 'filetype'}
-        }
+          lualine_x = {
+            'encoding',
+            {'fileformat', icons_enabled = false},
+            'filetype'
+          }
+        },
       })
     end
 }

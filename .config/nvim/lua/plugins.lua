@@ -15,7 +15,7 @@ return require('packer').startup(function(use)
   use 'norcalli/nvim-colorizer.lua'
   use 'ntpeters/vim-better-whitespace'
 
-  use 'nvim-treesitter/nvim-treesitter' -- {'do': ':TSUpdate'}
+  use(with_config('nvim-treesitter/nvim-treesitter', 'nvim-treesitter-config'))
   use 'nvim-treesitter/nvim-treesitter-textobjects'
   use 'ray-x/cmp-treesitter'
 
@@ -27,7 +27,7 @@ return require('packer').startup(function(use)
   use 'bps/vim-textobj-python'
   --use 'pangloss/vim-javascript'
   --use 'MaxMEllon/vim-jsx-pretty'
-  use 'numirias/semshi' -- {'do': ':UpdateRemotePlugins', 'for': 'python'}
+  -- use 'numirias/semshi' -- {'do': ':UpdateRemotePlugins', 'for': 'python'}
   use 'uiiaoo/java-syntax.vim'
   use 'jackguo380/vim-lsp-cxx-highlight'
   use 'kien/rainbow_parentheses.vim'
@@ -40,13 +40,11 @@ return require('packer').startup(function(use)
   use 'wellle/targets.vim'
   use 'coderifous/textobj-word-column.vim'
 
-  use 'neovimhaskell/nvim-hs.vim' -- for cornelis
-  use 'liuchengxu/vim-which-key' -- for cornelis
-  use 'JakobBruenker/cornelis' -- { 'do': 'stack build' }
+  use(with_config('isovector/cornelis', 'cornelis-config'))
 
   -- Auto previews
-  use 'suan/vim-instant-markdown' -- {'for': 'markdown'}
-  use 'vimwiki/vimwiki'
+  use(with_config('suan/vim-instant-markdown', 'instant-markdown-config'))
+  use(with_config('vimwiki/vimwiki', 'vimwiki-config'))
 
   use 'chrisbra/Recover.vim'
   use 'gioele/vim-autoswap'
