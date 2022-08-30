@@ -69,7 +69,7 @@ return require('packer').startup(function(use)
   use 'ctrlpvim/ctrlp.vim'
 
   use 'tpope/vim-fugitive'
-  use(with_config('airblade/vim-gitgutter', 'gitgutter-config'))
+  use(with_config('lewis6991/gitsigns.nvim', 'gitsigns-config'))
 
   use 'neovim/nvim-lspconfig'
   use 'hrsh7th/cmp-nvim-lsp'
