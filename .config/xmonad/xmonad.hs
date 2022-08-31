@@ -1,5 +1,4 @@
 {-# LANGUAGE ExplicitForAll #-}
-{-# LANGUAGE LambdaCase #-}
 {-# LANGUAGE PartialTypeSignatures #-}
 {-# LANGUAGE TypeApplications #-}
 {-# OPTIONS_GHC -Wno-partial-type-signatures #-}
@@ -130,13 +129,14 @@ layouts = (borderSpacing mouseResizable & lessBorders Screen)
     borderSpacing = renamed [CutWordsLeft 1]
       . spacingRaw True (Border 10 10 10 10) True (Border 0 0 0 0) True
 
-myLayoutHook = layouts
-             & avoidStruts -- reserve space for statusbar
+myLayoutHook =
+  layouts &
+    avoidStruts -- reserve space for statusbar
 
 myManageHook :: ManageHook
 myManageHook =
   manageZoomHook <>
-    composeAll
+    mconcat
       [ className =? "floating_term" --> doCenterFloat
       , className =? "mpv" --> doCenterFloat
       , className =? "Sxiv" --> doCenterFloat
@@ -204,10 +204,10 @@ myLogHook scr xmproc =
      , ppCurrent         = ppCurrent
      , ppHiddenNoWindows = const ""
      , ppHidden          = ppHidden
-     , ppTitle           = xmobarColor "green" ""
-                           . xmobarRaw
-                           . shorten 80
-                           . filter (/='`')
+     , ppTitle           = xmobarColor "green" "" .
+                             xmobarRaw .
+                             shorten 80 .
+                             filter (/='`')
      , ppVisible         = ppVisible
      , ppUrgent          = xmobarColor "red" "yellow"
      , ppSort            = mkWsSort $ pure (compare `on` read @Int)
@@ -229,10 +229,10 @@ myXMobarPP = def
     formatFocused   = wrap (white "[") (white "]") . magenta . ppWindow
     formatUnfocused = wrap (white "[") (white "]") . purple  . ppWindow
     ppWindow :: String -> String
-    ppWindow = xmobarRaw
-               . (\w -> if null w then "untitled" else w)
-               . shorten 30
-               . filter (/='`')
+    ppWindow = xmobarRaw .
+                 (\w -> if null w then "untitled" else w) .
+                 shorten 30 .
+                 filter (/='`')
     purple, magenta, red, white, yellow :: String -> String
     magenta  = xmobarColor "#ff79c6" ""
     purple   = xmobarColor "#bd93f9" ""
@@ -268,21 +268,22 @@ myStartupHook :: X ()
 myStartupHook = do
   spawnOnce "redshift"
   spawnOnce "dunst"
-  spawnOnce $ unwords [ "trayer"
-                      , "--edge", "top"
-                      , "--height", show 15
-                      , "--widthtype", "request"
-                      , "--distancefrom", "right"
-                      , "--distance", show 0
-                      , "--align", "right"
-                      , "--transparent", "true"
-                      , "--alpha", show 0
-                      , "--tint", "0x000000"
-                      ]
+  spawnOnce $
+    unwords
+      [ "trayer"
+      , "--edge", "top"
+      , "--height", show 15
+      , "--widthtype", "request"
+      , "--distancefrom", "right"
+      , "--distance", show 0
+      , "--align", "right"
+      , "--transparent", "true"
+      , "--alpha", show 0
+      , "--tint", "0x000000"
+      ]
   spawnOnce "dropbox start"
   spawnOnce "blueman-applet"
   spawnOnce "xfce4-clipman"
-  -- spawnOnce "node ~/Documents/auto-attest/index.js"
   spawn "notify-send \"(re)started xmonad\""
 
 toggleFloat :: Window -> X ()
