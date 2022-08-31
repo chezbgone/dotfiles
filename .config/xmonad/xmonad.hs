@@ -134,12 +134,33 @@ myLayoutHook = layouts
              & avoidStruts -- reserve space for statusbar
 
 myManageHook :: ManageHook
-myManageHook = composeAll
-  [ className =? "floating_term" --> doCenterFloat
-  , className =? "mpv" --> doCenterFloat
-  , className =? "Sxiv" --> doCenterFloat
-  , className =? "feh" --> doCenterFloat
-  ]
+myManageHook =
+  manageZoomHook <>
+    composeAll
+      [ className =? "floating_term" --> doCenterFloat
+      , className =? "mpv" --> doCenterFloat
+      , className =? "Sxiv" --> doCenterFloat
+      , className =? "feh" --> doCenterFloat
+      ]
+
+-- from https://www.peterstuart.org/posts/2021-09-06-xmonad-zoom/
+manageZoomHook =
+  composeAll
+    [ (className =? zoomClassName) <&&> shouldFloat <$> title --> doFloat,
+      (className =? zoomClassName) <&&> shouldSink <$> title --> doSink
+    ]
+  where
+    zoomClassName = "zoom"
+    tileTitles =
+      [ "Zoom - Free Account", -- main window
+        "Zoom - Licensed Account", -- main window
+        "Zoom", -- meeting window on creation
+        "Zoom Meeting" -- meeting window shortly after creation
+      ]
+    shouldFloat title = title `notElem` tileTitles
+    shouldSink title = title `elem` tileTitles
+    doSink = (ask >>= doF . W.sink) <+> doF W.swapDown
+
 
 bringFocusedToTop :: X ()
 bringFocusedToTop = windows $ W.modify' $
