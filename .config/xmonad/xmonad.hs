@@ -60,15 +60,15 @@ main = do
   nScreens <- countScreens
   let mySB =
         if nScreens == 1
-           then statusBarPropTo "_UNSAFE_XMONAD_LOG"
-                  "xmobar ~/.config/xmobar/xmobar-laptop.hs"
-                  ((clickablePP >=> scrollablePP) (marshallPP 0 myXMobarPP))
-           else statusBarPropTo "_UNSAFE_XMONAD_LOG_1"
-                  "xmobar ~/.config/xmobar/xmobar-dual-main.hs"
-                  ((clickablePP >=> scrollablePP) (marshallPP 0 myXMobarPP))
-                <> statusBarPropTo "_UNSAFE_XMONAD_LOG_0"
-                  "xmobar ~/.config/xmobar/xmobar-dual-side.hs"
-                  ((clickablePP >=> scrollablePP) (marshallPP 1 myXMobarPP))
+        then statusBarPropTo "_UNSAFE_XMONAD_LOG"
+               "xmobar ~/.config/xmobar/xmobar-laptop.hs"
+               ((clickablePP >=> scrollablePP) (marshallPP 0 myXMobarPP))
+        else statusBarPropTo "_UNSAFE_XMONAD_LOG_1"
+               "xmobar ~/.config/xmobar/xmobar-dual-main.hs"
+               ((clickablePP >=> scrollablePP) (marshallPP 0 myXMobarPP))
+             <> statusBarPropTo "_UNSAFE_XMONAD_LOG_0"
+               "xmobar ~/.config/xmobar/xmobar-dual-side.hs"
+               ((clickablePP >=> scrollablePP) (marshallPP 1 myXMobarPP))
       config = myConfig { workspaces = withScreens nScreens myWorkspaces }
   xmonad $ withSB mySB $ docks $ ewmh $ xmobarProp config
 
@@ -97,7 +97,7 @@ myTerminal = "kitty"
 
 myWorkspaces, myWorkspaceKeys :: [String]
 myWorkspaces = show <$> [1..10]
-myWorkspaceKeys = show <$> [1..9] <> pure 0
+myWorkspaceKeys = show <$> [1..9] <> [0]
 
 layouts = (borderSpacing mouseResizable & lessBorders Screen)
       ||| noBorders (tabbed shrinkText myTabConfig)
@@ -271,14 +271,15 @@ myStartupHook = do
   spawnOnce $
     unwords
       [ "trayer"
+      , "--monitor", "1"
       , "--edge", "top"
-      , "--height", show 15
+      , "--height", "15"
       , "--widthtype", "request"
       , "--distancefrom", "right"
-      , "--distance", show 0
+      , "--distance", "0"
       , "--align", "right"
       , "--transparent", "true"
-      , "--alpha", show 0
+      , "--alpha", "0"
       , "--tint", "0x000000"
       ]
   spawnOnce "dropbox start"

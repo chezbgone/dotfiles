@@ -70,7 +70,7 @@ function! <SID>SynStack()
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
-nmap <F12> :NERDTreeToggle<CR>
+nmap <F12> :NvimTreeToggle<CR>
 
 " use <tab> and <S-tab> to navigate completion list
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"

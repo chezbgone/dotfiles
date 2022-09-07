@@ -8,7 +8,6 @@ return require('packer').startup(function(use)
   -- packer can manage itself
   use 'wbthomason/packer.nvim'
 
-  use 'vim-airline/vim-airline-themes'
   use 'NLKNguyen/papercolor-theme'
   use 'mhartington/oceanic-next'
   use 'ayu-theme/ayu-vim'
@@ -16,20 +15,21 @@ return require('packer').startup(function(use)
   use 'ntpeters/vim-better-whitespace'
 
   use(with_config('nvim-treesitter/nvim-treesitter', 'nvim-treesitter-config'))
-  use 'nvim-treesitter/nvim-treesitter-textobjects'
+  use(with_config('nvim-treesitter/nvim-treesitter-textobjects', 'nvim-treesitter-textobjects-config'))
+  use 'nvim-treesitter/playground'
   use 'ray-x/cmp-treesitter'
 
-  use 'lervag/vimtex'
+  use(with_config('lervag/vimtex', 'vimtex-config'))
   use 'godlygeek/tabular'
 
   -- Language specific
   use 'kana/vim-textobj-user'
   use 'bps/vim-textobj-python'
-  --use 'pangloss/vim-javascript'
-  --use 'MaxMEllon/vim-jsx-pretty'
+  -- use 'pangloss/vim-javascript'
+  -- use 'MaxMEllon/vim-jsx-pretty'
   -- use 'numirias/semshi' -- {'do': ':UpdateRemotePlugins', 'for': 'python'}
-  use 'uiiaoo/java-syntax.vim'
-  use 'jackguo380/vim-lsp-cxx-highlight'
+  -- use 'uiiaoo/java-syntax.vim'
+  -- use 'jackguo380/vim-lsp-cxx-highlight'
   use 'kien/rainbow_parentheses.vim'
   use 'neovimhaskell/haskell-vim'
   use 'whonore/Coqtail'
@@ -64,8 +64,7 @@ return require('packer').startup(function(use)
 
   use(with_config('nvim-lualine/lualine.nvim', 'lualine-config'))
 
-  use 'scrooloose/nerdtree'
-  use 'Xuyuanp/nerdtree-git-plugin'
+  use(with_config('kyazdani42/nvim-tree.lua', 'nvim-tree-config'))
   use 'ctrlpvim/ctrlp.vim'
 
   use 'tpope/vim-fugitive'

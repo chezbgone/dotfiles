@@ -13,8 +13,6 @@ let g:PaperColor_Theme_Options = {
 
 set termguicolors
 set background=dark
-"let g:airline_theme='ayu_dark'
-let g:airline_theme='deus'
 
 "colorscheme PaperColor
 colorscheme ayu

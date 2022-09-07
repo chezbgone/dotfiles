@@ -4,7 +4,6 @@ vim.opt.linebreak = true
 vim.opt.wrap = true
 vim.opt.breakindent = true
 vim.opt.joinspaces = false -- one space when joining sentences with J
-vim.opt.foldmethod = 'marker'
 
 vim.opt.inccommand = 'nosplit' -- live preview of commands
 
@@ -46,4 +45,3 @@ vim.g.mapleader = ' '
 
 vim.g.python_host_prog = '/home/jason/.local/share/pyenv/versions/neovim2/bin/python'
 vim.g.python3_host_prog = '/home/jason/.local/share/pyenv/versions/neovim3/bin/python'
-

@@ -1,5 +1,8 @@
 vim.filetype.add({
+  extension = {
+    asy = 'asymptote',
+  },
   pattern = {
-    [".*%.lagda%.md"] = 'agda.markdown'
+    ['.*%.lagda%.md'] = 'agda.markdown',
   }
 })

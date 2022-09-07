@@ -68,7 +68,7 @@ config = defaultConfig
   , bgColor = "black"
   , fgColor = "grey"
   , alpha = 255
-  , position = Static { xpos = 1920, ypos = 0, width = 1920, height = 15 }
+  , position = Static { xpos = 0, ypos = 0, width = 1920, height = 15 }
   , textOffset = -1
   , iconOffset = -1
   , iconRoot = "."
@@ -92,6 +92,13 @@ config = defaultConfig
                               , "--align", "l"
                               ] 10
                , Run $ Date "%a %b %d %H:%M:%S" "date" 10
+               , Run $ Battery [ "-t", "B: <left>% <timeleft><acstatus>"
+                               , "--"
+                               , "-o", "-"
+                               , "-i", ""
+                               , "-O", "+"
+                               , "-a", "notify-send -u critical 'Battery running out!'"
+                               ] 60
                , Run Spotify
                , Run AlsaPlus
                , Run $ UnsafeXPropertyLog "_UNSAFE_XMONAD_LOG_0"
@@ -103,6 +110,7 @@ config = defaultConfig
     mid   = ""
     right = intercalate " | " [ "%spotify%"
                               , "%alsaplus%"
+                              , "%battery%"
                               , "%cpu%"
                               , "%memory%"
                               , "%dynnetwork%"

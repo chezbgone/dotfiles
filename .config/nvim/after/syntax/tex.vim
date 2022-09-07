@@ -23,7 +23,7 @@ highlight texMathSuperSub guifg=#b8deff
 highlight texCmdPart guifg=#afffaf
 highlight texPartArgTitle guifg=#ff87af
 
-syntax include @ASY after/syntax/asy.vim
+syntax include @ASY after/syntax/asymptote.vim
 syntax region asySnip matchgroup=Snip start="\\begin{asy}" end="\\end{asy}" contains=@ASY containedin=texPartZone,texChapterZone,texSectionZone,texSubSectionZone,texSubSubSectionZone,texDocZone
 syntax region asySnip matchgroup=Snip start="\\begin{asydef}" end="\\end{asydef}" contains=@ASY containedin=texPartZone,texChapterZone,texSectionZone,texSubSectionZone,texSubSubSectionZone,texDocZone
 hi link Snip PreProc

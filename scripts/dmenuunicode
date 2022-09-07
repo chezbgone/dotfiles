@@ -2,7 +2,7 @@
 # The famous "get a menu of emojis to copy" script.
 
 # Get user selection via dmenu from emoji file.
-chosen=$(cut -d ';' -f1 ~/.config/unicode/unicode_list | rofi -dmenu -i | sed "s/ .*//")
+chosen=$(cat ~/.config/unicode/emoji ~/.config/unicode/math | rofi -dmenu -i | sed "s/ .*//")
 
 # Exit if none chosen.
 [ -z "$chosen" ] && exit
@@ -13,5 +13,5 @@ if [ -n "$1" ]; then
 	xdotool type "$chosen"
 else
 	echo "$chosen" | tr -d '\n' | xclip -selection clipboard
-	notify-send "'$chosen' copied to clipboard." &
+	notify-send "$chosen copied to clipboard."
 fi

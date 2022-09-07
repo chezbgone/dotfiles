@@ -18,26 +18,6 @@ if has("autocmd")
                 \ 0norm dd
   augroup END
 
-  augroup numbertoggle
-    autocmd!
-    autocmd InsertLeave * if (!exists("b:NERDTree")) | set relativenumber | endif
-    autocmd InsertEnter * if (!exists("b:NERDTree")) | set norelativenumber | endif
-  augroup END
-
-  augroup nerdtree_auto
-    " automatically quit nerdtree if last
-    autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-    " automatically open nerdtree if opening a directory
-    autocmd StdinReadPre * let s:std_in=1
-    autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
-  augroup END
-
-  augroup asy_ft
-    autocmd!
-    autocmd BufNewFile,BufRead *.asy set syntax=asy
-  augroup END
-
   augroup vimwiki_journal
     autocmd BufNewFile */journal/*.wiki execute "silent 0r !~/.config/nvim/bin/generate-vimwiki-journal-template '%'"
   augroup END
