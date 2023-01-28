@@ -2,7 +2,7 @@ setlocal spell
 setlocal tabstop=2
 setlocal shiftwidth=2
 setlocal expandtab
-setlocal textwidth=100
+setlocal colorcolumn=101
 syntax sync fromstart
 syntax spell toplevel
 

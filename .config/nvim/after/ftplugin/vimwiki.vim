@@ -13,7 +13,7 @@ if !exists("b:setup_done")
   vunmap <buffer> ic
 
   autocmd BufWritePost main.wiki silent! !python ~/scripts/vimwiki_main_template.py
-  autocmd BufWritePost main.wiki edit
-  autocmd BufWritePost main.wiki redraw!
+  " autocmd BufWritePost main.wiki edit
+  " autocmd BufWritePost main.wiki redraw!
 endif
 let b:setup_done = 1

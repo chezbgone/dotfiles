@@ -1,13 +1,27 @@
 #!/usr/bin/python
-import os.path
+from collections import defaultdict
+import datetime
 import re
 import sys
 
 with open('/home/jason/Dropbox/vimwiki/journal/template.wiki') as f:
   template = f.read()
+fields = defaultdict(str)
 
 path = sys.argv[1]
 file = path.split('/')[-1]
 name = file.rsplit('.', maxsplit=1)[0]
-if re.match(r'2\d\d\d-\d\d-\d\d', name):
-  print(template.format(date=name))
+if not re.match(r'2\d\d\d-\d\d-\d\d', name):
+  print(template)
+  exit()
+fields['date'] = name
+
+date = datetime.date(*map(int, name.split('-')))
+is_weekday = lambda: date.isoweekday() in [1, 2, 3, 4, 5]
+conditioned_todos = [
+  ('6.112 MQ', is_weekday),
+]
+todoify = lambda todo: '+ [ ] '+todo+'\n'
+fields['todos'] = ''.join(todoify(todo) for (todo, condition) in conditioned_todos if condition())
+
+print(template.format(**fields))

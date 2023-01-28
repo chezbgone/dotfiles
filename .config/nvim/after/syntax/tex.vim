@@ -4,6 +4,7 @@ highlight texCmdPackage guifg=#afffaf
 highlight texFilesArg guifg=#00ffaf
 highlight texFileOpt guifg=#aad7ff
 
+highlight texStyleItal guifg=#e0e0e0
 highlight texDelim guifg=#888888
 highlight texTabularChar guifg=#888888
 

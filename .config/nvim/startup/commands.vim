@@ -23,7 +23,7 @@ if has("autocmd")
   augroup END
 
   augroup term
-    autocmd TermOpen * setlocal nonumber norelativenumber
+    autocmd TermOpen * setlocal nonumber norelativenumber | :DisableWhitespace
   augroup END
 endif
 

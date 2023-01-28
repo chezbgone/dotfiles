@@ -1,1 +1,1 @@
-highlight CoqtailChecked guibg=#103810
+highlight CoqtailChecked guibg=#104010
