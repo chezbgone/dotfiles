@@ -1,3 +1,5 @@
+#!/bin/sh
+
 source ~/scripts/reset-keyboard.sh &
 source ~/scripts/wacom_setup.sh &
 
@@ -13,7 +15,8 @@ export MOZ_USE_XINPUT2=1
 
 xsetroot -cursor_name left_ptr
 xrdb ~/.config/Xresources
+dbus-update-activation-environment --all
 
 dunst &
-
-exec xmonad
+# exec xmonad
+exec i3

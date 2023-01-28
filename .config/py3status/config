@@ -27,8 +27,8 @@ battery_level {
 clock {
 	button_change_format = 2
 	button_change_time_format = 1
-	format = ["{Local}", "{America/New_York}", "{America/Chicago}"]
-	format_time = ["%m/%d %H:%M:%S %Z", "%a %H:%M:%S %Z"]
+	format = ["{America/New_York}"]
+	format_time = ["%m/%d %H:%M:%S", "%a %H:%M:%S"]
 }
 
 group status {
@@ -73,9 +73,9 @@ spotify {
 
 sysdata {
     cache_timeout = 5
-    format = "[\?color=cpu CPU {cpu_usage}%] [\?dolor=mem Mem {mem_used_percent}%]"
+    format = "[\?color=cpu C {cpu_usage}%] [\?dolor=mem M {mem_used_percent}%]"
 }
 
 wifi {
-	format = "{ssid} {bitrate}{bitrate_unit} {signal_percent}%|wifi down"
+	format = "{ssid} {signal_percent}%|wifi down"
 }
