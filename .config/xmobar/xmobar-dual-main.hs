@@ -25,36 +25,44 @@ instance Exec AlsaPlus where
 data Spotify = Spotify deriving (Read, Show)
 instance Exec Spotify where
   alias Spotify = "spotify"
-  start Spotify callback = start baseMpris (callback' . spotifyActions)
+  start Spotify callback = start baseMpris (callback' . actions)
       where baseMpris = Mpris2 "spotify" ["-t", "<artist> - <title>"] 5
             spotifyCommand cmd = unwords
               [ "dbus-send"
               , "--print-reply"
               , "--dest=org.mpris.MediaPlayer2.spotify" -- client
               , "/org/mpris/MediaPlayer2"
-              , "org.mpris.MediaPlayer2.Player." <> cmd
+              , cmd
               ]
-            spotifyActions = H.xmobarAction (spotifyCommand "PlayPause") "2"
-                             . H.xmobarAction (spotifyCommand "Previous") "1"
-                             . H.xmobarAction (spotifyCommand "Next") "3"
-            spotifyStatusCommand = readCreateProcess $
-              shell (unwords [ "dbus-send"
-                             , "--print-reply"
-                             , "--dest=org.mpris.MediaPlayer2.spotify" -- client
-                             , "/org/mpris/MediaPlayer2"
-                             , "org.freedesktop.DBus.Properties.Get"
-                             , "string:'org.mpris.MediaPlayer2.Player'"
-                             , "string:'PlaybackStatus'"
-                       , "|" , "egrep -A 1 \"string\""
-                       , "|" , "cut -b 26-"
-                       , "|" , "cut -d '\"' -f 1"
-                             ])
+            playerCommand action = spotifyCommand $
+              "org.mpris.MediaPlayer2.Player." <> action
+            actions =
+              H.xmobarAction (playerCommand "PlayPause") "2"
+              . H.xmobarAction (playerCommand "Previous") "1"
+              . H.xmobarAction (playerCommand "Next") "3"
+            runningCommand = "qdbus | grep -q spotify"
+            playbackStatusVerboseCommand = unwords
+              [ spotifyCommand "org.freedesktop.DBus.Properties.Get"
+              , "string:'org.mpris.MediaPlayer2.Player'"
+              , "string:'PlaybackStatus'"
+              ]
+            playbackStatusCommand = unwords
+              [ playbackStatusVerboseCommand
+              , "|" , "grep -A 1 -E \"string\""
+              , "|" , "cut -b 26-"
+              , "|" , "cut -d '\"' -f 1"
+              ]
+            statusCommand = unwords
+              [ runningCommand
+              , "&&", playbackStatusCommand
+              -- , "||", "echo \"spotify closed\""
+              ]
             callback' str = do
-              status <- spotifyStatusCommand []
-              if status == "Playing\n"
-                 then callback $ H.xmobarColor "#99ff99" "" str'
-                 else callback $ H.xmobarColor "#ff9999" "" str'
-                   where str' = if H.xmobarStrip str == "N/A" then "" else str
+              status <- readCreateProcess (shell statusCommand) []
+              case status of
+                "Playing\n" -> callback $ H.xmobarColor "#99ff99" "" str'
+                _ -> callback $ H.xmobarColor "#ff9999" "" str'
+               where str' = if H.xmobarStrip str == "N/A" then "" else str
 
 
 main :: IO ()
@@ -62,7 +70,7 @@ main = xmobar config
 
 config :: Config
 config = defaultConfig
-  { font = "xft:Source Code Pro-9"
+  { font = "xft:Source Code Pro-10"
   , additionalFonts = []
   , bgColor = "black"
   , fgColor = "grey"

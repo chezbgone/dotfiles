@@ -45,7 +45,7 @@ instance Exec Spotify where
                              , "org.freedesktop.DBus.Properties.Get"
                              , "string:'org.mpris.MediaPlayer2.Player'"
                              , "string:'PlaybackStatus'"
-                       , "|" , "egrep -A 1 \"string\""
+                       , "|" , "grep -A 1 -E \"string\""
                        , "|" , "cut -b 26-"
                        , "|" , "cut -d '\"' -f 1"
                              ])

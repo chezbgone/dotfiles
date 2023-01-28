@@ -36,6 +36,10 @@
 "maim --select --hidecursor --highlight --color=0,0.35,0.5,0.15 | xclip -selection clipboard -target image/png"
 	Print
 
+# Screenshot with menu
+"xfce4-screenshooter -r"
+	Mod4+Print
+
 # Screenshot and upload
 "export NAME="$(uuidgen).png" ; maim --select --hidecursor --highlight -c 0,0.35,0.5,0.15 /tmp/screenshot-$NAME && aws s3 cp /tmp/screenshot-$NAME s3://jasonchen.dev/screenshots/$NAME --cache-control 'max-age=600' && echo "https://jasonchen.dev/screenshots/$NAME" | xclip -selection clipboard && notify-send --expire-time=1000 "uploaded to jasonchen.dev""
 	Control+Print
@@ -66,8 +70,8 @@
 	Mod4+grave
 
 # Lock
-"sh ~/scripts/fuzzy-lock.sh"
-	Mod4+Shift+L
+# "sh ~/scripts/fuzzy-lock.sh"
+#	Mod4+Shift+L
 
 # Sleep
 #"sh ~/scripts/fuzzy-lock.sh; systemctl suspend"
@@ -80,7 +84,7 @@
 
 # Toggle tablet output screen
 "sh ~/scripts/toggle_wacom.sh"
-	Mod4+Tab
+	Mod4+Shift+W
 
 "sh ~/scripts/toggle_wacom.sh"
 	b:11

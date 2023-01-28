@@ -10,8 +10,10 @@ export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonrc.py"
 export AGDA_DIR="$XDG_CONFIG_HOME/agda"
 export TEXMFROOT="/usr/share/texmf-dist"
 export TEXMFLOCAL="/usr/share/texmf-dist"
+export TEXMFMAIN="/usr/share/texmf-dist"
 export TEXMFHOME="$XDG_DATA_HOME/texmf"
 export CHKTEXRC="$XDG_CONFIG_HOME/chktex"
+export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
 set -eg fish_user_paths
 
 set fish_color_greeting 8888ff
@@ -39,31 +41,11 @@ alias python "python -q"
 alias ghci "ghci -v0"
 
 abbr r ranger
+abbr --add ls ' ls'
 
 abbr wiki nvim ~/Dropbox/vimwiki/main.wiki
 
 export FZF_DEFAULT_OPTS='--height 60% --layout=reverse --border'
-
-function classnotes
-	~/scripts/texnotes.sh
-	cd notes
-end
-
-function notes
-	~/scripts/texnotes_notes.sh
-end
-
-function todaynotes
-	~/scripts/texnotes_day.sh
-end
-
-function sectionnotes
-	~/scripts/texnotes_section.sh
-end
-
-function writeup
-	~/scripts/writeup.sh $argv
-end
 
 function pdf
 	nohup zathura "$argv" >/dev/null 2>&1 &

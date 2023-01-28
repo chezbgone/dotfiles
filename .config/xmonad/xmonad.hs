@@ -34,6 +34,7 @@ import XMonad.Layout.Renamed
   (renamed, Rename(CutWordsLeft))
 import XMonad.Layout.Spacing
   (spacingRaw, Border(Border))
+import XMonad.Layout.Tabbed
 import XMonad.Util.EZConfig (mkKeymap)
 import XMonad.Util.Loggers (logTitles)
 import XMonad.Util.Run (spawnPipe, hPutStrLn)
@@ -48,28 +49,29 @@ import Data.Functor
 import Data.Maybe
 import Data.Monoid (All(..))
 import Data.Map (Map)
-import qualified Data.Map as Map
+import Data.Map qualified as Map
 import Data.List
 import System.IO
-import XMonad.Layout.Tabbed
 
 data MonitorSetup = Laptop | Dual ScreenId
 
 main :: IO ()
 main = do
   nScreens <- countScreens
-  let mySB =
-        if nScreens == 1
-        then statusBarPropTo "_UNSAFE_XMONAD_LOG"
-               "xmobar ~/.config/xmobar/xmobar-laptop.hs"
-               ((clickablePP >=> scrollablePP) (marshallPP 0 myXMobarPP))
-        else statusBarPropTo "_UNSAFE_XMONAD_LOG_1"
-               "xmobar ~/.config/xmobar/xmobar-dual-main.hs"
-               ((clickablePP >=> scrollablePP) (marshallPP 0 myXMobarPP))
-             <> statusBarPropTo "_UNSAFE_XMONAD_LOG_0"
-               "xmobar ~/.config/xmobar/xmobar-dual-side.hs"
-               ((clickablePP >=> scrollablePP) (marshallPP 1 myXMobarPP))
-      config = myConfig { workspaces = withScreens nScreens myWorkspaces }
+  let
+    config = myConfig { workspaces = withScreens nScreens myWorkspaces }
+    mySB =
+      if nScreens == 1 then
+        statusBarPropTo "_UNSAFE_XMONAD_LOG"
+          "xmobar ~/.config/xmobar/xmobar-laptop.hs"
+          ((clickablePP >=> scrollablePP) (marshallPP 0 myXMobarPP))
+      else
+        statusBarPropTo "_UNSAFE_XMONAD_LOG_1"
+          "xmobar ~/.config/xmobar/xmobar-dual-main.hs"
+          ((clickablePP >=> scrollablePP) (marshallPP 0 myXMobarPP))
+        <> statusBarPropTo "_UNSAFE_XMONAD_LOG_0"
+          "xmobar ~/.config/xmobar/xmobar-dual-side.hs"
+          ((clickablePP >=> scrollablePP) (marshallPP 1 myXMobarPP))
   xmonad $ withSB mySB $ docks $ ewmh $ xmobarProp config
 
 myConfig :: XConfig _
@@ -99,10 +101,11 @@ myWorkspaces, myWorkspaceKeys :: [String]
 myWorkspaces = show <$> [1..10]
 myWorkspaceKeys = show <$> [1..9] <> [0]
 
-layouts = (borderSpacing mouseResizable & lessBorders Screen)
-      ||| noBorders (tabbed shrinkText myTabConfig)
-      ||| (spacing (Grid False) & lessBorders Screen)
-      ||| (spacing Full & lessBorders Screen)
+layouts =
+  (borderSpacing mouseResizable & lessBorders Screen)
+    ||| noBorders (tabbed shrinkText def)
+    ||| (spacing (Grid False) & lessBorders Screen)
+    ||| (spacing Full & noBorders)
   where
     myTabConfig = def { activeColor = "#273450"
                       , activeBorderColor = "#273450"
@@ -130,8 +133,7 @@ layouts = (borderSpacing mouseResizable & lessBorders Screen)
       . spacingRaw True (Border 10 10 10 10) True (Border 0 0 0 0) True
 
 myLayoutHook =
-  layouts &
-    avoidStruts -- reserve space for statusbar
+  layouts -- & avoidStruts -- reserve space for statusbar
 
 myManageHook :: ManageHook
 myManageHook =
@@ -139,6 +141,7 @@ myManageHook =
     mconcat
       [ className =? "floating_term" --> doCenterFloat
       , className =? "mpv" --> doCenterFloat
+      , className =? "Gimp" --> doCenterFloat
       , className =? "Sxiv" --> doCenterFloat
       , className =? "feh" --> doCenterFloat
       ]
@@ -266,6 +269,7 @@ getWsIndex = do
 
 myStartupHook :: X ()
 myStartupHook = do
+  spawnOnce "/usr/lib/geoclue-2.0/demos/agent"
   spawnOnce "redshift"
   spawnOnce "dunst"
   spawnOnce $
