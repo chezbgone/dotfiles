@@ -5,6 +5,51 @@ font pango: Source Code Pro 10
 focus_follows_mouse no
 mouse_warping none
 
+workspace 1 output eDP1
+workspace 2 output eDP1
+workspace 3 output eDP1
+workspace 4 output eDP1
+workspace 5 output eDP1
+workspace 6 output eDP1
+workspace 7 output eDP1
+workspace 8 output eDP1
+workspace 9 output eDP1
+workspace 10 output eDP1
+
+workspace 1:𝟙 output HDMI2 VIRTUAL1 VIRTUAL2 VIRTUAL3 eDP1
+workspace 2:𝟚 output HDMI2 VIRTUAL1 VIRTUAL2 VIRTUAL3 eDP1
+workspace 3:𝟛 output HDMI2 VIRTUAL1 VIRTUAL2 VIRTUAL3 eDP1
+workspace 4:𝟜 output HDMI2 VIRTUAL1 VIRTUAL2 VIRTUAL3 eDP1
+workspace 5:𝟝 output HDMI2 VIRTUAL1 VIRTUAL2 VIRTUAL3 eDP1
+workspace 6:𝟞 output HDMI2 VIRTUAL1 VIRTUAL2 VIRTUAL3 eDP1
+workspace 7:𝟟 output HDMI2 VIRTUAL1 VIRTUAL2 VIRTUAL3 eDP1
+workspace 8:𝟠 output HDMI2 VIRTUAL1 VIRTUAL2 VIRTUAL3 eDP1
+workspace 9:𝟡 output HDMI2 VIRTUAL1 VIRTUAL2 VIRTUAL3 eDP1
+workspace 10:𝟙𝟘 output HDMI2 VIRTUAL1 VIRTUAL2 VIRTUAL3 eDP1
+
+bindsym $mod+1 exec --no-startup-id ~/scripts/i3-change-ws.sh 1
+bindsym $mod+2 exec --no-startup-id ~/scripts/i3-change-ws.sh 2
+bindsym $mod+3 exec --no-startup-id ~/scripts/i3-change-ws.sh 3
+bindsym $mod+4 exec --no-startup-id ~/scripts/i3-change-ws.sh 4
+bindsym $mod+5 exec --no-startup-id ~/scripts/i3-change-ws.sh 5
+bindsym $mod+6 exec --no-startup-id ~/scripts/i3-change-ws.sh 6
+bindsym $mod+7 exec --no-startup-id ~/scripts/i3-change-ws.sh 7
+bindsym $mod+8 exec --no-startup-id ~/scripts/i3-change-ws.sh 8
+bindsym $mod+9 exec --no-startup-id ~/scripts/i3-change-ws.sh 9
+bindsym $mod+0 exec --no-startup-id ~/scripts/i3-change-ws.sh 10
+
+bindsym $mod+Shift+1 exec --no-startup-id ~/scripts/i3-move-to-ws.sh 1
+bindsym $mod+Shift+2 exec --no-startup-id ~/scripts/i3-move-to-ws.sh 2
+bindsym $mod+Shift+3 exec --no-startup-id ~/scripts/i3-move-to-ws.sh 3
+bindsym $mod+Shift+4 exec --no-startup-id ~/scripts/i3-move-to-ws.sh 4
+bindsym $mod+Shift+5 exec --no-startup-id ~/scripts/i3-move-to-ws.sh 5
+bindsym $mod+Shift+6 exec --no-startup-id ~/scripts/i3-move-to-ws.sh 6
+bindsym $mod+Shift+7 exec --no-startup-id ~/scripts/i3-move-to-ws.sh 7
+bindsym $mod+Shift+8 exec --no-startup-id ~/scripts/i3-move-to-ws.sh 8
+bindsym $mod+Shift+9 exec --no-startup-id ~/scripts/i3-move-to-ws.sh 9
+bindsym $mod+Shift+0 exec --no-startup-id ~/scripts/i3-move-to-ws.sh 10
+
+# moving
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
@@ -41,55 +86,12 @@ bindsym $mod+Shift+a focus child
 
 bindsym $mod+Return exec kitty
 bindsym $mod+Shift+Return exec kitty --class floating_term
+bindsym $mod+w exec --no-startup-id neovide --multigrid
 bindsym $mod+Shift+q kill
-bindsym $mod+d exec rofi -show run
+bindsym $mod+d exec --no-startup-id rofi -show run
 
 bindsym $mod+Esc workspace prev
 bindsym $mod+Tab workspace back_and_forth
-
-workspace 1 output eDP1
-workspace 2 output eDP1
-workspace 3 output eDP1
-workspace 4 output eDP1
-workspace 5 output eDP1
-workspace 6 output eDP1
-workspace 7 output eDP1
-workspace 8 output eDP1
-workspace 9 output eDP1
-workspace 10 output eDP1
-
-workspace 1:𝟙 output HDMI2 VIRTUAL1 VIRTUAL2 VIRTUAL3 eDP1
-workspace 2:𝟚 output HDMI2 VIRTUAL1 VIRTUAL2 VIRTUAL3 eDP1
-workspace 3:𝟛 output HDMI2 VIRTUAL1 VIRTUAL2 VIRTUAL3 eDP1
-workspace 4:𝟜 output HDMI2 VIRTUAL1 VIRTUAL2 VIRTUAL3 eDP0x1d7d81
-workspace 5:𝟝 output HDMI2 VIRTUAL1 VIRTUAL2 VIRTUAL3 eDP1
-workspace 6:𝟞 output HDMI2 VIRTUAL1 VIRTUAL2 VIRTUAL3 eDP1
-workspace 7:𝟟 output HDMI2 VIRTUAL1 VIRTUAL2 VIRTUAL3 eDP1
-workspace 8:𝟠 output HDMI2 VIRTUAL1 VIRTUAL2 VIRTUAL3 eDP1
-workspace 9:𝟡 output HDMI2 VIRTUAL1 VIRTUAL2 VIRTUAL3 eDP1
-workspace 10:𝟙𝟘 output HDMI2 VIRTUAL1 VIRTUAL2 VIRTUAL3 eDP1
-
-bindsym $mod+1 exec --no-startup-id ~/scripts/i3-change-ws.sh 1
-bindsym $mod+2 exec --no-startup-id ~/scripts/i3-change-ws.sh 2
-bindsym $mod+3 exec --no-startup-id ~/scripts/i3-change-ws.sh 3
-bindsym $mod+4 exec --no-startup-id ~/scripts/i3-change-ws.sh 4
-bindsym $mod+5 exec --no-startup-id ~/scripts/i3-change-ws.sh 5
-bindsym $mod+6 exec --no-startup-id ~/scripts/i3-change-ws.sh 6
-bindsym $mod+7 exec --no-startup-id ~/scripts/i3-change-ws.sh 7
-bindsym $mod+8 exec --no-startup-id ~/scripts/i3-change-ws.sh 8
-bindsym $mod+9 exec --no-startup-id ~/scripts/i3-change-ws.sh 9
-bindsym $mod+0 exec --no-startup-id ~/scripts/i3-change-ws.sh 10
-
-bindsym $mod+Shift+1 exec --no-startup-id ~/scripts/i3-move-to-ws.sh 1
-bindsym $mod+Shift+2 exec --no-startup-id ~/scripts/i3-move-to-ws.sh 2
-bindsym $mod+Shift+3 exec --no-startup-id ~/scripts/i3-move-to-ws.sh 3
-bindsym $mod+Shift+4 exec --no-startup-id ~/scripts/i3-move-to-ws.sh 4
-bindsym $mod+Shift+5 exec --no-startup-id ~/scripts/i3-move-to-ws.sh 5
-bindsym $mod+Shift+6 exec --no-startup-id ~/scripts/i3-move-to-ws.sh 6
-bindsym $mod+Shift+7 exec --no-startup-id ~/scripts/i3-move-to-ws.sh 7
-bindsym $mod+Shift+8 exec --no-startup-id ~/scripts/i3-move-to-ws.sh 8
-bindsym $mod+Shift+9 exec --no-startup-id ~/scripts/i3-move-to-ws.sh 9
-bindsym $mod+Shift+0 exec --no-startup-id ~/scripts/i3-move-to-ws.sh 10
 
 bindsym $mod+Shift+c reload
 bindsym $mod+Mod4+Shift+e exit
@@ -122,8 +124,8 @@ exec --no-startup-id xfce4-clipman
 bar {
 	i3bar_command i3bar --transparency
 	position top
-	tray_output HDMI2
 	tray_output eDP1
+	tray_output HDMI2
 	strip_workspace_numbers yes
 	status_command py3status --dbus-notify
 	height 15

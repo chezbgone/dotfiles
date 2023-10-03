@@ -58,8 +58,8 @@
 	Mod4+Shift+D
 
 # Rotate dual-screen setup
-"sh ~/scripts/dual-rotate.sh"
-	Mod4+Shift+F
+# "sh ~/scripts/dual-rotate.sh"
+# 	Mod4+Shift+F
 
 # Reset caps lock to §
 "sh ~/scripts/reset-keyboard.sh"

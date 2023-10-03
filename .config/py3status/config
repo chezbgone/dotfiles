@@ -35,11 +35,6 @@ group status {
 	button_prev = 0
 	button_next = 2
 
-	backlight{
-		brightness_delta = 5
-		format = '☀️{level}%'
-	}
-
 	volume_status{
 		cache_timeout = 3
 		command = "pactl"
@@ -47,6 +42,11 @@ group status {
 		format_muted = '🔇'
 		thresholds = [(0, 'bad'), (20, 'degraded'), (40, 'good')]
 		volume_delta = 2
+	}
+
+	backlight{
+		brightness_delta = 5
+		format = '☀️{level}%'
 	}
 }
 

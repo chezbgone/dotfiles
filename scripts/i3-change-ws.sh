@@ -10,10 +10,12 @@ CURRENT_WS=$(
 
 WORKSPACE_INDEX=$1
 
+
 if grep --quiet $CURRENT_WS <<< "𝟙𝟚𝟛𝟜𝟝𝟞𝟟𝟠𝟡𝟙𝟘"
 then
   if [ "$WORKSPACE_INDEX" == "10" ]; then
     i3-msg workspace 10:𝟙𝟘
+    exit 0
   fi
   i3-msg workspace $(echo -e "$WORKSPACE_INDEX:$(printf "\\\U%x\n" $((0x1d7d8+$WORKSPACE_INDEX)))")
 else

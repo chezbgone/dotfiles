@@ -13,12 +13,11 @@ echo $DESTINATION
 
 if grep --quiet $CURRENT_WS <<< "𝟙𝟚𝟛𝟜𝟝𝟞𝟟𝟠𝟡𝟙𝟘"
 then
-  echo "bb"
   if [ "$DESTINATION" == "10" ]; then
     i3-msg move container to workspace 10:𝟙𝟘
+    exit 0
   fi
   i3-msg move container to workspace $(echo -e "$DESTINATION:$(printf "\\\U%x\n" $((0x1d7d8+$DESTINATION)))")
 else
-  echo "notbb"
   i3-msg move container to workspace $DESTINATION
 fi
