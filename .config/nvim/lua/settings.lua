@@ -83,4 +83,3 @@ vim.opt.undolevels = 10000
 
 vim.g.python_host_prog = '/home/jason/.local/share/pyenv/versions/neovim2/bin/python'
 vim.g.python3_host_prog = '/home/jason/.local/share/pyenv/versions/neovim3/bin/python'
-

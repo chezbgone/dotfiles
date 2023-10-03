@@ -46,7 +46,7 @@ inoremap <F1> <nop>
 vnoremap <F1> <nop>
 
 " Disable highlighting
-nnoremap <silent> <bslash><space> :noh<CR>
+nnoremap <silent> <bslash><space> :nohlsearch<CR>
 
 " Disable Ex-Mode
 nnoremap Q <NOP>
@@ -74,6 +74,9 @@ inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " use <cr> to complete (even if nothing selected)
 
+nnoremap <Leader>cd :cd %:p:h<CR>:pwd<CR>
+nnoremap <Leader>c. :cd ..<CR>:pwd<CR>
+
 " vim-sneak
 let g:sneak#s_next = 1
 nmap f <Plug>Sneak_f
@@ -92,5 +95,4 @@ omap f <Plug>Sneak_f
 omap F <Plug>Sneak_F
 omap t <Plug>Sneak_t
 omap T <Plug>Sneak_T
-omap <Leader>f <Plug>Sneak_s
-omap <Leader>F <Plug>Sneak_S
+omap <Leader>f <Plug>Sneakmappingsmap <Leader>F <Plug>Sneak_S

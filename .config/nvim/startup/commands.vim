@@ -30,5 +30,7 @@ endif
 " Because shift is hard to let go of okay
 command! Wq wq
 command! WQ wq
+command! Qa qa
+command! QA qa
 command! W w
 command! Q q
