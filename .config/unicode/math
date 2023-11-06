@@ -1,0 +1,189 @@
+α \alpha
+β \beta
+γ \gamma
+δ \delta
+ε \epsilon
+ζ \zeta
+η \eta
+θ \theta
+ι \iota
+κ \kappa
+λ \lambda
+μ \mu
+ν \nu
+ξ \xi
+ο \omicron
+π \pi
+ρ \rho
+ς \varsigma
+σ \sigma
+τ \tau
+υ \upsilon
+φ \phi
+χ \chi
+ψ \psi
+ω \omega
+Α \Alpha
+Β \Beta
+Γ \Gamma
+Δ \Delta
+Ε \Epsilon
+Ζ \Zeta
+Η \Eta
+Θ \Theta
+Ι \Iota
+Κ \Kappa
+Λ \Lambda
+Μ \Mu
+Ν \Nu
+Ξ \Xi
+Ο \Omicron
+Π \Pi
+Ρ \Rho
+Σ \Sigma
+Τ \Tau
+Υ \Upsilon
+Φ \Phi
+Χ \Chi
+Ψ \Psi
+Ω \Omega
+– En dash
+— Em dash
+— In dash
+¬ neg negation not
+° degree
+± pm plus minus
+× times
+⁰ ^0 superscript 0
+¹ ^1 superscript 1
+² ^2 superscript 2
+³ ^3 superscript 3
+⁴ ^4 superscript 4
+⁵ ^5 superscript 5
+⁶ ^6 superscript 6
+⁷ ^7 superscript 7
+⁸ ^8 superscript 8
+⁹ ^9 superscript 9
+⁻ ^- superscript minus
+ᵃ ^a superscript a
+ᵇ ^b superscript b
+ᶜ ^c superscript c
+ᵈ ^d superscript d
+ᵉ ^e superscript e
+ᶠ ^f superscript f
+ᵍ ^g superscript g
+ʰ ^h superscript h
+ⁱ ^i superscript i
+ʲ ^j superscript j
+ᵏ ^k superscript k
+ˡ ^l superscript l
+ᵐ ^m superscript m
+ⁿ ^n superscript n
+ᵒ ^o superscript o
+ᵖ ^p superscript p
+𐞥 ^q superscript q
+ʳ ^r superscript r
+ˢ ^s superscript s
+ᵗ ^t superscript t
+ᵘ ^u superscript u
+ᵛ ^v superscript v
+ʷ ^w superscript w
+ˣ ^x superscript x
+ʸ ^y superscript y
+ᶻ ^z superscript z
+₀ _0 subscript 0
+₁ _1 subscript 1
+₂ _2 subscript 2
+₃ _3 subscript 3
+₄ _4 subscript 4
+₅ _5 subscript 5
+₆ _6 subscript 6
+₇ _7 subscript 7
+₈ _8 subscript 8
+₉ _9 subscript 9
+ₐ _a subscript a
+ₑ _e subscript e
+ₕ _h subscript h
+ᵢ _i subscript i
+ⱼ _j subscript j
+ₖ _k subscript k
+ₗ _l subscript l
+ₘ _m subscript m
+ₙ _n subscript n
+ₚ _p subscript p
+ₛ _s subscript s
+ₜ _t subscript t
+ₓ _x subscript x
+ℂ complexes mathbb CC
+ℕ naturals mathbb NN
+ℚ rationals mathbb QQ
+ℝ reals mathbb RR
+ℤ integers mathbb ZZ
+← gets leftarrow
+→ to rightarrow
+↦ mapsto
+↤ mapsfrom
+⇐ implied by
+⇒ implies
+∀ forall for all
+∃ exists
+∅ empty set
+− minus
+∞ infinity
+∈ big in element of
+∉ nin \notin not element of
+∊ small \in element of
+∏ product
+∐ coproduct
+∑ sum
+∘ compose circ
+∙ cdot
+∧ land logical and
+∨ lor logical or
+∩ intersection
+∪ union
+≅ isomorphic iso simeqq
+≈ approx approximately almost equals
+≐ doteq
+≔ coloneqq colon equals
+≠ neq not equal
+≡ equiv
+≤ leq
+≥ geq
+⊆ subseteq
+⊈ nsubseteq
+⊊ subsetneq
+⊓ sqcap
+⊔ sqcup disjoint union
+⊕ oplus
+⊖ ominus
+⊗ otimes
+⊙ odot
+⊢ vdash thinks entails proves
+⊣ dashv
+⊤ top true
+⊥ bottom false
+⊬ nvdash thinks entails proves
+⋀ bigand bigwedge
+⋁ bigor bigvee
+⋂ bigintersection
+⋃ bigunion
+⟂ perp perpendicular
+⋮ vdots
+… ldots
+⋯ cdots
+⟦ lbbracket
+⟧ rbbracket
+⟨ langle
+⟩ rangle
+⟪ llangle
+⟫ rrangle
+⟸ long implied by
+⟹ long implies
+⦁ bullet
+⨅ bigsqcap
+⨆ bigsqcup
+𝟘 mathbb0 00
+𝟙 mathbb1 11
+𝟚 mathbb2 22
+𝟛 mathbb3 33
