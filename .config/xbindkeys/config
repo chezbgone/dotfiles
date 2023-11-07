@@ -41,7 +41,7 @@
 	Mod4+Print
 
 # Screenshot and upload
-"export NAME="$(uuidgen).png" ; maim --select --hidecursor --highlight -c 0,0.35,0.5,0.15 /tmp/screenshot-$NAME && aws s3 cp /tmp/screenshot-$NAME s3://jasonchen.dev/screenshots/$NAME --cache-control 'max-age=600' && echo "https://jasonchen.dev/screenshots/$NAME" | xclip -selection clipboard && notify-send --expire-time=1000 "uploaded to jasonchen.dev""
+"export NAME="$(uuidgen).png" ; maim --select --hidecursor --highlight -color=0,0.35,0.5,0.15 /tmp/screenshot-$NAME && aws s3 cp /tmp/screenshot-$NAME s3://jasonchen.dev/screenshots/$NAME --cache-control 'max-age=600' && echo "https://jasonchen.dev/screenshots/$NAME" | xclip -selection clipboard && notify-send --expire-time=1000 "uploaded to jasonchen.dev""
 	Control+Print
 
 # Screenshot with delay
@@ -49,7 +49,7 @@
 	Shift+Print
 
 # Screenshot with delay and upload
-"export NAME="$(uuidgen).png" ; maim --delay=2 --select --hidecursor --highlight -c 0,0.35,0.5,0.15 /tmp/screenshot-$NAME && aws s3 cp /tmp/screenshot-$NAME s3://jasonchen.dev/screenshots/$NAME --cache-control 'max-age=600' && echo "https://jasonchen.dev/screenshots/$NAME" | xclip -selection clipboard ; notify-send --expire-time=1000 "uploaded to jasonchen.dev""
+"export NAME="$(uuidgen).png" ; maim --delay=2 --select --hidecursor --highlight -color=0,0.35,0.5,0.15 /tmp/screenshot-$NAME && aws s3 cp /tmp/screenshot-$NAME s3://jasonchen.dev/screenshots/$NAME --cache-control 'max-age=600' && echo "https://jasonchen.dev/screenshots/$NAME" | xclip -selection clipboard ; notify-send --expire-time=1000 "uploaded to jasonchen.dev""
 	Control+Shift+Print
 
 
