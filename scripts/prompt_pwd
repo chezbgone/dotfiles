@@ -1,0 +1,72 @@
+#!/bin/sh
+
+usage() {
+  cat << HEREDOC
+
+  prompt_pwd - print pwd suitable for prompt
+
+  Usage: $progname [-h|--help] [-d|--dir-length MAX] [-D|--full-length-dirs NUM] cwd
+
+  optional arguments:
+    -h, --help                  show this help message and exit
+    -d, --dir-length MAX        Causes the components to be sortened to MAX characters each.
+    -D, --full-length-dirs NUM  Keeps NUM components (counted from the right) as full length without shortening.
+
+HEREDOC
+}
+
+dir_length=1
+full_length_dirs=1
+
+while :; do
+  case $1 in
+    -h|--help)
+      usage; exit
+    ;;
+    -d|--dir-length)
+      if [ -z "$2" ]; then
+        echo >&2 "Missing argument for $1"; exit 1
+      fi
+      dir_length="$2"; shift
+    ;;
+    -D|--full-length-dirs)
+      if [ -z "$2" ]; then
+        echo >&2 "Missing argument for $1"; exit 1
+      fi
+      full_length_dirs="$2"; shift
+    ;;
+    -*)
+      echo >&2 "Invalid option: $1"
+      exit 1
+    ;;
+    *)  # no more options
+      break
+  esac
+  shift
+done
+
+if [ -z "$1" ]; then
+  path=$PWD
+else
+  path=$1
+fi
+
+
+if [ $dir_length -eq 0 ]; then
+  echo "$path" | sed "s|^$(echo ~)|~|"
+  exit
+fi
+
+echo "$path" \
+| sed "s|^$(echo ~)|~|" \
+| awk \
+  -v full_length_dirs="$full_length_dirs" \
+  -v dir_length="$dir_length" \
+  '{
+    n = split($0, array, "/");
+    for (i = 2; i <= n && i + full_length_dirs <= n; i++)
+      array[i] = substr(array[i], 0, dir_length);
+    for (i in array)
+      printf (i == 1 ? "" : "/") array[i];
+    printf "\n"
+  }'
