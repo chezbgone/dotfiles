@@ -27,7 +27,7 @@ function fish_prompt
 	#printf (whoami)@(hostname)
 	#printf ' '
 	set_color $fish_color_cwd
-	printf (prompt_pwd)
+	printf (prompt_pwd --dir-length=2)
 
 	set_color normal
 	printf '%s $ ' (__fish_git_prompt)
