@@ -1,7 +1,12 @@
-require('settings')
-require('plugins')
-require('chezlsp')
-require('chezother')
+require("options")
 
-vim.cmd("source ~/.config/nvim/startup/mappings.vim")
-vim.cmd("source ~/.config/nvim/startup/commands.vim")
+require("config.lazy")
+
+require("options.mappings")
+require("options.commands")
+require("options.behaviors")
+
+require("lsp")
+
+-- todo: chezother
+
