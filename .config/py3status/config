@@ -27,7 +27,7 @@ battery_level {
 clock {
 	button_change_format = 2
 	button_change_time_format = 1
-	format = ["{America/New_York}"]
+	format = ["{America/Chicago}"]
 	format_time = ["%m/%d %H:%M:%S", "%a %H:%M:%S"]
 }
 

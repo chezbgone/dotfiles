@@ -114,7 +114,7 @@ bindsym $mod+v scratchpad show
 
 # startup
 # exec --no-startup-id xrdb ~/.config/Xresources
-exec --no-startup-id redshift
+exec --no-startup-id redshift -l 41.8:-87.6
 exec --no-startup-id dunst
 exec --no-startup-id libinput-gestures-setup start
 exec --no-startup-id dropbox start
